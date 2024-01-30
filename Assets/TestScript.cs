@@ -16,7 +16,7 @@ public class TestScript : MonoBehaviour
         
     }
 
-    public void Test_Gyeom()
+    public void Test_Dam()
     {
 
     }
