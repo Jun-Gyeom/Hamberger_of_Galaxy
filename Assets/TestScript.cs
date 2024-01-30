@@ -15,4 +15,9 @@ public class TestScript : MonoBehaviour
     {
         
     }
+
+    public void Test_Dam()
+    {
+
+    }
 }
