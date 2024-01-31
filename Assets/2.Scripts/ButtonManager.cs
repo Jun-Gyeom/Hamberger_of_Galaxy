@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class ButtonManager : MonoBehaviour
     [SerializeField]
     private GameObject cooking_Panel;
 
+    [Space(20f)]
     // 요리 창인지 체크
     private bool is_On_Cooking_Panel;
 
@@ -18,6 +20,8 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.current_Date += 1;
         //결과창을 가린다
         GameManager.Instance.result_Panel.SetActive(false);
+        // 업그레이드 창 닫기
+        GameManager.Instance.upgread_Panel.SetActive(false);
         //가게 문을 연다
         GameManager.Instance.is_Closed = false;
         GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
@@ -40,5 +44,21 @@ public class ButtonManager : MonoBehaviour
             cooking_Panel.SetActive(false);
             is_On_Cooking_Panel = false;
         }    
+    }
+
+    // 가게 업그레이드 함수
+    public void Shop_Upgrade()
+    {
+        // 업그레이드 실패 (돈 부족)
+        if (GameManager.Instance.shop_Upgrade_Cost[GameManager.Instance.shop_Level] > GameManager.Instance.money)
+        {
+            // 돈이 부족합니다 알림 또는 효과음 재생.
+            Debug.Log("돈이 부족합니다.");
+            return;
+        }
+
+        // 업그레이드 성공 (업그레이드 비용보다 돈이 많을 때)
+        GameManager.Instance.money -= GameManager.Instance.shop_Upgrade_Cost[GameManager.Instance.shop_Level]; // 업그레이드 비용 지불
+        GameManager.Instance.shop_Level++; // 가게 레벨 업그레이드
     }
 }
