@@ -1,111 +1,101 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Gamemanager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    //ÇöÀç ½Ã°£ ÅØ½ºÆ®
+    //í˜„ì¬ ì‹œê°„ í…ìŠ¤íŠ¸
     [SerializeField]
     private Text current_Time_Text;
     private string current_Time_Hour_Text;
     private string current_Time_Minute_Text;
-    //ÇöÀç ³¯Â¥ ÅØ½ºÆ®
+    //í˜„ì¬ ë‚ ì§œ í…ìŠ¤íŠ¸
     [SerializeField]
     private Text current_Date_Number_Text;
 
-    //°á°ú È­¸é
+    //ê²°ê³¼ í™”ë©´
     public GameObject result_Panel;
 
 
 
-    //½Ã°£ÀÌ Èå¸£´Â ¼Óµµ
-    [Header("½Ã°£ÀÌ Èå¸£´Â ¼Óµµ")]
+    //ì‹œê°„ì´ íë¥´ëŠ” ì†ë„
+    [Header("ì‹œê°„ì´ íë¥´ëŠ” ì†ë„")]
     [SerializeField]
     private int time_Speed;
 
     [Space (20f)]
-    //ÇöÀç ½Ã°£(½Ã)
+    //í˜„ì¬ ì‹œê°„(ì‹œ)
     public float current_Time_Hour;
-    //ÇöÀç ½Ã°£(ºĞ)
+    //í˜„ì¬ ì‹œê°„(ë¶„)
     private float current_Time_Minute;
-    //¿µ¾÷ ½ÃÀÛ ½Ã°£
-    [Header("¿µ¾÷ ½ÃÀÛ ½Ã°£")]
+    //ì˜ì—… ì‹œì‘ ì‹œê°„
+    [Header("ì˜ì—… ì‹œì‘ ì‹œê°„")]
     public float opening_Time;
-    //¿µ¾÷ Á¾·á ½Ã°£
-    [Header("¿µ¾÷ Á¾·á ½Ã°£")]
+    //ì˜ì—… ì¢…ë£Œ ì‹œê°„
+    [Header("ì˜ì—… ì¢…ë£Œ ì‹œê°„")]
     [SerializeField]
     private float closing_Time;
 
     [Space(20f)]
-    //ÇöÀç ÀÏÀÚ
+    //í˜„ì¬ ì¼ì
     public float current_Date=0;
 
-    //½Ä´ç ¹® ´İ¾Ò´ÂÁöÀÇ ¿©ºÎ
+    //ì‹ë‹¹ ë¬¸ ë‹«ì•˜ëŠ”ì§€ì˜ ì—¬ë¶€
     public bool is_Closed=false;
 
 
 
-    // ¿ä¸® Ã¢ÀÌ ¿­·ÁÀÖ´ÂÁöÀÇ ¿©ºÎ
-    private bool is_On_Cooking_Panel;
-    // ¿ä¸® Ã¢ ¿ÀºêÁ§Æ®
-    [SerializeField]
-    private GameObject Cooking_Panel_Object;
-    // ¿ä¸® Ã¢ ·ºÆ® Æ®·£½ºÆû
-    private RectTransform Cooking_Panel_RectTransform;
-    // ¿ä¸® Ã¢ ¿­°í ´İ´Â ¼Óµµ
-    [Header("¿ä¸® Ã¢ ¿­°í ´İ´Â ¼Óµµ")]
-    public float Cooking_Panel_Toggle_Speed;
+    
 
-    //½Ì±ÛÅæ ÆĞÅÏ
-    private static Gamemanager S_instance = null;
-    public static Gamemanager Instance
+    //ì‹±ê¸€í†¤ íŒ¨í„´
+    private static GameManager S_instance = null;
+    public static GameManager Instance
     {
         get
         {
             if (S_instance == null)
             {
-                S_instance = FindObjectOfType(typeof(Gamemanager)) as Gamemanager;
+                S_instance = FindObjectOfType(typeof(GameManager)) as GameManager;
             }
             return S_instance;
         }
     }
-
     private void Awake()
     {
-        // ÇØ»óµµ FHD·Î °íÁ¤ ¹× ÀüÃ¼ È­¸éÀ¸·Î ¼³Á¤
+        //í•´ìƒë„ ì´ˆê¸° ì„¤ì • FHDë¡œ ê³ ì •
         Screen.SetResolution(1920, 1080, true);
     }
 
+   
     void Start()
     {
-        // ¿ä¸® Ã¢ ÀüÈ¯À» À§ÇÑ ·ºÆ® Æ®·£½ºÆû ÇÒ´ç
-        Cooking_Panel_RectTransform = Cooking_Panel_Object.GetComponent<RectTransform>();
+        
     }
 
    
     void Update()
     {
-        //°ÔÀÓ¿¡¼­ ÇöÀç ½Ã°£À» Ç¥½ÃÇÏ°ÔÇÏ´Â ÇÔ¼ö
+        //ê²Œì„ì—ì„œ í˜„ì¬ ì‹œê°„ì„ í‘œì‹œí•˜ê²Œí•˜ëŠ” í•¨ìˆ˜
         Display_Current_Time();
-        //°¡°ÔÀÇ ¹®À» ´İ¾Ò´ÂÁöÀÇ ¿©ºÎ¸¦ È®ÀÎÇÏ´Â ÇÔ¼ö
+        //ê°€ê²Œì˜ ë¬¸ì„ ë‹«ì•˜ëŠ”ì§€ì˜ ì—¬ë¶€ë¥¼ í™•ì¸í•˜ëŠ” í•¨ìˆ˜
         Check_Is_Closed();
     
 
     }
 
-    //°¡°ÔÀÇ ¹®À» ´İ¾Ò´ÂÁöÀÇ ¿©ºÎ¸¦ È®ÀÎÇÏ´Â ÇÔ¼ö
+    //ê°€ê²Œì˜ ë¬¸ì„ ë‹«ì•˜ëŠ”ì§€ì˜ ì—¬ë¶€ë¥¼ í™•ì¸í•˜ëŠ” í•¨ìˆ˜
     public void Check_Is_Closed()
     {
-        //ÇöÀç ½Ã°£ÀÌ Á¾·á ½Ã°£°ú °°À¸¸é bool Å¸ÀÔÀÇ º¯¼ö¸¦ true·Î ¹Ù²Ş
+        //í˜„ì¬ ì‹œê°„ì´ ì¢…ë£Œ ì‹œê°„ê³¼ ê°™ìœ¼ë©´ bool íƒ€ì…ì˜ ë³€ìˆ˜ë¥¼ trueë¡œ ë°”ê¿ˆ
         if (current_Time_Hour == closing_Time)
         {
             is_Closed = true;
-            //°á°úÃ¢À» ¶ç¿î´Ù
+            //ê²°ê³¼ì°½ì„ ë„ìš´ë‹¤
             result_Panel.SetActive(true);
         }
-        //¹®À» ´İ¾ÒÀ» ¶§ ½Ã°£À» ¸ØÃß±â
+        //ë¬¸ì„ ë‹«ì•˜ì„ ë•Œ ì‹œê°„ì„ ë©ˆì¶”ê¸°
         if (is_Closed==true)
         {
             current_Time_Hour = closing_Time;
@@ -115,77 +105,37 @@ public class Gamemanager : MonoBehaviour
 
    
 
-    //°ÔÀÓ¿¡¼­ ÇöÀç ½Ã°£À» Ç¥½ÃÇÏ°ÔÇÏ´Â ÇÔ¼ö
+    //ê²Œì„ì—ì„œ í˜„ì¬ ì‹œê°„ì„ í‘œì‹œí•˜ê²Œí•˜ëŠ” í•¨ìˆ˜
     public void Display_Current_Time()
     {
-        //ÇöÀç ½Ã°£ÀÇ ºĞÀ» Á¤ÇÑ´Ù
+        //í˜„ì¬ ì‹œê°„ì˜ ë¶„ì„ ì •í•œë‹¤
         current_Time_Minute += Time.deltaTime * time_Speed;
 
-        //60ºĞÀÌ µÇ¸é 1½Ã°£À¸·Î ¹Ù²î°Ô ¸¸µé±â
+        //60ë¶„ì´ ë˜ë©´ 1ì‹œê°„ìœ¼ë¡œ ë°”ë€Œê²Œ ë§Œë“¤ê¸°
         if (((int)current_Time_Minute) >= 60)
         {
             current_Time_Minute -= 60;
             current_Time_Hour += 1;
         }
 
-        //ÇöÀç ½Ã°£(ºĞ)ÀÇ Ç¥±â¹ı Á¤ÀÇ
+        //í˜„ì¬ ì‹œê°„(ë¶„)ì˜ í‘œê¸°ë²• ì •ì˜
         if (current_Time_Hour < 10 && is_Closed==false)
         {
             current_Time_Hour_Text = $"0{current_Time_Hour}";
         }
         else current_Time_Hour_Text = $"{current_Time_Hour}";
 
-        //ÇöÀç ½Ã°£(½Ã)ÀÇ Ç¥±â¹ı Á¤ÀÇ
+        //í˜„ì¬ ì‹œê°„(ì‹œ)ì˜ í‘œê¸°ë²• ì •ì˜
         if (current_Time_Minute < 10 && is_Closed == false)
         {
             current_Time_Minute_Text = $"0{(int)current_Time_Minute}";
         }
         else current_Time_Minute_Text = $"{(int)current_Time_Minute}";
 
-        //ÇöÀç ½Ã°£°ú ³¯Â¥¸¦ ÅØ½ºÆ®·Î Ç¥½ÃÇÑ´Ù
+        //í˜„ì¬ ì‹œê°„ê³¼ ë‚ ì§œë¥¼ í…ìŠ¤íŠ¸ë¡œ í‘œì‹œí•œë‹¤
         current_Time_Text.text = $"{current_Time_Hour_Text}:{current_Time_Minute_Text}";
         current_Date_Number_Text.text = current_Date.ToString();
     }
 
-    // ¿ä¸® Ã¢ ¿­±â, ´İ±â Åä±Û ½ºÀ§Ä¡ ÄÚ·çÆ¾
-    IEnumerator Cooking_Panel_Toggle_Coroutine()
-    {
-        float Cooking_Panel_RectTransform_PosX = Cooking_Panel_RectTransform.anchoredPosition.x;
-        // ¿­±â (¿ä¸® Ã¢ÀÌ ´İÇôÀÖ´Â °æ¿ì)
-        if (is_On_Cooking_Panel == false)
-        {
-            Debug.Log("¿ä¸® Ã¢ ¿­±â");
-            while (Cooking_Panel_RectTransform.anchoredPosition.x > 0)
-            {
-                Cooking_Panel_RectTransform_PosX -= Time.deltaTime * Cooking_Panel_Toggle_Speed;
-
-                Cooking_Panel_RectTransform.anchoredPosition = new Vector2(Cooking_Panel_RectTransform_PosX, 0);
-                yield return null;
-            }
-
-            Cooking_Panel_RectTransform.anchoredPosition = new Vector2(0, 0);
-            is_On_Cooking_Panel = true;
-        }
-        // ´İ±â (¿ä¸® Ã¢ÀÌ ¿­·ÁÀÖ´Â °æ¿ì)
-        else if (is_On_Cooking_Panel == true)
-        {
-            Debug.Log("¿ä¸® Ã¢ ´İ±â");
-            while (Cooking_Panel_RectTransform.anchoredPosition.x < 1920)
-            {
-                Cooking_Panel_RectTransform_PosX += Time.deltaTime * Cooking_Panel_Toggle_Speed;
-
-                Cooking_Panel_RectTransform.anchoredPosition = new Vector2(Cooking_Panel_RectTransform_PosX, 0);
-                yield return null;
-            }
-
-            Cooking_Panel_RectTransform.anchoredPosition = new Vector2(1920, 0);
-            is_On_Cooking_Panel = false;
-        }
-    }
-
-    // ¹öÆ°¿¡ Àû¿ë½ÃÅ³ ¿ä¸® Ã¢ ¿­°í ´İ±â Åä±Û ÇÔ¼ö
-    public void Cooking_Panel_Toggle()
-    {
-        StartCoroutine("Cooking_Panel_Toggle_Coroutine");
-    }
+    
 }
