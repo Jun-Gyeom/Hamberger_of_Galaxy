@@ -47,7 +47,31 @@ public class GameManager : MonoBehaviour
 
 
 
-    
+    // 가게 레벨 (재료 업그레이드 레벨)
+    public int shop_Level;
+    // 가게 업그레이드 비용 배열
+    [Header("가게 업그레이드 비용")]
+    public float[] shop_Upgrade_Cost;
+    [Space(20f)]
+    // 소지한 돈
+    public float money;
+    // 가게 업그레이드 비용 텍스트
+    [SerializeField]
+    private TMP_Text shop_Upgrade_Cost_Text;
+    // 업그레이드 창
+    public GameObject upgread_Panel;
+    // 돈 텍스트
+    public TMP_Text money_Text;
+    // 가게 업그레이드 버튼
+    public Button shop_Upgrade_Button;
+    // 재료 스크립트 배열
+    public Ingredient[] ingredients;
+    // 해금되는 재료 오브젝트 배열
+    public GameObject[] unlock_Ingredient_Object;
+    // 해금되는 재료 이미지 배열
+    public Image[] unlock_Ingredient_Image;
+    // 해금되는 재료 이름 배열
+    public TMP_Text[] unlock_Ingredient_Name;
 
     //싱글톤 패턴
     private static GameManager S_instance = null;
@@ -81,8 +105,8 @@ public class GameManager : MonoBehaviour
         Display_Current_Time();
         //가게의 문을 닫았는지의 여부를 확인하는 함수
         Check_Is_Closed();
-    
-
+        // 소지금 텍스트 반영
+        money_Text.text = $"{money}$";
     }
 
     //가게의 문을 닫았는지의 여부를 확인하는 함수
@@ -94,6 +118,9 @@ public class GameManager : MonoBehaviour
             is_Closed = true;
             //결과창을 띄운다
             result_Panel.SetActive(true);
+
+            // 가게 레벨에 따른 업그레이드 창을 띄우는 함수 실행
+            Upgrade_Panel_Open();
         }
         //문을 닫았을 때 시간을 멈추기
         if (is_Closed==true)
@@ -103,7 +130,41 @@ public class GameManager : MonoBehaviour
         }
     }
 
-   
+    // 가게 레벨에 따른 업그레이드 창 띄우는 함수
+    void Upgrade_Panel_Open()
+    {
+        // 업그레이드 창 띄우기
+        upgread_Panel.SetActive(true);
+
+
+        // 재료가 가게 레벨 몇에 사용가능한지에 따라 업그레이드 시 얻을 수 있는 재료 표시
+        int unlock_Num = 0; // 해금 되는 재료 갯수
+        unlock_Ingredient_Object[0].SetActive(false);
+        unlock_Ingredient_Object[1].SetActive(false);
+        unlock_Ingredient_Object[2].SetActive(false);
+
+        for (int i = 0; i < ingredients.Length; i++)
+        {
+            // 해금 될 재료가 있다면
+            if (ingredients[i].ingredient.available_Shop_Level == shop_Level + 1)
+            {
+                unlock_Ingredient_Image[unlock_Num] = ingredients[i].ingredient_Sprite; // 아이콘 변경
+                unlock_Ingredient_Name[unlock_Num].text = ingredients[i].ingredient.ingredients_Name; // 이름 변경
+                unlock_Ingredient_Object[unlock_Num].SetActive(true);
+                unlock_Num++;
+            }
+        }
+
+        // 업그레이드 비용 표시
+        if (shop_Level == shop_Upgrade_Cost.Length)
+        {
+            shop_Upgrade_Cost_Text.text = "업그레이드 완료";
+            shop_Upgrade_Button.interactable = false; // 가게 업그레이드 버튼 비활성화
+            return;
+        }
+
+        shop_Upgrade_Cost_Text.text = shop_Upgrade_Cost[shop_Level].ToString();
+    }
 
     //게임에서 현재 시간을 표시하게하는 함수
     public void Display_Current_Time()
