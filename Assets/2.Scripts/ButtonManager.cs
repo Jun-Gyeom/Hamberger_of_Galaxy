@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
 {
-    [Header("요리 창")]
     [SerializeField]
     private GameObject cooking_Panel;
+    [SerializeField]
+    private GameObject ingredients_Panel;
 
     [Space(20f)]
     // 요리 창인지 체크
@@ -33,6 +34,7 @@ public class ButtonManager : MonoBehaviour
         // 요리 창 닫혀있을 때 (요리창 열기 버튼)
         if (is_On_Cooking_Panel == false)
         {
+            ingredients_Panel.SetActive (true);
             cooking_Panel.SetActive(true);
             is_On_Cooking_Panel = true;
         }
@@ -40,7 +42,8 @@ public class ButtonManager : MonoBehaviour
         else if (is_On_Cooking_Panel == true)
         {
             // 햄버거 윗부분 덮기 기능 추가 예정
-            
+
+            ingredients_Panel.SetActive(false);
             cooking_Panel.SetActive(false);
             is_On_Cooking_Panel = false;
         }    
