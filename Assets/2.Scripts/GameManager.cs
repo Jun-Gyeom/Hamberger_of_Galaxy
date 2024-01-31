@@ -72,6 +72,12 @@ public class Gamemanager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        // 해상도 FHD로 고정 및 전체 화면으로 설정
+        Screen.SetResolution(1920, 1080, true);
+    }
+
     void Start()
     {
         // 요리 창 전환을 위한 렉트 트랜스폼 할당
@@ -164,7 +170,7 @@ public class Gamemanager : MonoBehaviour
         else if (is_On_Cooking_Panel == true)
         {
             Debug.Log("요리 창 닫기");
-            while (Cooking_Panel_RectTransform.anchoredPosition.x < 915)
+            while (Cooking_Panel_RectTransform.anchoredPosition.x < 1920)
             {
                 Cooking_Panel_RectTransform_PosX += Time.deltaTime * Cooking_Panel_Toggle_Speed;
 
@@ -172,7 +178,7 @@ public class Gamemanager : MonoBehaviour
                 yield return null;
             }
 
-            Cooking_Panel_RectTransform.anchoredPosition = new Vector2(915, 0);
+            Cooking_Panel_RectTransform.anchoredPosition = new Vector2(1920, 0);
             is_On_Cooking_Panel = false;
         }
     }
