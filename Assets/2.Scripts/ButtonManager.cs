@@ -8,6 +8,9 @@ public class ButtonManager : MonoBehaviour
     [SerializeField]
     private GameObject cooking_Panel;
 
+    // 요리 창인지 체크
+    private bool is_On_Cooking_Panel;
+
     //다음 날로 넘어가는 버튼을 누른 함수
     public void Push_Button_To_Next_Day()
     {
@@ -20,15 +23,22 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
     }
 
-    //요리창을 띄우는 버튼
+    //요리 창 열기, 요리 완료 버튼
     public void Push_Button_Open_Cooking_Panel()
     {
-        cooking_Panel.SetActive(true);
-    }
-
-    //요리 완료 버튼
-    public void Push_Button_Cooking_Complete()
-    {
-        cooking_Panel.SetActive(false);
+        // 요리 창 닫혀있을 때 (요리창 열기 버튼)
+        if (is_On_Cooking_Panel == false)
+        {
+            cooking_Panel.SetActive(true);
+            is_On_Cooking_Panel = true;
+        }
+        // 요리 창 열려있을 때 (요리 완료 버튼)
+        else if (is_On_Cooking_Panel == true)
+        {
+            // 햄버거 윗부분 덮기 기능 추가 예정
+            
+            cooking_Panel.SetActive(false);
+            is_On_Cooking_Panel = false;
+        }    
     }
 }
