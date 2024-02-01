@@ -11,7 +11,15 @@ public class ButtonManager : MonoBehaviour
     private GameObject ingredients_Panel;
     [SerializeField]
     private GameObject title_Panel;
+    [SerializeField]
+    private NPCmanager npcmanager;
 
+
+    [Header("참을성 게이지들")]
+    [SerializeField]
+    private GameObject[] patience_Guages;
+
+    private Coroutine deleteCoroutine;
 
     //일자별로 체크하는 돈
     private float FinishMoney;
@@ -77,21 +85,43 @@ public class ButtonManager : MonoBehaviour
     public void Push_Button_Open_Cooking_Panel()
     {
         // 요리 창 닫혀있을 때 (요리창 열기 버튼)
-        if (is_On_Cooking_Panel == false)
+        if (is_On_Cooking_Panel == false && GameManager.Instance.is_Stay_Npc==true)
         {
             ingredients_Panel.SetActive (true);
             cooking_Panel.SetActive(true);
             is_On_Cooking_Panel = true;
+            deleteCoroutine = StartCoroutine(DeleteArrays());
+
         }
         // 요리 창 열려있을 때 (요리 완료 버튼)
         else if (is_On_Cooking_Panel == true)
         {
             // 햄버거 윗부분 덮기 기능 추가 예정
-
+            GameManager.Instance.is_Stay_Npc = false;
             ingredients_Panel.SetActive(false);
             cooking_Panel.SetActive(false);
             is_On_Cooking_Panel = false;
+            GameManager.Instance.fade.SetTrigger("Fadeout");
+            GameManager.Instance.is_Stay_Npc = false;
+            if (deleteCoroutine != null)
+            {
+                StopCoroutine(deleteCoroutine);
+            }
+            foreach (var item in patience_Guages)
+            {
+                item.SetActive(true);
+            }
         }    
+    }
+
+    IEnumerator DeleteArrays()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            // 배열을 삭제하기 전에 2초 기다리기
+            yield return new WaitForSeconds(2f);
+            patience_Guages[i].SetActive(false);
+        }
     }
 
     // 가게 업그레이드 함수

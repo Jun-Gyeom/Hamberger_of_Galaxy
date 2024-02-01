@@ -21,6 +21,13 @@ public class GameManager : MonoBehaviour
     public GameObject pause_Panel;
 
 
+    [SerializeField]
+    private Sprite[] npcs_Face;
+    [SerializeField]
+    private Image npc_Face_Image;
+
+    public Animator fade;
+    public bool is_Stay_Npc = false;
 
 
     //시간이 흐르는 속도
@@ -49,7 +56,7 @@ public class GameManager : MonoBehaviour
     public bool is_Closed=false;
     //일시정지 여부
     public bool is_Paused=false;
-
+    public bool is_Npc_check=true;
 
 
     // 가게 레벨 (재료 업그레이드 레벨)
@@ -114,6 +121,8 @@ public class GameManager : MonoBehaviour
         CheckPause();
         // 소지금 텍스트 반영
         money_Text.text = $"{money}$";
+        //npc여부 확인
+        CheckNpc();
     }
 
     //가게의 문을 닫았는지의 여부를 확인하는 함수
@@ -214,5 +223,23 @@ public class GameManager : MonoBehaviour
             is_Paused = true;
             Time.timeScale = 0;
         }
+    }
+    
+    //npc가 있는지 체크
+    public void CheckNpc()
+    {
+        if (is_Stay_Npc==false&&is_Npc_check==true)
+        {
+            is_Npc_check = false;
+            Invoke("ComeInNpc",3f);
+        } 
+    }
+    //npc가 들어오는 함수
+    public void ComeInNpc()
+    {
+        is_Stay_Npc = true;
+        npc_Face_Image.sprite = npcs_Face[Random.Range(0, npcs_Face.Length)];
+        fade.SetTrigger("FadeIn");
+        is_Npc_check=true;
     }
 }
