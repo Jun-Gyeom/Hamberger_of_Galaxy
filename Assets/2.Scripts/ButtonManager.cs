@@ -9,10 +9,47 @@ public class ButtonManager : MonoBehaviour
     private GameObject cooking_Panel;
     [SerializeField]
     private GameObject ingredients_Panel;
+    [SerializeField]
+    private GameObject title_Panel;
+    
+    //[SerializeField]
+    //private GameObject tutorial_Panel;
 
     [Space(20f)]
     // 요리 창인지 체크
     private bool is_On_Cooking_Panel;
+
+
+    //게임 시작 버튼
+    public void Push_Button_Game_Start()
+    {
+        title_Panel.SetActive(false);
+        GameManager.Instance.pause_Panel.SetActive(false);
+        GameManager.Instance.is_Paused=false;
+        Time.timeScale = 1;
+        //tutorial_Panel.SetActive(true);
+
+    }
+
+    //게임 종료 버튼
+    public void Push_Button_Game_Exit()
+    {
+        Application.Quit();
+    }
+
+    //일시 정지에서 타이틀로 가는 버튼
+    public void Push_Button_To_Title()
+    {
+        title_Panel.SetActive(true);
+    }
+
+    //일시 정지에서 게임을 계속하는 버튼
+    public void Push_Button_To_Game_Continue()
+    {
+        GameManager.Instance.pause_Panel.SetActive(false);
+        GameManager.Instance.is_Paused = false;
+        Time.timeScale = 1;
+    }
 
     //다음 날로 넘어가는 버튼을 누른 함수
     public void Push_Button_To_Next_Day()

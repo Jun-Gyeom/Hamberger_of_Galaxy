@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
 
     //결과 화면
     public GameObject result_Panel;
+    //일시 정지 화면
+    public GameObject pause_Panel;
+
 
 
 
@@ -44,6 +47,8 @@ public class GameManager : MonoBehaviour
 
     //식당 문 닫았는지의 여부
     public bool is_Closed=false;
+    //일시정지 여부
+    public bool is_Paused=false;
 
 
 
@@ -105,6 +110,8 @@ public class GameManager : MonoBehaviour
         Display_Current_Time();
         //가게의 문을 닫았는지의 여부를 확인하는 함수
         Check_Is_Closed();
+        //일시 정지를 확인하는 함수
+        CheckPause();
         // 소지금 텍스트 반영
         money_Text.text = $"{money}$";
     }
@@ -198,5 +205,13 @@ public class GameManager : MonoBehaviour
         current_Date_Number_Text.text = current_Date.ToString();
     }
 
-    
+    public void CheckPause()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)&&is_Paused==false)
+        {
+            pause_Panel.SetActive(true);
+            is_Paused = true;
+            Time.timeScale = 0;
+        }
+    }
 }
