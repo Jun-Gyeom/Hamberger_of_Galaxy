@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Space_Squid_Patty
   m_EditorClassIdentifier: 
   available_Shop_Level: 3
-  ingredients_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  ingredients_UI_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  ingredients_Sprite: {fileID: 21300000, guid: 7120b9af2ed72b642b7e7b288d65194b, type: 3}
   ingredients_Name: "\uC6B0\uC8FC \uC624\uC9D5\uC5B4 \uD328\uD2F0"
+  is_Unlock: 0
   like_Type: 2
-  type: 12
+  type: 10

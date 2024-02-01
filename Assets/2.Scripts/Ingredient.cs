@@ -12,7 +12,7 @@ public class Ingredient : MonoBehaviour
 
     private void Start()
     {
-        ingredient_Sprite.sprite = ingredient.ingredients_Sprite;
+        ingredient_Sprite.sprite = ingredient.ingredients_UI_Sprite;
     }
 
     private void Update()
@@ -23,8 +23,12 @@ public class Ingredient : MonoBehaviour
     // 재료 클릭 (사용)
     public void Click_Ingredient()
     {
+        // 임시
         Debug.Log($"{ingredient.like_Type}(이)가 좋아하는 {ingredient.ingredients_Name} 재료 사용!");
         Debug.Log((int)ingredient.type);
+
+        // 재료 햄버거에 사용
+        GameManager.Instance.Cook_Hamburger(ingredient);
     }
 
     // 해금 여부 체크 및 반영

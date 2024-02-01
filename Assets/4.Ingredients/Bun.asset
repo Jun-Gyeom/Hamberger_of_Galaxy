@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Bun
   m_EditorClassIdentifier: 
   available_Shop_Level: 0
-  ingredients_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  ingredients_UI_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  ingredients_Sprite: {fileID: 21300000, guid: a1d8361e1144e8b49b5160396b81c6f9, type: 3}
   ingredients_Name: "\uBE75"
+  is_Unlock: 0
   like_Type: 0
   type: 1

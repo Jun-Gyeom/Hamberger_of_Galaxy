@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Eagle_Constellation
   m_EditorClassIdentifier: 
   available_Shop_Level: 3
+  ingredients_UI_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   ingredients_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   ingredients_Name: "\uB3C5\uC218\uB9AC \uC790\uB9AC \uD3B8\uB9B0"
+  is_Unlock: 0
   like_Type: 2
-  type: 11
+  type: 9

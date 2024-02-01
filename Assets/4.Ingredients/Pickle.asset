@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Pickle
   m_EditorClassIdentifier: 
   available_Shop_Level: 0
-  ingredients_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  ingredients_UI_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  ingredients_Sprite: {fileID: 21300000, guid: 06157ca28ccfde6409e7c6abc9be0638, type: 3}
   ingredients_Name: "\uD53C\uD074"
+  is_Unlock: 0
   like_Type: 1
   type: 5

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+using System.Reflection;
 
 public class GameManager : MonoBehaviour
 {
@@ -78,6 +80,31 @@ public class GameManager : MonoBehaviour
     // 해금되는 재료 이름 배열
     public TMP_Text[] unlock_Ingredient_Name;
 
+    // 햄버거 높이
+    [Header("햄버거 최대 높이 (윗면 빵 제외)")]
+    [SerializeField]
+    public int max_Burgur_Height;
+    [Space(20f)]
+    // 현재 올려야할 햄버거 재료 위치(높이)
+    public int current_Burgur_Height;
+    // 현재 버거 정보(들어간 재료) 배열
+    public int[] current_Make_Burger_Info;
+    // 버거 재료 들어갈 오브젝트 배열
+    public GameObject[] burgur_Ingredient_Object;
+    // 버거 재료 들어갈 이미지 배열
+    public Image[] burgur_Ingredient_Image;
+
+    // 현재 주문을 다 받았는지 체크
+    public bool is_End_Current_Order;
+    // 햄버거 재료를 선택 중인지 체크
+    public bool is_Select_Ingredient;
+    // 재료 선택 시 화면 강조 효과 패널
+    public GameObject ingredient_Shadow_Panel;
+    // 요리 창 닫기 코루틴 실행 여부
+    public bool is_Cooking_Panel_Closing_Coroutine;
+    // 현재 선택 중인 재료 위치 (햄버거에서의 높이)
+    private int current_Select_Ingredient_Height;
+
     //싱글톤 패턴
     private static GameManager S_instance = null;
     public static GameManager Instance
@@ -113,7 +140,37 @@ public class GameManager : MonoBehaviour
         //일시 정지를 확인하는 함수
         CheckPause();
         // 소지금 텍스트 반영
-        money_Text.text = $"{money}$";
+        money_Text.text = $"{money}원";
+
+
+
+
+        // 테스트 중 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+        /*
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            int index = Array.IndexOf(current_Make_Burger_Info, (int)Type.cheese);
+            if (index > -1)
+            {
+                Debug.Log($"{Type.cheese}의 재료는 {index + 1}번째에 있다.");
+
+                current_Make_Burger_Info[index] = 0;
+            }
+            else
+            {
+                Debug.Log("해당 재료는 햄버거에 없다.");
+            }
+        }
+
+
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            for (int i = 0; i < current_Make_Burger_Info.Length; i++)
+            {
+                Debug.Log($"{current_Make_Burger_Info[i]}");
+            }
+        }
+        */
     }
 
     //가게의 문을 닫았는지의 여부를 확인하는 함수
@@ -214,5 +271,95 @@ public class GameManager : MonoBehaviour
             is_Paused = true;
             Time.timeScale = 0;
         }
+    }
+
+    // 햄버거 제작 시스템
+    public void Cook_Hamburger(Ingredients ingredient)
+    {
+        // 재료가 가득 찼을 때
+        if (current_Burgur_Height >= max_Burgur_Height)
+        {
+            // 재료 넣지 않고
+            Debug.Log("재료 가득 참.");
+
+            // 근데 재료가 윗면 빵이라면
+            if (ingredient.type == Type.Top_Bun)
+            {
+                Debug.Log("윗면빵 넣기!");
+                burgur_Ingredient_Image[current_Burgur_Height].sprite = ingredient.ingredients_Sprite; // 재료 이미지 변경
+                burgur_Ingredient_Object[current_Burgur_Height].SetActive(true); ; // 재료 활성화
+                current_Make_Burger_Info[current_Burgur_Height] = (int)ingredient.type; // 실질적 데이터 적용
+
+                current_Burgur_Height++;
+            }
+
+            // 예외처리 (재료 스왑은 가득 차도 가능)
+            if (!is_Select_Ingredient)
+            {
+                return; // 리턴
+            }
+        }
+
+        // 요리 완료 버튼 눌렀다면
+        if (is_Cooking_Panel_Closing_Coroutine)
+        {
+            return;
+        }
+
+        // 재료 선택 중이었다면 (치환, 스왑 기능)
+        if (is_Select_Ingredient)
+        {
+            burgur_Ingredient_Image[current_Select_Ingredient_Height].sprite = ingredient.ingredients_Sprite; // 재료 이미지 변경
+            burgur_Ingredient_Object[current_Select_Ingredient_Height].SetActive(true); ; // 재료 활성화
+            current_Make_Burger_Info[current_Select_Ingredient_Height] = (int)ingredient.type; // 실질적 데이터 적용
+
+            // 재료 선택 해제(강조 해제)
+            Sorting_Ingredient_Objects();
+
+            return;
+        }
+
+        // 재료 넣을 공간이 있다면
+        for (int i = 0; i < max_Burgur_Height; i++)
+        {
+            Debug.Log("재료 넣을 공간 확인 중...");
+            if (!burgur_Ingredient_Object[i].activeSelf)
+            {
+                Debug.Log("재료 넣기!");
+                burgur_Ingredient_Image[current_Burgur_Height].sprite = ingredient.ingredients_Sprite; // 재료 이미지 변경
+                burgur_Ingredient_Object[current_Burgur_Height].SetActive(true); ; // 재료 활성화
+                current_Make_Burger_Info[current_Burgur_Height] = (int)ingredient.type; // 실질적 데이터 적용
+
+                current_Burgur_Height++;
+                return;
+            }
+        }
+    }
+
+    // 햄버거 재료 하이어라키 순서 정렬 함수
+    public void Sorting_Ingredient_Objects()
+    {
+        for (int i = 0; i < burgur_Ingredient_Object.Length; i++)
+        {
+            ingredient_Shadow_Panel.SetActive(false); // 강조 패널 비활성화
+            burgur_Ingredient_Object[i].transform.SetSiblingIndex(i);
+        }
+        is_Select_Ingredient = false;
+    }
+
+    // 햄버거 재료 선택 함수
+    public void Select_Ingredient(int num)
+    {
+        // 이미 다른 재료 선택 중이면 (또는 요리 완료 버튼 눌렀다면) 리턴
+        if (is_Select_Ingredient || is_Cooking_Panel_Closing_Coroutine)
+        {
+            return;
+        }
+
+        // 재료 선택
+        ingredient_Shadow_Panel.SetActive(true); // 강조 패널 활성화
+        burgur_Ingredient_Object[num].gameObject.transform.SetAsLastSibling();
+        is_Select_Ingredient = true;
+        current_Select_Ingredient_Height = num;
     }
 }
