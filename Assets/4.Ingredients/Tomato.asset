@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   available_Shop_Level: 0
   ingredients_UI_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  ingredients_Sprite: {fileID: 21300000, guid: 5eb21483de90f2441ac07ce953920f2e, type: 3}
+  ingredients_Sprite: {fileID: 21300000, guid: f18c37b1519e16c46a9fecee8f9ab68f, type: 3}
   ingredients_Name: "\uD1A0\uB9C8\uD1A0"
   is_Unlock: 0
   like_Type: 1

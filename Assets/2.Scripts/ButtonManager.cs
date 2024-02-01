@@ -83,6 +83,7 @@ public class ButtonManager : MonoBehaviour
             ingredients_Panel.SetActive (true);
             cooking_Panel.SetActive(true);
             is_On_Cooking_Panel = true;
+
         }
         // 요리 창 열려있을 때 (요리 완료 버튼)
         else if ((is_On_Cooking_Panel == true) && !GameManager.Instance.is_Cooking_Panel_Closing_Coroutine)
@@ -93,7 +94,7 @@ public class ButtonManager : MonoBehaviour
             // 재료 선택 해제(강조 해제)
             GameManager.Instance.Sorting_Ingredient_Objects();
 
-            // 햄버거 덮힌 모습을 보여주기 위해 몇 초 기다리기 (미구현)
+            // 햄버거 덮힌 모습을 보여주기 위해 몇 초 기다리기
             StartCoroutine("Cooking_Panel_Close");
         }    
     }

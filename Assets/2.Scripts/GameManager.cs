@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
-using System.Reflection;
 
 public class GameManager : MonoBehaviour
 {
     //현재 시간 텍스트
     [SerializeField]
-    private Text current_Time_Text;
+    private TMP_Text current_Time_Text;
     private string current_Time_Hour_Text;
     private string current_Time_Minute_Text;
     //현재 날짜 텍스트
     [SerializeField]
-    private Text current_Date_Number_Text;
+    private TMP_Text current_Date_Number_Text;
 
     //결과 화면
     public GameObject result_Panel;
@@ -105,6 +103,24 @@ public class GameManager : MonoBehaviour
     // 현재 선택 중인 재료 위치 (햄버거에서의 높이)
     private int current_Select_Ingredient_Height;
 
+    [Header("손님 시스템 관련 변수")]
+    // 손님 얼굴 이미지
+    public Image guest_Face_Image;
+    // 손님 얼굴 스프라이트 배열
+    public Sprite[] guest_Faces;
+    // 손님 실루엣 이미지
+    public Image guest_Silhoutte_Image;
+    // 손님 실루엣 페이드 속도
+    public float fade_Speed;
+    // 현재 손님 인내심 게이지 수치
+    public float current_Patience_Value;
+    // 손님 인내심 게이지 오브젝트 배열
+    public GameObject[] patience_Gauge_Objects;
+    // 타이머
+    float timer;
+    // 인내심 게이지 한 칸 닳는 시간 간격
+    public float patience_Decrease_Time;
+
     //싱글톤 패턴
     private static GameManager S_instance = null;
     public static GameManager Instance
@@ -141,8 +157,8 @@ public class GameManager : MonoBehaviour
         CheckPause();
         // 소지금 텍스트 반영
         money_Text.text = $"{money}원";
-
-
+        // 손님 인내심 게이지
+        Patience_Gauge_Decrease();
 
 
         // 테스트 중 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -161,16 +177,13 @@ public class GameManager : MonoBehaviour
                 Debug.Log("해당 재료는 햄버거에 없다.");
             }
         }
-
+        */
 
         if (Input.GetKeyUp(KeyCode.F))
         {
-            for (int i = 0; i < current_Make_Burger_Info.Length; i++)
-            {
-                Debug.Log($"{current_Make_Burger_Info[i]}");
-            }
+            Guest_Come();
         }
-        */
+
     }
 
     //가게의 문을 닫았는지의 여부를 확인하는 함수
@@ -361,5 +374,97 @@ public class GameManager : MonoBehaviour
         burgur_Ingredient_Object[num].gameObject.transform.SetAsLastSibling();
         is_Select_Ingredient = true;
         current_Select_Ingredient_Height = num;
+    }
+
+    // 인내심 게이지
+    public void Patience_Gauge_Decrease()
+    {
+        // 만약 손님이 주문을 완료한 상태라면
+        if (is_End_Current_Order)
+        {
+            timer += Time.deltaTime;
+            // 일정 시간마다
+            if (timer > patience_Decrease_Time)
+            {
+                timer = 0f;
+
+                // 인내심 1칸 깎기
+                for (int i = 0; i < patience_Gauge_Objects.Length; i++)
+                {
+                    if (patience_Gauge_Objects[i].activeSelf)
+                    {
+                        patience_Gauge_Objects[i].SetActive(false);
+                        break;
+                    }
+                }
+                if (current_Patience_Value > 0)
+                {
+                    current_Patience_Value--;
+                }
+            }
+        }
+    }
+
+    // 손님 오는 함수
+    public void Guest_Come()
+    {
+        // 손님 실루엣 페이드인
+        StartCoroutine(Fade_In());
+
+        // 손님 얼굴 랜덤 뽑기
+        guest_Face_Image.sprite = guest_Faces[Random.Range(0, guest_Faces.Length)];
+
+        // 손님 인내심 수치 초기화
+        current_Patience_Value = 10f;
+        for (int i = 0; i < patience_Gauge_Objects.Length; i++)
+        {
+            patience_Gauge_Objects[i].SetActive(true);
+        }
+
+        // 주문 랜덤 뽑기
+
+        // 돈 선입금
+
+        // 주문에 맞는 대화 출력하기
+
+        // 타이핑 함수 끝에 아래 코드 한 줄 넣기.
+        // is_End_Current_Order = true;
+    }
+
+    // 손님 가는 함수
+    public void Guest_Leave()
+    {
+        // 손님 실루엣 페이드 아웃
+        StartCoroutine(Fade_Out());
+
+        // 재료 맞는지 판정 후 불만족 했다면 돈 차감
+
+        // 만족, 불만족 대사 출력
+    }
+
+    // 손님 실루엣 페이드 인
+    IEnumerator Fade_In()
+    {
+        Color color = new Color();
+        while (guest_Silhoutte_Image.color.a < 0.96)
+        {
+            color.a += Time.deltaTime * fade_Speed;
+            guest_Silhoutte_Image.color = color;
+
+            yield return null;
+        }    
+    }
+
+    // 손님 실루엣 페이드 아웃
+    IEnumerator Fade_Out()
+    {
+        Color color = new Color();
+        while (guest_Silhoutte_Image.color.a > 0)
+        {
+            color.a -= Time.deltaTime * fade_Speed;
+            guest_Silhoutte_Image.color = color;
+
+            yield return null;
+        }
     }
 }
