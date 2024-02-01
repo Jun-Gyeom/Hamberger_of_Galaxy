@@ -2786,6 +2786,7 @@ MonoBehaviour:
   - {fileID: 969395119}
   - {fileID: 1014792309}
   - {fileID: 1907030609}
+  is_On_Cooking_Panel: 0
 --- !u!4 &1022692172
 Transform:
   m_ObjectHideFlags: 0
@@ -4926,8 +4927,9 @@ MonoBehaviour:
   closing_Time: 20
   current_Date: 0
   is_Closed: 0
-  is_Paused: 0
+  is_Paused: 1
   is_Npc_check: 1
+  FinishMoney: 0
   shop_Level: 0
   shop_Upgrade_Cost:
   - 10000

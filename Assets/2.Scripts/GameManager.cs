@@ -55,8 +55,12 @@ public class GameManager : MonoBehaviour
     //식당 문 닫았는지의 여부
     public bool is_Closed=false;
     //일시정지 여부
-    public bool is_Paused=false;
+    public bool is_Paused=true;
     public bool is_Npc_check=true;
+
+
+    //일자별로 체크하는 돈
+    public float FinishMoney;
 
 
     // 가게 레벨 (재료 업그레이드 레벨)
@@ -123,6 +127,12 @@ public class GameManager : MonoBehaviour
         money_Text.text = $"{money}$";
         //npc여부 확인
         CheckNpc();
+        if (Input.GetKeyDown(KeyCode.Escape) && is_Paused == false)
+        {
+            is_Paused = true;
+        }
+        CheckPause();
+        
     }
 
     //가게의 문을 닫았는지의 여부를 확인하는 함수
@@ -137,6 +147,10 @@ public class GameManager : MonoBehaviour
 
             // 가게 레벨에 따른 업그레이드 창을 띄우는 함수 실행
             Upgrade_Panel_Open();
+
+            //돈을 저장한다
+            FinishMoney = money;
+
         }
         //문을 닫았을 때 시간을 멈추기
         if (is_Closed==true)
@@ -217,13 +231,16 @@ public class GameManager : MonoBehaviour
     //일시 정지 체크
     public void CheckPause()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)&&is_Paused==false)
+        if (is_Paused==true)
         {
             pause_Panel.SetActive(true);
-            is_Paused = true;
             Time.timeScale = 0;
+            is_Paused = false;
         }
+        
     }
+        
+        
     
     //npc가 있는지 체크
     public void CheckNpc()

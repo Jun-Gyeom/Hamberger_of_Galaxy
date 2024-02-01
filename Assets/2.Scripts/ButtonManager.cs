@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
 {
+    public GameObject cooking_Panel;
     [SerializeField]
-    private GameObject cooking_Panel;
-    [SerializeField]
-    private GameObject ingredients_Panel;
+    public GameObject ingredients_Panel;
     [SerializeField]
     private GameObject title_Panel;
     [SerializeField]
@@ -16,20 +15,17 @@ public class ButtonManager : MonoBehaviour
 
 
     [Header("참을성 게이지들")]
-    [SerializeField]
-    private GameObject[] patience_Guages;
+    public GameObject[] patience_Guages;
 
-    private Coroutine deleteCoroutine;
+    public Coroutine deleteCoroutine;
 
-    //일자별로 체크하는 돈
-    private float FinishMoney;
 
     //[SerializeField]
     //private GameObject tutorial_Panel;
 
     [Space(20f)]
     // 요리 창인지 체크
-    private bool is_On_Cooking_Panel;
+    public bool is_On_Cooking_Panel;
 
 
     //게임 시작 버튼
@@ -40,7 +36,7 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.is_Paused=false;
         Time.timeScale = 1;
         //tutorial_Panel.SetActive(true);
-        GameManager.Instance.money = FinishMoney;
+        GameManager.Instance.money = GameManager.Instance.FinishMoney;
     }
 
     //게임 종료 버튼
@@ -77,21 +73,20 @@ public class ButtonManager : MonoBehaviour
         //가게 문을 연다
         GameManager.Instance.is_Closed = false;
         GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
-        //돈을 저장한다
-        FinishMoney = GameManager.Instance.money;
+        
     }
 
     //요리 창 열기, 요리 완료 버튼
     public void Push_Button_Open_Cooking_Panel()
     {
         // 요리 창 닫혀있을 때 (요리창 열기 버튼)
-        if (is_On_Cooking_Panel == false && GameManager.Instance.is_Stay_Npc==true)
+        if (is_On_Cooking_Panel == false && GameManager.Instance.is_Stay_Npc==true && GameManager.Instance.is_Closed==false)
         {
             ingredients_Panel.SetActive (true);
             cooking_Panel.SetActive(true);
             is_On_Cooking_Panel = true;
             deleteCoroutine = StartCoroutine(DeleteArrays());
-
+            
         }
         // 요리 창 열려있을 때 (요리 완료 버튼)
         else if (is_On_Cooking_Panel == true)
