@@ -11,7 +11,11 @@ public class ButtonManager : MonoBehaviour
     private GameObject ingredients_Panel;
     [SerializeField]
     private GameObject title_Panel;
-    
+
+
+    //일자별로 체크하는 돈
+    private float FinishMoney;
+
     //[SerializeField]
     //private GameObject tutorial_Panel;
 
@@ -28,7 +32,7 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.is_Paused=false;
         Time.timeScale = 1;
         //tutorial_Panel.SetActive(true);
-
+        GameManager.Instance.money = FinishMoney;
     }
 
     //게임 종료 버튼
@@ -40,6 +44,8 @@ public class ButtonManager : MonoBehaviour
     //일시 정지에서 타이틀로 가는 버튼
     public void Push_Button_To_Title()
     {
+        GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
+        GameManager.Instance.current_Time_Minute = 0;
         title_Panel.SetActive(true);
     }
 
@@ -63,6 +69,8 @@ public class ButtonManager : MonoBehaviour
         //가게 문을 연다
         GameManager.Instance.is_Closed = false;
         GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
+        //돈을 저장한다
+        FinishMoney = GameManager.Instance.money;
     }
 
     //요리 창 열기, 요리 완료 버튼

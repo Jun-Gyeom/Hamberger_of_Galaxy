@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     //현재 시간(시)
     public float current_Time_Hour;
     //현재 시간(분)
-    private float current_Time_Minute;
+    public float current_Time_Minute;
     //영업 시작 시간
     [Header("영업 시작 시간")]
     public float opening_Time;
@@ -205,6 +205,7 @@ public class GameManager : MonoBehaviour
         current_Date_Number_Text.text = current_Date.ToString();
     }
 
+    //일시 정지 체크
     public void CheckPause()
     {
         if (Input.GetKeyDown(KeyCode.Escape)&&is_Paused==false)
