@@ -21,10 +21,6 @@ public class ButtonManager : MonoBehaviour
     //[SerializeField]
     //private GameObject tutorial_Panel;
 
-    [Space(20f)]
-    // 요리 창인지 체크
-    private bool is_On_Cooking_Panel;
-
     //게임 시작 버튼
     public void Push_Button_Game_Start()
     {
@@ -78,21 +74,24 @@ public class ButtonManager : MonoBehaviour
     public void Push_Button_Open_Cooking_Panel()
     {
         // 주문을 다 받았을 때 (요리창 열기 가능)
-        if ((is_On_Cooking_Panel == false) && (GameManager.Instance.is_End_Current_Order))
+        if ((GameManager.Instance.is_On_Cooking_Panel == false) && (GameManager.Instance.is_End_Current_Order))
         {
             ingredients_Panel.SetActive (true);
             cooking_Panel.SetActive(true);
-            is_On_Cooking_Panel = true;
-
+            GameManager.Instance.is_On_Cooking_Panel = true;
+            GameManager.Instance.is_Guest_Waiting = true; // 손님 기다리기 시작
         }
         // 요리 창 열려있을 때 (요리 완료 버튼)
-        else if ((is_On_Cooking_Panel == true) && !GameManager.Instance.is_Cooking_Panel_Closing_Coroutine)
+        else if ((GameManager.Instance.is_On_Cooking_Panel == true) && !GameManager.Instance.is_Cooking_Panel_Closing_Coroutine)
         {
             // 햄버거 윗부분 덮기
             GameManager.Instance.Cook_Hamburger(ingredients_Top_Bun);
 
             // 재료 선택 해제(강조 해제)
             GameManager.Instance.Sorting_Ingredient_Objects();
+
+            // 손님 기다리기 종료
+            GameManager.Instance.is_Guest_Waiting = false;
 
             // 햄버거 덮힌 모습을 보여주기 위해 몇 초 기다리기
             StartCoroutine("Cooking_Panel_Close");
@@ -126,7 +125,7 @@ public class ButtonManager : MonoBehaviour
         // 요리 창 닫기
         ingredients_Panel.SetActive(false);
         cooking_Panel.SetActive(false);
-        is_On_Cooking_Panel = false;
+        GameManager.Instance.is_On_Cooking_Panel = false;
         GameManager.Instance.is_End_Current_Order = false;
 
         // 현재 만들어진 버거 이미지 초기화
@@ -140,5 +139,7 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.current_Burgur_Height = 0;
 
         GameManager.Instance.is_Cooking_Panel_Closing_Coroutine = false;
+
+        GameManager.Instance.Guest_Leave(); // 손님 떠나기.
     }
 }

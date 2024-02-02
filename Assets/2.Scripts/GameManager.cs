@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Security.Cryptography;
 
 public class GameManager : MonoBehaviour
 {
+    // 오더매니저 스크립트
+    public OrderManager order_Manager;
+    // 토크매니저 스크립트
+    public TalkManager talk_Manager;
+
     //현재 시간 텍스트
     [SerializeField]
     private TMP_Text current_Time_Text;
@@ -43,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     [Space(20f)]
     //현재 일자
-    public float current_Date=0;
+    public int current_Date = 0;
 
     //식당 문 닫았는지의 여부
     public bool is_Closed=false;
@@ -120,6 +126,22 @@ public class GameManager : MonoBehaviour
     float timer;
     // 인내심 게이지 한 칸 닳는 시간 간격
     public float patience_Decrease_Time;
+    // 현재 화면 요리 창인지 체크
+    public bool is_On_Cooking_Panel;
+    // 현재 손님이 요리를 기다리는 중인지 체크 (ture일 때, 인내심 게이지 닳아야 함)
+    public bool is_Guest_Waiting;
+    // 대화 창 타이핑 이펙트
+    public Type_Effect talk;
+    // 햄버거 가격 설정
+    [Header("햄버거 가격")]
+    [SerializeField]
+    public float burgur_Price;
+    [Space(20f)]
+    // 손님 다시 오는 시간 간격 --- (이후에 날마다 난이도 조절로 다르게 하려면 배열로 함 될듯.
+    [Header("손님 오는 시간 간격")] 
+    [SerializeField]
+    public float come_Guest_Delay_Time;
+    [Space(20f)]
 
     //싱글톤 패턴
     private static GameManager S_instance = null;
@@ -143,7 +165,8 @@ public class GameManager : MonoBehaviour
    
     void Start()
     {
-        
+        // 손님 오는 함수 ---------------------------------------------------- (게임 스타트, 위치 바꿀 가능성 큼.)
+        Guest_Come();
     }
 
    
@@ -159,31 +182,6 @@ public class GameManager : MonoBehaviour
         money_Text.text = $"{money}원";
         // 손님 인내심 게이지
         Patience_Gauge_Decrease();
-
-
-        // 테스트 중 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-        /*
-        if (Input.GetKeyUp(KeyCode.F))
-        {
-            int index = Array.IndexOf(current_Make_Burger_Info, (int)Type.cheese);
-            if (index > -1)
-            {
-                Debug.Log($"{Type.cheese}의 재료는 {index + 1}번째에 있다.");
-
-                current_Make_Burger_Info[index] = 0;
-            }
-            else
-            {
-                Debug.Log("해당 재료는 햄버거에 없다.");
-            }
-        }
-        */
-
-        if (Input.GetKeyUp(KeyCode.F))
-        {
-            Guest_Come();
-        }
-
     }
 
     //가게의 문을 닫았는지의 여부를 확인하는 함수
@@ -379,8 +377,8 @@ public class GameManager : MonoBehaviour
     // 인내심 게이지
     public void Patience_Gauge_Decrease()
     {
-        // 만약 손님이 주문을 완료한 상태라면
-        if (is_End_Current_Order)
+        // 만약 손님이 기다리는 상태라면 (햄버거 조리 중)
+        if (is_Guest_Waiting)
         {
             timer += Time.deltaTime;
             // 일정 시간마다
@@ -422,13 +420,13 @@ public class GameManager : MonoBehaviour
         }
 
         // 주문 랜덤 뽑기
+        Order order = order_Manager.Get_Order();
 
         // 돈 선입금
+        money += burgur_Price;
 
         // 주문에 맞는 대화 출력하기
-
-        // 타이핑 함수 끝에 아래 코드 한 줄 넣기.
-        // is_End_Current_Order = true;
+        Talk(order.id);
     }
 
     // 손님 가는 함수
@@ -437,9 +435,18 @@ public class GameManager : MonoBehaviour
         // 손님 실루엣 페이드 아웃
         StartCoroutine(Fade_Out());
 
-        // 재료 맞는지 판정 후 불만족 했다면 돈 차감
+        // 재료 맞는지 판정 후 불만족 했다면 돈 차감 ------- (판정 시스템)
 
-        // 만족, 불만족 대사 출력
+        // 딜레이 시간 만큼 후 손님 다시 오게하기.
+        StartCoroutine(Come_Guest_Delay());
+    }
+
+    // 실제로 대화 출력하는 함수
+    public void Talk(int id)
+    {
+        string talk_Data = talk_Manager.Get_Talk(id);
+
+        talk.SetMsg(talk_Data); // 실제 대화 창에 출력 + 타이핑 이펙트
     }
 
     // 손님 실루엣 페이드 인
@@ -466,5 +473,13 @@ public class GameManager : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    // 손님 일정 시간 후 다시오게 하는 코루틴
+    IEnumerator Come_Guest_Delay()
+    {
+        yield return new WaitForSeconds(come_Guest_Delay_Time);
+
+        Guest_Come();
     }
 }
