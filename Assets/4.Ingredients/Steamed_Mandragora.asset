@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Steamed_Mandragora
   m_EditorClassIdentifier: 
   available_Shop_Level: 2
+  ingredients_UI_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   ingredients_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   ingredients_Name: "\uB9CC\uB4DC\uB77C\uACE0\uB77C \uCC1C"
+  is_Unlock: 0
   like_Type: 3
-  type: 10
+  type: 12

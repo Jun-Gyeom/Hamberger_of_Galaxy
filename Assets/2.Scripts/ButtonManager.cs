@@ -5,28 +5,25 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
 {
-    public GameObject cooking_Panel;
     [SerializeField]
-    public GameObject ingredients_Panel;
+    private GameObject cooking_Panel;
+    [SerializeField]
+    private GameObject ingredients_Panel;
     [SerializeField]
     private GameObject title_Panel;
-    [SerializeField]
-    private NPCmanager npcmanager;
 
+    // 햄버거 윗면 빵
+    public Ingredients ingredients_Top_Bun;
 
-    [Header("참을성 게이지들")]
-    public GameObject[] patience_Guages;
-
-    public Coroutine deleteCoroutine;
-
+    //일자별로 체크하는 돈
+    private float FinishMoney;
 
     //[SerializeField]
     //private GameObject tutorial_Panel;
 
     [Space(20f)]
     // 요리 창인지 체크
-    public bool is_On_Cooking_Panel;
-
+    private bool is_On_Cooking_Panel;
 
     //게임 시작 버튼
     public void Push_Button_Game_Start()
@@ -36,7 +33,7 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.is_Paused=false;
         Time.timeScale = 1;
         //tutorial_Panel.SetActive(true);
-        GameManager.Instance.money = GameManager.Instance.FinishMoney;
+        GameManager.Instance.money = FinishMoney;
     }
 
     //게임 종료 버튼
@@ -73,50 +70,33 @@ public class ButtonManager : MonoBehaviour
         //가게 문을 연다
         GameManager.Instance.is_Closed = false;
         GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
-        
+        //돈을 저장한다
+        FinishMoney = GameManager.Instance.money;
     }
 
     //요리 창 열기, 요리 완료 버튼
     public void Push_Button_Open_Cooking_Panel()
     {
-        // 요리 창 닫혀있을 때 (요리창 열기 버튼)
-        if (is_On_Cooking_Panel == false && GameManager.Instance.is_Stay_Npc==true && GameManager.Instance.is_Closed==false)
+        // 주문을 다 받았을 때 (요리창 열기 가능)
+        if ((is_On_Cooking_Panel == false) && (GameManager.Instance.is_End_Current_Order))
         {
             ingredients_Panel.SetActive (true);
             cooking_Panel.SetActive(true);
             is_On_Cooking_Panel = true;
-            deleteCoroutine = StartCoroutine(DeleteArrays());
-            
+
         }
         // 요리 창 열려있을 때 (요리 완료 버튼)
-        else if (is_On_Cooking_Panel == true)
+        else if ((is_On_Cooking_Panel == true) && !GameManager.Instance.is_Cooking_Panel_Closing_Coroutine)
         {
-            // 햄버거 윗부분 덮기 기능 추가 예정
-            GameManager.Instance.is_Stay_Npc = false;
-            ingredients_Panel.SetActive(false);
-            cooking_Panel.SetActive(false);
-            is_On_Cooking_Panel = false;
-            GameManager.Instance.fade.SetTrigger("Fadeout");
-            GameManager.Instance.is_Stay_Npc = false;
-            if (deleteCoroutine != null)
-            {
-                StopCoroutine(deleteCoroutine);
-            }
-            foreach (var item in patience_Guages)
-            {
-                item.SetActive(true);
-            }
-        }    
-    }
+            // 햄버거 윗부분 덮기
+            GameManager.Instance.Cook_Hamburger(ingredients_Top_Bun);
 
-    IEnumerator DeleteArrays()
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            // 배열을 삭제하기 전에 2초 기다리기
-            yield return new WaitForSeconds(2f);
-            patience_Guages[i].SetActive(false);
-        }
+            // 재료 선택 해제(강조 해제)
+            GameManager.Instance.Sorting_Ingredient_Objects();
+
+            // 햄버거 덮힌 모습을 보여주기 위해 몇 초 기다리기
+            StartCoroutine("Cooking_Panel_Close");
+        }    
     }
 
     // 가게 업그레이드 함수
@@ -133,5 +113,32 @@ public class ButtonManager : MonoBehaviour
         // 업그레이드 성공 (업그레이드 비용보다 돈이 많을 때)
         GameManager.Instance.money -= GameManager.Instance.shop_Upgrade_Cost[GameManager.Instance.shop_Level]; // 업그레이드 비용 지불
         GameManager.Instance.shop_Level++; // 가게 레벨 업그레이드
+    }
+
+    // 요리 창 닫기 (요리완료) 코루틴
+    IEnumerator Cooking_Panel_Close()
+    {
+        GameManager.Instance.is_Cooking_Panel_Closing_Coroutine = true;
+
+        // 1.5초 대기
+        yield return new WaitForSeconds(1.5f);
+
+        // 요리 창 닫기
+        ingredients_Panel.SetActive(false);
+        cooking_Panel.SetActive(false);
+        is_On_Cooking_Panel = false;
+        GameManager.Instance.is_End_Current_Order = false;
+
+        // 현재 만들어진 버거 이미지 초기화
+        for (int i = 0; i < GameManager.Instance.max_Burgur_Height + 1; i++)
+        {
+            GameManager.Instance.burgur_Ingredient_Object[i].SetActive(false); ; // 재료 비활성화
+            GameManager.Instance.current_Make_Burger_Info[i] = 0; // 데이터 초기화
+        }
+
+        // 현재 선택된 햄버거 높이 초기화
+        GameManager.Instance.current_Burgur_Height = 0;
+
+        GameManager.Instance.is_Cooking_Panel_Closing_Coroutine = false;
     }
 }

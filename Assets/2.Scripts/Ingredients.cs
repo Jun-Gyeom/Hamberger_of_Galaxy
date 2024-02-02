@@ -17,7 +17,7 @@ public enum Like_Type
 [SerializeField]
 public enum Type
 {
-    delete, // 삭제
+    none, // 없음
     bun, // 햄버거 빵
     lettuce, // 양상추
     cheese, // 치즈
@@ -26,11 +26,12 @@ public enum Type
     tomato, // 토마토
     fried_Egg, // 계란 후라이
     mint_Choco, // 민트초코
-    dragon_Wings, // 말린 용의 날개
-    steamed_Mandragora, // 만드라고라 찜
     eagle_Constellation, // 독수리 자리의 편린
     space_Squid_Patty, // 우주 오징어 패티
-    gold_Bullion // 금괴
+    dragon_Wings, // 말린 용의 날개
+    steamed_Mandragora, // 만드라고라 찜
+    gold_Bullion, // 금괴
+    Top_Bun // 햄버거 윗면 빵
 }
 [CreateAssetMenu]
 public class Ingredients : ScriptableObject
@@ -38,7 +39,10 @@ public class Ingredients : ScriptableObject
     // 사용 가능한 가게 레벨
     [SerializeField]
     public int available_Shop_Level;
-    // 재료 이미지
+    // 재료 창 UI 이미지
+    [SerializeField]
+    public Sprite ingredients_UI_Sprite;
+    // 요리 창에서 보일 재료 이미지
     [SerializeField]
     public Sprite ingredients_Sprite;
     // 재료 이름

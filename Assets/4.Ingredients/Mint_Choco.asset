@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Mint_Choco
   m_EditorClassIdentifier: 
   available_Shop_Level: 1
-  ingredients_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  ingredients_UI_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  ingredients_Sprite: {fileID: 21300000, guid: ec80738b1c4800144813e07a1c9224ef, type: 3}
   ingredients_Name: "\uBBFC\uD2B8 \uCD08\uCF54"
+  is_Unlock: 0
   like_Type: 1
   type: 8
