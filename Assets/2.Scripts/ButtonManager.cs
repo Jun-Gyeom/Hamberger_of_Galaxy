@@ -12,6 +12,7 @@ public class ButtonManager : MonoBehaviour
     [SerializeField]
     private GameObject title_Panel;
 
+    private bool is_Ending=false;
     // 햄버거 윗면 빵
     public Ingredients ingredients_Top_Bun;
 
@@ -38,12 +39,25 @@ public class ButtonManager : MonoBehaviour
         Application.Quit();
     }
 
-    //일시 정지에서 타이틀로 가는 버튼
+    //타이틀로 가는 버튼
     public void Push_Button_To_Title()
     {
+        GameManager.Instance.upgrade_Panel.SetActive(false);
+        GameManager.Instance.is_Closed=false;
         GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
         GameManager.Instance.current_Time_Minute = 0;
         title_Panel.SetActive(true);
+        GameManager.Instance.result_Panel.SetActive(false);
+        if (GameManager.Instance.is_Gameover==true || is_Ending == true)
+        {
+            GameManager.Instance.is_Gameover = false;
+            is_Ending = false;
+            GameManager.Instance.ending_Panel.SetActive(false);
+            GameManager.Instance.money = 0;
+            GameManager.Instance.current_Date = 0;
+            GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
+            GameManager.Instance.gameover_Panel.SetActive(false);
+        }
     }
 
     //일시 정지에서 게임을 계속하는 버튼
@@ -57,17 +71,24 @@ public class ButtonManager : MonoBehaviour
     //다음 날로 넘어가는 버튼을 누른 함수
     public void Push_Button_To_Next_Day()
     {
+        Time.timeScale = 1;
         //날짜 +1
         GameManager.Instance.current_Date += 1;
         //결과창을 가린다
         GameManager.Instance.result_Panel.SetActive(false);
         // 업그레이드 창 닫기
-        GameManager.Instance.upgread_Panel.SetActive(false);
+        GameManager.Instance.upgrade_Panel.SetActive(false);
         //가게 문을 연다
         GameManager.Instance.is_Closed = false;
         GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
         //돈을 저장한다
         FinishMoney = GameManager.Instance.money;
+        //엔딩 여부 확인
+        if (GameManager.Instance.current_Date>=5 && GameManager.Instance.is_Gameover==false)
+        {
+            is_Ending = true;
+            GameManager.Instance.ending_Panel.SetActive(true);
+        }
     }
 
     //요리 창 열기, 요리 완료 버튼

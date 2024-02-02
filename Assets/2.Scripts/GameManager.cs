@@ -25,15 +25,20 @@ public class GameManager : MonoBehaviour
     public GameObject result_Panel;
     //일시 정지 화면
     public GameObject pause_Panel;
+    //게임 오버 화면
+    public GameObject gameover_Panel;
+    //게임 클리어 화면
+    public GameObject ending_Panel;
 
-
+    [SerializeField]
+    private int ingredient_Money;
 
 
     //시간이 흐르는 속도
     [Header("시간이 흐르는 속도")]
     [SerializeField]
     private int time_Speed;
-
+   
     [Space (20f)]
     //현재 시간(시)
     public float current_Time_Hour;
@@ -55,7 +60,8 @@ public class GameManager : MonoBehaviour
     public bool is_Closed=false;
     //일시정지 여부
     public bool is_Paused=false;
-
+    //게임 오버 여부
+    public bool is_Gameover=false;
 
 
     // 가게 레벨 (재료 업그레이드 레벨)
@@ -70,7 +76,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TMP_Text shop_Upgrade_Cost_Text;
     // 업그레이드 창
-    public GameObject upgread_Panel;
+    public GameObject upgrade_Panel;
     // 돈 텍스트
     public TMP_Text money_Text;
     // 가게 업그레이드 버튼
@@ -187,21 +193,34 @@ public class GameManager : MonoBehaviour
     //가게의 문을 닫았는지의 여부를 확인하는 함수
     public void Check_Is_Closed()
     {
+        
         //현재 시간이 종료 시간과 같으면 bool 타입의 변수를 true로 바꿈
         if (current_Time_Hour == closing_Time)
         {
             is_Closed = true;
+        }
+        if (is_Closed==true)
+        {
             //결과창을 띄운다
             result_Panel.SetActive(true);
 
             // 가게 레벨에 따른 업그레이드 창을 띄우는 함수 실행
             Upgrade_Panel_Open();
+
+            //재료비 차감
+            money -= ingredient_Money;
+
+            //게임 오버여부
+            if (money < 0)
+            {
+                gameover_Panel.SetActive(true);
+                is_Gameover = true;
+            }
         }
         //문을 닫았을 때 시간을 멈추기
         if (is_Closed==true)
         {
-            current_Time_Hour = closing_Time;
-            current_Time_Minute = 0;
+            Time.timeScale=0;
         }
     }
 
@@ -209,7 +228,7 @@ public class GameManager : MonoBehaviour
     void Upgrade_Panel_Open()
     {
         // 업그레이드 창 띄우기
-        upgread_Panel.SetActive(true);
+        upgrade_Panel.SetActive(true);
 
 
         // 재료가 가게 레벨 몇에 사용가능한지에 따라 업그레이드 시 얻을 수 있는 재료 표시
