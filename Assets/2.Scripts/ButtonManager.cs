@@ -11,6 +11,9 @@ public class ButtonManager : MonoBehaviour
     private GameObject ingredients_Panel;
     [SerializeField]
     private GameObject title_Panel;
+    [SerializeField]
+    private GameObject tutorial_Panel;
+
 
     private bool is_Ending=false;
     // 햄버거 윗면 빵
@@ -25,12 +28,38 @@ public class ButtonManager : MonoBehaviour
     //게임 시작 버튼
     public void Push_Button_Game_Start()
     {
-        title_Panel.SetActive(false);
-        GameManager.Instance.pause_Panel.SetActive(false);
-        GameManager.Instance.is_Paused=false;
+        GameManager.Instance.current_Time_Minute = 0;
+        GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
+        ;
+
+        //게임 첫 날이면 튜토리얼 띄우기
+        if (GameManager.Instance.current_Date==0)
+        {
+            tutorial_Panel.SetActive(true);
+            GameManager.Instance.pause_Panel.SetActive(false);
+            Time.timeScale = 0;
+            GameManager.Instance.is_Paused = true;
+            title_Panel.SetActive(false);
+        }
+        else
+        {
+            title_Panel.SetActive(false);
+            GameManager.Instance.pause_Panel.SetActive(false);
+            GameManager.Instance.is_Paused = false;
+            Time.timeScale = 1;
+            GameManager.Instance.money = FinishMoney;
+        }
+    }
+
+    //튜토리얼 종료 버튼
+    public void Push_Button_End_Tutorial()
+    {
+        tutorial_Panel.SetActive(false);
+        GameManager.Instance.current_Date = 1;
+
+        GameManager.Instance.is_Paused = false;
         Time.timeScale = 1;
-        //tutorial_Panel.SetActive(true);
-        GameManager.Instance.money = FinishMoney;
+
     }
 
     //게임 종료 버튼
