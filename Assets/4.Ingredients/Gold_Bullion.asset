@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gold_Bullion
   m_EditorClassIdentifier: 
   available_Shop_Level: 4
-  ingredients_UI_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  ingredients_UI_Sprite: {fileID: 21300000, guid: 940aea8af26db754aa03bbf39f5288a1, type: 3}
   ingredients_Sprite: {fileID: 21300000, guid: f6f18b003f5ec5b46975377ed37cc4fc, type: 3}
   ingredients_Name: "\uAE08\uAD34"
   is_Unlock: 0

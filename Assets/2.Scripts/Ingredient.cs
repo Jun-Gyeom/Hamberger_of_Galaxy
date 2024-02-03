@@ -24,8 +24,8 @@ public class Ingredient : MonoBehaviour
     public void Click_Ingredient()
     {
         // 임시
-        Debug.Log($"{ingredient.like_Type}(이)가 좋아하는 {ingredient.ingredients_Name} 재료 사용!");
-        Debug.Log((int)ingredient.type);
+        //Debug.Log($"{ingredient.like_Type}(이)가 좋아하는 {ingredient.ingredients_Name} 재료 사용!");
+        //Debug.Log((int)ingredient.type);
 
         // 재료 햄버거에 사용
         GameManager.Instance.Cook_Hamburger(ingredient);
@@ -39,7 +39,7 @@ public class Ingredient : MonoBehaviour
             // 잠금
             ingredient_Button.interactable = false; // 버튼 비활성화
             ColorBlock colorBlock1 = ingredient_Button.colors;
-            colorBlock1.normalColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+            colorBlock1.normalColor = new Color(0f, 0f, 0f, 0.8f);
             ingredient_Button.colors = colorBlock1;
 
             return;

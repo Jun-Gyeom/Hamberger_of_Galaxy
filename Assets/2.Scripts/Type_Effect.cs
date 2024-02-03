@@ -29,8 +29,6 @@ public class Type_Effect : MonoBehaviour
         index = 0;
 
         float gap_Timp = 1 / Char_Per_Seconds;
-        Debug.Log(Char_Per_Seconds);
-        Debug.Log(gap_Timp);
         Invoke("Effecting", gap_Timp);
     }
 
@@ -46,7 +44,6 @@ public class Type_Effect : MonoBehaviour
         index++;
 
         float gap_Timp = 1 / Char_Per_Seconds;
-        Debug.Log(gap_Timp);
         Invoke("Effecting", gap_Timp);
     }
 

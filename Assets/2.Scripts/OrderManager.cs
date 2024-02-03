@@ -32,10 +32,33 @@ public class Difficulty_Percentage
 }
 
 [Serializable]
+public class Order_Complete_Condition
+{
+    // 필요한 재료 종류
+    [Header("필요한 재료 종류 (재료 코드)")]
+    [SerializeField]
+    public int ingredients_Type;
+
+    // 필요한 재료 갯수
+    [Header("필요한 갯수")]
+    [SerializeField]
+    public int ingredients_Input_Number;
+}
+
+[Serializable]
 public class Order
 {
+    [Header("Key 값")]
+    [SerializeField]
     public int id; // 주문 ID (Key 값)
+    [Header("주문의 난이도")]
+    [SerializeField]
     public Difficulty difficulty;
+
+    // 성공 조건의 갯수
+    [Header("성공 조건의 수 (최대 3)")]
+    [SerializeField]
+    public Order_Complete_Condition[] condition_Number;
 }
 
 public class OrderManager : MonoBehaviour
@@ -50,14 +73,11 @@ public class OrderManager : MonoBehaviour
     [SerializeField]
     public List <Order> ordet_List;
 
-    [SerializeField] // 임시
-    private List<Order> easy_Order_List;
-    [SerializeField] // 임시
-    private List<Order> medeum_Order_List;
-    [SerializeField] // 임시
-    private List<Order> hard_Order_List;
+    [Space(20f)]
+    public List<Order> easy_Order_List;
+    public List<Order> medeum_Order_List;
+    public List<Order> hard_Order_List;
 
-    [SerializeField] // 임시
     private List<Order> target_List;
 
     private int current_Medeum_Order_Number_Of_Day;  // 현재 일차에서 중급 난이도 주문 나온 횟수
@@ -94,16 +114,6 @@ public class OrderManager : MonoBehaviour
         while (true)
         {
             float rand_Difficulty = UnityEngine.Random.Range(0f, 1f);
-            Debug.Log(rand_Difficulty);
-
-            Debug.Log(difficulty_Percentage_Of_Day[GameManager.Instance.current_Date].easy_Percentage / 100f);
-
-            Debug.Log(difficulty_Percentage_Of_Day[GameManager.Instance.current_Date].easy_Percentage / 100f
-                + difficulty_Percentage_Of_Day[GameManager.Instance.current_Date].medium_Percentage / 100f);
-
-            Debug.Log(difficulty_Percentage_Of_Day[GameManager.Instance.current_Date].easy_Percentage / 100f
-                + difficulty_Percentage_Of_Day[GameManager.Instance.current_Date].medium_Percentage / 100f
-                + difficulty_Percentage_Of_Day[GameManager.Instance.current_Date].hard_Percentage / 100f);
 
             // 메모
             // ex) 초급 60, 중급 30, 고급 10

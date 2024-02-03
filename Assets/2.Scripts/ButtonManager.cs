@@ -126,6 +126,13 @@ public class ButtonManager : MonoBehaviour
         // 주문을 다 받았을 때 (요리창 열기 가능)
         if ((GameManager.Instance.is_On_Cooking_Panel == false) && (GameManager.Instance.is_End_Current_Order))
         {
+            // 현재 만들어진 버거 이미지 초기화
+            for (int i = 0; i < GameManager.Instance.max_Burgur_Height + 1; i++)
+            {
+                GameManager.Instance.burgur_Ingredient_Object[i].SetActive(false); ; // 재료 비활성화
+                GameManager.Instance.current_Make_Burger_Info[i] = 0; // 데이터 초기화
+            }
+
             ingredients_Panel.SetActive (true);
             cooking_Panel.SetActive(true);
             GameManager.Instance.is_On_Cooking_Panel = true;
@@ -177,13 +184,6 @@ public class ButtonManager : MonoBehaviour
         cooking_Panel.SetActive(false);
         GameManager.Instance.is_On_Cooking_Panel = false;
         GameManager.Instance.is_End_Current_Order = false;
-
-        // 현재 만들어진 버거 이미지 초기화
-        for (int i = 0; i < GameManager.Instance.max_Burgur_Height + 1; i++)
-        {
-            GameManager.Instance.burgur_Ingredient_Object[i].SetActive(false); ; // 재료 비활성화
-            GameManager.Instance.current_Make_Burger_Info[i] = 0; // 데이터 초기화
-        }
 
         // 현재 선택된 햄버거 높이 초기화
         GameManager.Instance.current_Burgur_Height = 0;

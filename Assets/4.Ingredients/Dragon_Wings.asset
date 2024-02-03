@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Dragon_Wings
   m_EditorClassIdentifier: 
   available_Shop_Level: 2
-  ingredients_UI_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  ingredients_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  ingredients_UI_Sprite: {fileID: 21300000, guid: b5b5de59512b1dc4ab3427fbb984a48c, type: 3}
+  ingredients_Sprite: {fileID: 21300000, guid: fba2f90e41af6cb40ae34d6a7061075c, type: 3}
   ingredients_Name: "\uB9D0\uB9B0 \uC6A9\uC758 \uB0A0\uAC1C"
   is_Unlock: 0
   like_Type: 3

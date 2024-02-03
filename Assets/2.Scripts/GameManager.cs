@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Security.Cryptography;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -148,6 +149,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public float come_Guest_Delay_Time;
     [Space(20f)]
+    // 현재 받고있는 주문
+    private Order current_Order;
 
     //싱글톤 패턴
     private static GameManager S_instance = null;
@@ -188,6 +191,11 @@ public class GameManager : MonoBehaviour
         money_Text.text = $"{money}원";
         // 손님 인내심 게이지
         Patience_Gauge_Decrease();
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            StartCoroutine(Fade_Out());
+        }
     }
 
     //가게의 문을 닫았는지의 여부를 확인하는 함수
@@ -315,10 +323,10 @@ public class GameManager : MonoBehaviour
             // 근데 재료가 윗면 빵이라면
             if (ingredient.type == Type.Top_Bun)
             {
-                Debug.Log("윗면빵 넣기!");
                 burgur_Ingredient_Image[current_Burgur_Height].sprite = ingredient.ingredients_Sprite; // 재료 이미지 변경
                 burgur_Ingredient_Object[current_Burgur_Height].SetActive(true); ; // 재료 활성화
                 current_Make_Burger_Info[current_Burgur_Height] = (int)ingredient.type; // 실질적 데이터 적용
+                Debug.Log(current_Make_Burger_Info[current_Burgur_Height]); // ------------------------------------------------- 테스트 중
 
                 current_Burgur_Height++;
             }
@@ -342,6 +350,7 @@ public class GameManager : MonoBehaviour
             burgur_Ingredient_Image[current_Select_Ingredient_Height].sprite = ingredient.ingredients_Sprite; // 재료 이미지 변경
             burgur_Ingredient_Object[current_Select_Ingredient_Height].SetActive(true); ; // 재료 활성화
             current_Make_Burger_Info[current_Select_Ingredient_Height] = (int)ingredient.type; // 실질적 데이터 적용
+            Debug.Log(current_Make_Burger_Info[current_Select_Ingredient_Height]); // ------------------------------------------------- 테스트 중
 
             // 재료 선택 해제(강조 해제)
             Sorting_Ingredient_Objects();
@@ -352,13 +361,12 @@ public class GameManager : MonoBehaviour
         // 재료 넣을 공간이 있다면
         for (int i = 0; i < max_Burgur_Height; i++)
         {
-            Debug.Log("재료 넣을 공간 확인 중...");
             if (!burgur_Ingredient_Object[i].activeSelf)
             {
-                Debug.Log("재료 넣기!");
                 burgur_Ingredient_Image[current_Burgur_Height].sprite = ingredient.ingredients_Sprite; // 재료 이미지 변경
                 burgur_Ingredient_Object[current_Burgur_Height].SetActive(true); ; // 재료 활성화
                 current_Make_Burger_Info[current_Burgur_Height] = (int)ingredient.type; // 실질적 데이터 적용
+                Debug.Log(current_Make_Burger_Info[current_Burgur_Height]); // ------------------------------------------------- 테스트 중
 
                 current_Burgur_Height++;
                 return;
@@ -429,7 +437,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(Fade_In());
 
         // 손님 얼굴 랜덤 뽑기
-        guest_Face_Image.sprite = guest_Faces[Random.Range(0, guest_Faces.Length)];
+        guest_Face_Image.sprite = guest_Faces[UnityEngine.Random.Range(0, guest_Faces.Length)];
 
         // 손님 인내심 수치 초기화
         current_Patience_Value = 10f;
@@ -439,13 +447,13 @@ public class GameManager : MonoBehaviour
         }
 
         // 주문 랜덤 뽑기
-        Order order = order_Manager.Get_Order();
+        current_Order = order_Manager.Get_Order();
 
         // 돈 선입금
         money += burgur_Price;
 
         // 주문에 맞는 대화 출력하기
-        Talk(order.id);
+        Talk(current_Order.id);
     }
 
     // 손님 가는 함수
@@ -455,6 +463,21 @@ public class GameManager : MonoBehaviour
         StartCoroutine(Fade_Out());
 
         // 재료 맞는지 판정 후 불만족 했다면 돈 차감 ------- (판정 시스템)
+        bool ingredients_Check = Ingredients_Check(current_Order, current_Make_Burger_Info);
+        if (ingredients_Check)
+        {
+            // 손님이 만족한 코드
+            Debug.Log("만족스러운 햄버거에요!");
+
+            // if 인내심이 5칸 아래면 1칸 당 5퍼였나 돈 깎기. (대화창에 "맛있긴 하지만 너무 오래걸렸어요 같은 메시지 출력하면 좋을듯)
+        }
+        else
+        {
+            // 손님이 만족하지 못한 코드
+            Debug.Log("주문한 햄버거가 아니에요..");
+
+            // 만족도 패널티 받고 인내심에 따른 처리.
+        }
 
         // 딜레이 시간 만큼 후 손님 다시 오게하기.
         StartCoroutine(Come_Guest_Delay());
@@ -468,10 +491,44 @@ public class GameManager : MonoBehaviour
         talk.SetMsg(talk_Data); // 실제 대화 창에 출력 + 타이핑 이펙트
     }
 
+    // 재료 판정 함수
+    public bool Ingredients_Check(Order order, int[] burger_Info)
+    {
+        // 주문 정보 받아옴.
+        // 현재 만든 햄버거 정보 받아옴.
+        
+        // order의 판정 기준 갯수에 따라 for문으로 판정 (아마 2중 for문 사용해서 한번 더 재료가 몇 개 있는지 체크할 듯.)
+
+        // 주문 판정 기준 갯수만큼 판정하기.
+        for (int i = 0; i < order.condition_Number.Length; i++)
+        {
+            // 재료 필요한 갯수만큼 for문
+            for (int j = 0; j < order.condition_Number[i].ingredients_Input_Number; j++)
+            {
+                // 해당 재료 있는지 확인
+                int ingredient_Type = Array.IndexOf(burger_Info, order.condition_Number[i].ingredients_Type);
+                if (ingredient_Type > -1) // 재료 있음.
+                {
+                    // 확인한 재료는 배열에서 제외.
+                    burger_Info[ingredient_Type] = (int)Type.none;
+                    continue;
+                }
+                else // 재료 없음.
+                {
+                    // 재료가 없으므로 옳지 않은 햄버거라고 판단. false 반환.
+                    return false;
+                }
+            }
+        }
+
+        // 모든 판정에서 없는 재료가 없었다면 옳은 햄버거라고 판단. true 반환.
+        return true;
+    }
+
     // 손님 실루엣 페이드 인
     IEnumerator Fade_In()
     {
-        Color color = new Color();
+        Color color = new Color(0f, 0f, 0f, 0f);
         while (guest_Silhoutte_Image.color.a < 0.96)
         {
             color.a += Time.deltaTime * fade_Speed;
@@ -484,7 +541,7 @@ public class GameManager : MonoBehaviour
     // 손님 실루엣 페이드 아웃
     IEnumerator Fade_Out()
     {
-        Color color = new Color();
+        Color color = new Color(0f, 0f, 0f, 0.96f);
         while (guest_Silhoutte_Image.color.a > 0)
         {
             color.a -= Time.deltaTime * fade_Speed;
