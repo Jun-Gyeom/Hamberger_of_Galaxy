@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public OrderManager order_Manager;
     // 토크매니저 스크립트
     public TalkManager talk_Manager;
+    // 버튼매니저 스크립트
+    public ButtonManager button_Manager;
 
     //현재 시간 텍스트
     [SerializeField]
@@ -188,6 +190,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text today_Ingredients_Price_Result_Money_Text;
     public TMP_Text shop_Money_Result_Money_Text;
     public TMP_Text next_Day_Ingredients_Price_Result_Money_Text;
+    public TMP_Text shop_Money_Calcu_Result_Money_Text; // 재료비 정산 이후 돈 ( 총 자산 )
 
     // 이전 영업일까지 번 돈
     public float last_Money;
@@ -216,7 +219,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //현재 시간과 날짜를 텍스트로 표시한다
-        current_Time_Text.text = $"0{opening_Time}:00";
+        current_Time_Text.text = $"{opening_Time}:00";
         current_Date_Number_Text.text = (current_Date + 1).ToString();
     }
 
@@ -275,6 +278,9 @@ public class GameManager : MonoBehaviour
                 is_Come_Guest = false;
             }
 
+            // 현재 일차의 재료비 차감
+            money -= ingredient_Money[current_Date];
+
             // 손님 그림자 초기화
             StopCoroutine(Fade_In());
             StopCoroutine(Fade_Out());
@@ -288,10 +294,11 @@ public class GameManager : MonoBehaviour
             // 글자 부분
 
             // 돈 부분
-            today_Date_Result_Text.text = $"Day {current_Date + 1}"; // 해당 날짜 표시
+            today_Date_Result_Text.text = $"{current_Date + 1}일째"; // 해당 날짜 표시
             today_Sales_Money_Text.text = $"{money - last_Money}원"; // 일일 매출 표시
-            today_Ingredients_Price_Result_Money_Text.text = $"{ingredient_Money[current_Date]}원"; // 해당일 재료비 표시
-            shop_Money_Result_Money_Text.text = $"{money}원"; // 총 자산 표시
+            today_Ingredients_Price_Result_Money_Text.text = $"-{ingredient_Money[current_Date]}원"; // 해당일 재료비 표시
+            shop_Money_Result_Money_Text.text = $"{money + ingredient_Money[current_Date]}원"; // 보유 자산 표시
+            shop_Money_Calcu_Result_Money_Text.text = $"{money}원"; // 총 자산 표시
             if (current_Date == 4) // 5번째 날은 다음날 재료비 표시 X
             {
                 next_Day_Ingredients_Price_Result_Money_Text.text = $"X원"; // 다음날 재료비 표시
@@ -308,8 +315,20 @@ public class GameManager : MonoBehaviour
             // 가게 레벨에 따른 업그레이드 창을 띄우는 함수 실행
             Upgrade_Panel_Open();
 
-            //문을 닫았을 때 시간을 멈추기
-            //Time.timeScale = 0;
+            //게임 오버여부
+            if (GameManager.Instance.money < 0)
+            {
+                GameManager.Instance.talk.SetMsg($"재료비를 내지 못했습니다...", false); // 게임오버 대화 창에 출력
+
+                GameManager.Instance.gameover_Panel.SetActive(true);
+                GameManager.Instance.is_Gameover = true;
+
+                //현재 시간과 날짜를 텍스트로 표시한다
+                GameManager.Instance.current_Time_Text.text = $"{GameManager.Instance.opening_Time}:00";
+                GameManager.Instance.current_Date_Number_Text.text = (GameManager.Instance.current_Date + 1).ToString();
+
+                StartCoroutine(button_Manager.Game_Over_To_Title()); // 3초 후 타이틀로
+            }
         }
     }
 
@@ -331,7 +350,7 @@ public class GameManager : MonoBehaviour
             // 해금 될 재료가 있다면
             if (ingredients[i].ingredient.available_Shop_Level == shop_Level + 1)
             {
-                unlock_Ingredient_Image[unlock_Num] = ingredients[i].ingredient_Sprite; // 아이콘 변경
+                unlock_Ingredient_Image[unlock_Num].sprite = ingredients[i].ingredient.ingredients_Sprite; // 아이콘 변경
                 unlock_Ingredient_Name[unlock_Num].text = ingredients[i].ingredient.ingredients_Name; // 이름 변경
                 unlock_Ingredient_Object[unlock_Num].SetActive(true);
                 unlock_Num++;
@@ -341,12 +360,12 @@ public class GameManager : MonoBehaviour
         // 업그레이드 비용 표시
         if (shop_Level == shop_Upgrade_Cost.Length)
         {
-            shop_Upgrade_Cost_Text.text = "업그레이드 완료";
+            shop_Upgrade_Cost_Text.text = "해금 완료";
             shop_Upgrade_Button.interactable = false; // 가게 업그레이드 버튼 비활성화
             return;
         }
 
-        shop_Upgrade_Cost_Text.text = shop_Upgrade_Cost[shop_Level].ToString();
+        shop_Upgrade_Cost_Text.text = $"구매:{shop_Upgrade_Cost[shop_Level]}원";
     }
 
     //게임에서 현재 시간을 표시하게하는 함수
@@ -550,6 +569,9 @@ public class GameManager : MonoBehaviour
         {
             patience_Gauge_Objects[i].SetActive(true);
         }
+        happy_Face_Image.SetActive(true);
+        hungry_Face_Image.SetActive(true);
+        angry_Face_Image.SetActive(true);
 
         // 주문 랜덤 뽑기
         current_Order = order_Manager.Get_Order();
@@ -691,4 +713,6 @@ public class GameManager : MonoBehaviour
 
         Guest_Come();
     }
+
+
 }

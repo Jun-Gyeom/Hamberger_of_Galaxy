@@ -71,7 +71,7 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.is_Game_Start = false;
 
         //현재 시간과 날짜를 텍스트로 표시한다
-        GameManager.Instance.current_Time_Text.text = $"0{GameManager.Instance.opening_Time}:00";
+        GameManager.Instance.current_Time_Text.text = $"{GameManager.Instance.opening_Time}:00";
         GameManager.Instance.current_Date_Number_Text.text = (GameManager.Instance.current_Date + 1).ToString();
 
         GameManager.Instance.talk.SetMsg($"", false); // 대화창 지우기
@@ -109,9 +109,6 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.is_Closed = false;
         GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
 
-        // 현재 일차의 재료비 차감
-        GameManager.Instance.money -= GameManager.Instance.ingredient_Money[GameManager.Instance.current_Date];
-
         //Time.timeScale = 1;
         //날짜 +1
         GameManager.Instance.current_Date += 1;
@@ -128,25 +125,9 @@ public class ButtonManager : MonoBehaviour
             GameManager.Instance.ending_Panel.SetActive(true);
         }
 
-        //게임 오버여부
-        if (GameManager.Instance.money < 0)
-        {
-            GameManager.Instance.talk.SetMsg($"재료비를 내지 못했습니다...", false); // 게임오버 대화 창에 출력
+        // 손님 부르기
+        GameManager.Instance.Guest_Come();
 
-            GameManager.Instance.gameover_Panel.SetActive(true);
-            GameManager.Instance.is_Gameover = true;
-
-            //현재 시간과 날짜를 텍스트로 표시한다
-            GameManager.Instance.current_Time_Text.text = $"0{GameManager.Instance.opening_Time}:00";
-            GameManager.Instance.current_Date_Number_Text.text = (GameManager.Instance.current_Date + 1).ToString();
-
-            StartCoroutine(Game_Over_To_Title()); // 3초 후 타이틀로
-        }
-        else
-        {
-            // 손님 부르기
-            GameManager.Instance.Guest_Come();
-        }
     }
 
     //요리 창 열기, 요리 완료 버튼
@@ -215,7 +196,7 @@ public class ButtonManager : MonoBehaviour
             // 해금 될 재료가 있다면
             if (GameManager.Instance.ingredients[i].ingredient.available_Shop_Level == GameManager.Instance.shop_Level + 1)
             {
-                GameManager.Instance.unlock_Ingredient_Image[unlock_Num] = GameManager.Instance.ingredients[i].ingredient_Sprite; // 아이콘 변경
+                GameManager.Instance.unlock_Ingredient_Image[unlock_Num].sprite = GameManager.Instance.ingredients[i].ingredient.ingredients_Sprite; // 아이콘 변경
                 GameManager.Instance.unlock_Ingredient_Name[unlock_Num].text = GameManager.Instance.ingredients[i].ingredient.ingredients_Name; // 이름 변경
                 GameManager.Instance.unlock_Ingredient_Object[unlock_Num].SetActive(true);
                 unlock_Num++;
@@ -225,12 +206,12 @@ public class ButtonManager : MonoBehaviour
         // 업그레이드 비용 표시
         if (GameManager.Instance.shop_Level == GameManager.Instance.shop_Upgrade_Cost.Length)
         {
-            GameManager.Instance.shop_Upgrade_Cost_Text.text = "업그레이드 완료";
+            GameManager.Instance.shop_Upgrade_Cost_Text.text = "해금 완료";
             GameManager.Instance.shop_Upgrade_Button.interactable = false; // 가게 업그레이드 버튼 비활성화
             return;
         }
 
-        GameManager.Instance.shop_Upgrade_Cost_Text.text = GameManager.Instance.shop_Upgrade_Cost[GameManager.Instance.shop_Level].ToString();
+        GameManager.Instance.shop_Upgrade_Cost_Text.text = $"구매:{GameManager.Instance.shop_Upgrade_Cost[GameManager.Instance.shop_Level]}원";
     }
 
     // 요리 창 닫기 (요리완료) 코루틴
@@ -255,7 +236,7 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.Guest_Leave(); // 손님 떠나기.
     }
 
-    IEnumerator Game_Over_To_Title()
+    public IEnumerator Game_Over_To_Title()
     {
         // 3초 대기
         yield return new WaitForSeconds(3f);
