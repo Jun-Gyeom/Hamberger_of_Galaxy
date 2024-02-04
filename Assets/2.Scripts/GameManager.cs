@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     //시간이 흐르는 속도
     [Header("시간이 흐르는 속도")]
     [SerializeField]
-    private int time_Speed;
+    private float time_Speed;
    
     [Space (20f)]
     //현재 시간(시)

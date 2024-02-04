@@ -4261,53 +4261,544 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty_Limit_Of_Day:
-  - medium_Limit: 3
+  - medium_Limit: 2
+    hard_Limit: 1
+  - medium_Limit: 2
+    hard_Limit: 2
+  - medium_Limit: 4
+    hard_Limit: 2
+  - medium_Limit: 4
     hard_Limit: 3
-  - medium_Limit: 0
-    hard_Limit: 0
-  - medium_Limit: 0
-    hard_Limit: 0
-  - medium_Limit: 0
-    hard_Limit: 0
-  - medium_Limit: 0
-    hard_Limit: 0
+  - medium_Limit: 2
+    hard_Limit: 7
   difficulty_Percentage_Of_Day:
-  - easy_Percentage: 40
-    medium_Percentage: 30
-    hard_Percentage: 30
-  - easy_Percentage: 65
-    medium_Percentage: 30
+  - easy_Percentage: 80
+    medium_Percentage: 15
     hard_Percentage: 5
-  - easy_Percentage: 60
-    medium_Percentage: 30
+  - easy_Percentage: 70
+    medium_Percentage: 20
     hard_Percentage: 10
-  - easy_Percentage: 50
-    medium_Percentage: 35
+  - easy_Percentage: 55
+    medium_Percentage: 30
     hard_Percentage: 15
-  - easy_Percentage: 40
+  - easy_Percentage: 35
     medium_Percentage: 40
-    hard_Percentage: 20
+    hard_Percentage: 25
+  - easy_Percentage: 20
+    medium_Percentage: 30
+    hard_Percentage: 50
   ordet_List:
-  - id: 0
+  - id: 1
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 7
+      ingredients_Input_Number: 2
+  - id: 2
     difficulty: 0
     condition_Number:
     - ingredients_Type: 4
+      ingredients_Input_Number: 2
+  - id: 3
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 8
+      ingredients_Input_Number: 1
+  - id: 4
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 11
+      ingredients_Input_Number: 1
+  - id: 5
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 4
+      ingredients_Input_Number: 1
+  - id: 6
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 9
+      ingredients_Input_Number: 1
+  - id: 7
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 1
+      ingredients_Input_Number: 5
+  - id: 8
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 13
+      ingredients_Input_Number: 5
+  - id: 9
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 1
+      ingredients_Input_Number: 2
+  - id: 10
+    difficulty: 2
+    condition_Number:
+    - ingredients_Type: 9
+      ingredients_Input_Number: 1
+    - ingredients_Type: 12
+      ingredients_Input_Number: 1
+  - id: 11
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 9
+      ingredients_Input_Number: 1
+    - ingredients_Type: 10
+      ingredients_Input_Number: 1
+  - id: 12
+    difficulty: 2
+    condition_Number:
+    - ingredients_Type: 2
+      ingredients_Input_Number: 1
+    - ingredients_Type: 3
+      ingredients_Input_Number: 1
+    - ingredients_Type: 4
+      ingredients_Input_Number: 2
+  - id: 13
+    difficulty: 2
+    condition_Number:
+    - ingredients_Type: 13
+      ingredients_Input_Number: 2
+  - id: 14
+    difficulty: 2
+    condition_Number:
+    - ingredients_Type: 1
+      ingredients_Input_Number: 1
+    - ingredients_Type: 3
+      ingredients_Input_Number: 1
+    - ingredients_Type: 4
+      ingredients_Input_Number: 1
+  - id: 15
+    difficulty: 2
+    condition_Number:
+    - ingredients_Type: 9
+      ingredients_Input_Number: 1
+    - ingredients_Type: 12
+      ingredients_Input_Number: 1
+  - id: 16
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 11
+      ingredients_Input_Number: 1
+    - ingredients_Type: 12
+      ingredients_Input_Number: 1
+  - id: 17
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 12
+      ingredients_Input_Number: 1
+  - id: 18
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 11
       ingredients_Input_Number: 3
-  - id: 1
+  - id: 19
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 9
+      ingredients_Input_Number: 1
+    - ingredients_Type: 10
+      ingredients_Input_Number: 1
+  - id: 20
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 2
+      ingredients_Input_Number: 1
+    - ingredients_Type: 3
+      ingredients_Input_Number: 1
+    - ingredients_Type: 4
+      ingredients_Input_Number: 1
+  - id: 21
+    difficulty: 2
+    condition_Number:
+    - ingredients_Type: 9
+      ingredients_Input_Number: 2
+    - ingredients_Type: 10
+      ingredients_Input_Number: 2
+  - id: 22
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 12
+      ingredients_Input_Number: 4
+  - id: 23
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 2
+      ingredients_Input_Number: 1
+    - ingredients_Type: 4
+      ingredients_Input_Number: 1
+    - ingredients_Type: 8
+      ingredients_Input_Number: 1
+  - id: 24
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 4
+      ingredients_Input_Number: 3
+  - id: 25
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 5
+      ingredients_Input_Number: 1
+    - ingredients_Type: 10
+      ingredients_Input_Number: 1
+  - id: 26
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 7
+      ingredients_Input_Number: 1
+  - id: 27
+    difficulty: 2
+    condition_Number:
+    - ingredients_Type: 7
+      ingredients_Input_Number: 5
+  - id: 28
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 12
+      ingredients_Input_Number: 5
+  - id: 29
+    difficulty: 2
+    condition_Number:
+    - ingredients_Type: 4
+      ingredients_Input_Number: 4
+  - id: 30
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 13
+      ingredients_Input_Number: 5
+  - id: 31
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 2
+      ingredients_Input_Number: 1
+    - ingredients_Type: 4
+      ingredients_Input_Number: 1
+    - ingredients_Type: 5
+      ingredients_Input_Number: 1
+  - id: 32
+    difficulty: 2
+    condition_Number:
+    - ingredients_Type: 9
+      ingredients_Input_Number: 1
+    - ingredients_Type: 11
+      ingredients_Input_Number: 1
+    - ingredients_Type: 12
+      ingredients_Input_Number: 1
+  - id: 33
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 3
+      ingredients_Input_Number: 1
+  - id: 34
+    difficulty: 2
+    condition_Number:
+    - ingredients_Type: 3
+      ingredients_Input_Number: 1
+    - ingredients_Type: 4
+      ingredients_Input_Number: 1
+  - id: 35
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 2
+      ingredients_Input_Number: 2
+    - ingredients_Type: 4
+      ingredients_Input_Number: 1
+  - id: 36
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 2
+      ingredients_Input_Number: 1
+    - ingredients_Type: 3
+      ingredients_Input_Number: 4
+  - id: 37
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 1
+      ingredients_Input_Number: 1
+  - id: 38
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 2
+      ingredients_Input_Number: 1
+    - ingredients_Type: 9
+      ingredients_Input_Number: 1
+  - id: 39
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 11
+      ingredients_Input_Number: 4
+  - id: 40
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 9
+      ingredients_Input_Number: 2
+    - ingredients_Type: 10
+      ingredients_Input_Number: 2
+  - id: 41
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 3
+      ingredients_Input_Number: 1
+    - ingredients_Type: 13
+      ingredients_Input_Number: 1
+  - id: 42
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 12
+      ingredients_Input_Number: 1
+  - id: 43
+    difficulty: 2
+    condition_Number:
+    - ingredients_Type: 2
+      ingredients_Input_Number: 1
+  - id: 44
+    difficulty: 2
+    condition_Number:
+    - ingredients_Type: 2
+      ingredients_Input_Number: 1
+    - ingredients_Type: 4
+      ingredients_Input_Number: 1
+    - ingredients_Type: 10
+      ingredients_Input_Number: 2
+  - id: 45
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 7
+      ingredients_Input_Number: 1
+    - ingredients_Type: 9
+      ingredients_Input_Number: 1
+    - ingredients_Type: 11
+      ingredients_Input_Number: 1
+  - id: 46
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 7
+      ingredients_Input_Number: 2
+  - id: 47
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 11
+      ingredients_Input_Number: 1
+  - id: 48
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 12
+      ingredients_Input_Number: 2
+  - id: 49
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 9
+      ingredients_Input_Number: 1
+  - id: 50
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 8
+      ingredients_Input_Number: 1
+  - id: 51
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 2
+      ingredients_Input_Number: 1
+    - ingredients_Type: 3
+      ingredients_Input_Number: 1
+    - ingredients_Type: 4
+      ingredients_Input_Number: 1
+  - id: 52
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 13
+      ingredients_Input_Number: 1
+  - id: 53
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 9
+      ingredients_Input_Number: 1
+  - id: 54
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 4
+      ingredients_Input_Number: 2
+  - id: 55
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 7
+      ingredients_Input_Number: 1
+  - id: 56
+    difficulty: 2
+    condition_Number:
+    - ingredients_Type: 11
+      ingredients_Input_Number: 1
+    - ingredients_Type: 12
+      ingredients_Input_Number: 1
+  - id: 57
     difficulty: 1
     condition_Number:
     - ingredients_Type: 4
       ingredients_Input_Number: 1
-    - ingredients_Type: 6
-      ingredients_Input_Number: 2
-  - id: 2
+  - id: 58
     difficulty: 2
+    condition_Number:
+    - ingredients_Type: 13
+      ingredients_Input_Number: 1
+  - id: 59
+    difficulty: 2
+    condition_Number:
+    - ingredients_Type: 3
+      ingredients_Input_Number: 1
+  - id: 60
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 4
+      ingredients_Input_Number: 3
+  - id: 61
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 2
+      ingredients_Input_Number: 1
+    - ingredients_Type: 4
+      ingredients_Input_Number: 1
+  - id: 62
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 3
+      ingredients_Input_Number: 2
+    - ingredients_Type: 4
+      ingredients_Input_Number: 1
+  - id: 63
+    difficulty: 0
     condition_Number:
     - ingredients_Type: 2
       ingredients_Input_Number: 2
     - ingredients_Type: 3
+      ingredients_Input_Number: 2
+  - id: 64
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 1
+      ingredients_Input_Number: 2
+  - id: 65
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 3
+      ingredients_Input_Number: 1
+    - ingredients_Type: 5
+      ingredients_Input_Number: 1
+    - ingredients_Type: 6
+      ingredients_Input_Number: 1
+  - id: 66
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 5
+      ingredients_Input_Number: 1
+    - ingredients_Type: 8
+      ingredients_Input_Number: 1
+  - id: 67
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 8
+      ingredients_Input_Number: 3
+  - id: 68
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 3
       ingredients_Input_Number: 1
     - ingredients_Type: 4
+      ingredients_Input_Number: 1
+    - ingredients_Type: 6
+      ingredients_Input_Number: 1
+  - id: 69
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 3
+      ingredients_Input_Number: 4
+  - id: 70
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 4
+      ingredients_Input_Number: 4
+  - id: 71
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 5
+      ingredients_Input_Number: 1
+  - id: 72
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 6
+      ingredients_Input_Number: 2
+  - id: 73
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 3
+      ingredients_Input_Number: 1
+    - ingredients_Type: 6
+      ingredients_Input_Number: 1
+  - id: 74
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 2
+      ingredients_Input_Number: 1
+    - ingredients_Type: 5
+      ingredients_Input_Number: 1
+  - id: 75
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 4
+      ingredients_Input_Number: 2
+  - id: 76
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 5
+      ingredients_Input_Number: 1
+    - ingredients_Type: 6
+      ingredients_Input_Number: 1
+  - id: 77
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 6
+      ingredients_Input_Number: 3
+  - id: 78
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 3
+      ingredients_Input_Number: 1
+    - ingredients_Type: 5
+      ingredients_Input_Number: 1
+  - id: 79
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 5
+      ingredients_Input_Number: 3
+  - id: 80
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 2
+      ingredients_Input_Number: 1
+    - ingredients_Type: 5
+      ingredients_Input_Number: 1
+    - ingredients_Type: 6
+      ingredients_Input_Number: 1
+  - id: 81
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 8
+      ingredients_Input_Number: 1
+  - id: 82
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 8
+      ingredients_Input_Number: 2
+  - id: 83
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 8
+      ingredients_Input_Number: 1
+  - id: 84
+    difficulty: 0
+    condition_Number:
+    - ingredients_Type: 8
       ingredients_Input_Number: 1
   easy_Order_List: []
   medeum_Order_List: []
@@ -6421,13 +6912,362 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   talk_Data:
-  - id: 0
-    messeges: "\uD584\uBC84\uAC70 \uD558\uB098 \uC8FC\uC138\uC694"
   - id: 1
-    messeges: "\uB09C \uACE0\uAE30\uAC00 \uC88B\uC544. \uACE0\uAE30\uB9CC \uC918"
+    messeges: "\uC548\uB155\uD558\uC2E0\uAC00! \uD798\uC138\uACE0 \uAC15\uD55C \uC544\uCE68,
+      \uB9CC\uC77C \uB0B4\uAC8C \uBB58 \uBA39\uACA0\uB0D0\uACE0 \uBB3C\uC5B4\uBCF8\uB2E4\uBA74,
+      \uB098\uB294 \uB2EC\uAC40 \uBD80\uCE68\uC774 \uB450 \uAC1C \uC774\uC0C1 \uB123\uC740
+      \uD584\uBC84\uAC70. "
   - id: 2
-    messeges: "\uBC30\uAC00 \uC544\uD504\uB2C8 \uAC74\uAC15\uD55C \uD584\uBC84\uAC70\uB97C
-      \uC918"
+    messeges: "\uACE0 \uAE30 \uD328 \uD2F0 2 \uC7A5 \uB123 \uC5B4 \uC918!!!!!!!!!!!!!! "
+  - id: 3
+    messeges: "\uC624\uB298\uC740 \uC74C\uC2DD\uC744 \uBA39\uACE0 \uBCC4\uB85C \uC591\uCE58\uB97C
+      \uD558\uACE0 \uC2F6\uC740 \uAE30\uBD84\uC774 \uC544\uB2C8\uB124\uC694. \uD584\uBC84\uAC70\uC5D0
+      \uBBFC\uD2B8\uCD08\uCF54 \uD558\uB098 \uC774\uC0C1 \uB123\uC5B4 \uC8FC\uC138\uC694. "
+  - id: 4
+    messeges: "\uB0B4 \uCE5C\uAD6C\uC778 \uB9C8\uBC95\uC0AC\uAC00 \uADF8\uB7EC\uB354\uB77C\uACE0
+      \uC5EC\uAE30\uC5D0\uC11C \uD30C\uB294 \uB9D0\uB9B0 \uC6A9\uC758 \uB0A0\uAC1C\uAC00
+      \uADF8\uB807\uAC8C \uB9E4\uCF64\uD558\uB2E4\uBA70? \uD584\uBC84\uAC70\uC5D0
+      \uD558\uB098 \uC774\uC0C1 \uB123\uC5B4 \uC918. "
+  - id: 5
+    messeges: "\uC548\uB155\uD558\uC138\uC694? \uACE0\uAE30 \uD328\uD2F0\uAC00 \uD558\uB098
+      \uC774\uC0C1\uC73C\uB85C \uB4E4\uC5B4\uAC04 \uD584\uBC84\uAC70 \uD558\uB098
+      \uBD80\uD0C1\uB4DC\uB824\uC694. "
+  - id: 6
+    messeges: "\uC61B\uB0A0\uC5D0 \uC5B4\uB290 \uD589\uC131\uC5D0\uC11C \uB3C5\uC218\uB9AC
+      \uC790\uB9AC \uC0C1\uCD94 \uC0D0\uB7EC\uB4DC\uB97C \uBA39\uC5B4 \uBCF8 \uC801\uC774
+      \uC788\uB294\uB370 \uC815\uB9D0 \uB9DB\uC788\uC5C8\uC5B4\uC694! \uD639\uC2DC
+      \uADF8\uAC78 \uD558\uB098\uCBE4\uC740 \uB123\uC740 \uD584\uBC84\uAC70\uAC00
+      \uC788\uC744\uAE4C\uC694? "
+  - id: 7
+    messeges: "\uBE0C\uB808\uB4DC\u2026 \uBE0C\uB808\uB4DC, \uBE0C\uB808\uB4DC, \uBE0C\uB808\uB4DC\u2026
+      \uBE0C\uB808\uB4DC\u2026! "
+  - id: 8
+    messeges: "\uB09C \uBE44\uC2FC \uAC70 \uC544\uB2C8\uBA74 \uC548 \uBA39\uC5B4.
+      \uB0B4 \uC785\uB9DB\uC5D0 \uB9DE\uB294 \uC74C\uC2DD\uC744 \uB0B4\uC640 \uBCF4\uB3C4\uB85D
+      \uD574. "
+  - id: 9
+    messeges: "\uB108\uB294 \uC774\uC81C\uAE4C\uC9C0 \uBA39\uC740 \uBE75\uC758 \uAC1C\uC218\uB97C
+      \uC77C\uC77C\uC774 \uAE30\uC5B5\uD558\uB098? \uB09C \uD55C\uB2E4. \uB108\uC758
+      \uBE75\uC774 \uAE30\uC5B5\uC5D0 \uB0A8\uC744 \uB9CC\uD55C \uBE75\uC778\uC9C0
+      \uB9DB\uBD10 \uC8FC\uC9C0. \uD3C9\uC18C\uBCF4\uB2E4 \uC870\uAE08 \uB354 \uB123\uC5B4\uB77C. "
+  - id: 10
+    messeges: "\uB09C \uC0DD\uAC01\uD558\uB294 \uAC83\uC744 \uADF8\uB9CC\uB450\uC5C8\uB2E4\u2026
+      \uB0B4 \uC0DD\uAC01\uC774 \uB2E4\uC2DC \uB3CC\uC544\uC62C \uB9CC\uD55C \uAC15\uB82C\uD55C...
+      \uBB34\uC5B8\uAC00 \uBC88\uB729\uC774\uB294 \uD584\uBC84\uAC70\uB97C \uB9CC\uB4E4\uC5B4
+      \uC918\u2026. "
+  - id: 11
+    messeges: "\uC2DC\uACF5\uC758 \uD3ED\uD48D\uC740 \uC815\uB9D0 \uCD5C\uACE0\uC57C!
+      \uC2DC\uACF5\uC758 \uD3ED\uD48D\uACFC \uAC19\uC740 \uC6B0\uC8FC\uC758 \uC7AC\uB8CC\uAC00
+      \uB4EC\uBFCD \uB4E4\uC5B4\uAC04 \uD584\uBC84\uAC70\uB97C \uB9CC\uB4E4\uC5B4
+      \uC918! "
+  - id: 12
+    messeges: "\uACE0\uAE30\uD328\uD2F0 \uD558\uB098 \uC62C\uB9AC\uACE0 \uACE0\uAE30\uD328\uD2F0
+      \uD558\uB098 \uC62C\uB9AC\uACE0 \uACE0\uAE30\uD328\uD2F0 \uD558\uB098 \uC62C\uB9AC\uACE0
+      \uACE0\uAE30\uD328\uD2F0 \uD558\uB098 \uB0B4\uB9AC\uACE0 \uC0C1\uCD94 \uD558\uB098
+      \uC62C\uB9AC\uACE0 \uCE58\uC988 \uD558\uB098 \uC62C\uB9AC\uACE0 \uC0C1\uCD94
+      \uD558\uB098 \uC62C\uB9AC\uACE0 \uC0C1\uCD94 \uD558\uB098 \uB0B4\uB9AC\uACE0
+      \uCE58\uC988 \uD558\uB098 \uB0B4\uB9AC\uACE0 \uCE58\uC988 \uD558\uB098 \uC62C\uB9AC\uACE0
+      \uACE0\uAE30 \uD328\uD2F0 \uD558\uB098 \uB0B4\uB824\uC11C \uC8FC\uC138\uC694. "
+  - id: 13
+    messeges: "Wife\uD55C\uD14C \uB2E4\uB140\uC640\uB3C4 \uB418\uB0D0\uACE0 \uBB3C\uC5C8\uB354\uB2C8
+      ok\uD588\uC5B4\uC11C \uC640 \uBD24\uC5B4\uC694. But your hamburger\uB791 \uAC19\uC774
+      \uC788\uC73C\uBA74 I am\uC2E0\uB8B0\uC5D0\uC694~. Like New York New York \uD55C
+      \uBC84\uAC70 cook\uD574 \uC8FC\uC138\uC694~ "
+  - id: 14
+    messeges: 'I am Iron Man. '
+  - id: 15
+    messeges: "\uC774\uACF3\uC5D0\uC11C \uD3EC\uC2A4\uC758 \uAE30\uC6B4\uC774 \uB290\uAEF4\uC9C4\uB2E4\u2026
+      \uC6B0\uC8FC\uC801\uC778 \uAE30\uC6B4\uACFC \uB9C8\uBC95\uC758 \uAE30\uC6B4\uC758
+      \uACB0\uD569\uC774\u2026. "
+  - id: 16
+    messeges: "\uC138\uC0C1\uC740 \uB4F1\uAC00\uAD50\uD658\uC774\uC57C. \uB0B4\uAC00
+      \uB3C8\uC744 \uC904 \uD14C\uB2C8, \uB108\uB294 \uADF8\uB9CC\uD07C\uC758 \uD584\uBC84\uAC70\uB97C
+      \uB9CC\uB4E4\uC5B4 \uC8FC\uB294 \uAC70\uC9C0. \uB0B4 \uC5F0\uAE08\uC220\uC5D0
+      \uB3C4\uC6C0\uC774 \uB420 \uB9CC\uD55C \uC7AC\uB8CC\uB85C \uBD80\uD0C1\uD574. "
+  - id: 17
+    messeges: "\uC774\uBD10 \uCE5C\uAD6C \uADF8\uAC70 \uC54C\uC544? \uD584\uBC84\uAC70
+      \uD55C \uAC1C\uC5D0\uB294 \uD584\uBC84\uAC70 \uD55C \uAC1C\uB9CC\uD07C\uC758
+      \uC601\uC591\uC18C\uAC00 \uB4E4\uC5B4\uC788\uB2E8 \uC0AC\uC2E4\uC744? \uD558\uC9C0\uB9CC
+      \uB9CC\uB4DC\uB77C\uACE0\uB77C \uCC1C\uC744 \uB123\uC73C\uBA74 \uADF8\uBCF4\uB2E4
+      \uB354 \uB9CE\uC740 \uC591\uC758 \uC601\uC591\uC18C\uB97C \uC5BB\uC744 \uC218
+      \uC788\uC9C0. "
+  - id: 18
+    messeges: "\uD0DC\uC591\uC758 \uC655 \uADF8\uC6EC\uC740 \uC6A9\uB4E4\uC744 \uBB3C\uB9AC\uCE58\uACE0
+      \uC6B0\uB9AC\uC5D0\uAC8C \uBD88\uC744 \uC8FC\uC168\uC9C0, \uADF8\uB97C \uAE30\uB9AC\uAE30
+      \uC704\uD574 \uB9D0\uB9B0 \uC6A9\uC758 \uB0A0\uAC1C\uB97C 3\uAC1C \uC774\uC0C1
+      \uB123\uC740 \uD584\uBC84\uAC70 \uD558\uB098 \uBD80\uD0C1\uD574. "
+  - id: 19
+    messeges: "\uAD50\uC218\uB2D8\uC774 \uB2E4\uC74C \uC8FC\uAE4C\uC9C0 \uB610 \uC0C8\uB85C\uC6B4
+      \uB9C8\uBC95\uC5D0 \uB300\uD55C \uB808\uD3EC\uD2B8\uB97C \uC791\uC131\uD574
+      \uC624\uB77C\uC154\u2026 \uC774\uAC78 \uB2E4 \uD558\uB824\uBA74 \uB098\uC5D0\uAC90
+      \uC6B0\uC8FC\uC758 \uAE30\uC6B4\uC774 \uD544\uC694\uD574!!!! \uB3C5\uC218\uB9AC
+      \uC790\uB9AC \uC0C1\uCD94, \uC6B0\uC8FC \uC624\uC9D5\uC5B4 \uAD6C\uC774\uB97C
+      \uBAA8\uB450 1\uAC1C \uC774\uC0C1\uC529 \uB123\uC740 \uD584\uBC84\uAC70 \uBD80\uD0C1\uD574. "
+  - id: 20
+    messeges: "\uD584\uBC84\uAC70\uB294 \uBE75 \uC0AC\uC774\uC5D0 \uCE58\uC988\uC640
+      \uACE0\uAE30 \uD328\uD2F0, \uC591\uC0C1\uCD94\uB97C \uB123\uC740 \uC74C\uC2DD\uC785\uB2C8\uB2E4.
+      \uADF8\uAC83\uC774 \uD584\uBC84\uAC70\uB2C8\uAE4C\u2026 \uC74C. "
+  - id: 21
+    messeges: "\uC624\uB298\uC758 \uD560 \uC77C! \uC6B0\uC8FC\uC758 \uAE30\uC6B4\uC774
+      \uB4EC\uBFCD \uB2F4\uAE34 \uC2DD\uB7C9 \uD655\uBCF4! \uD53C\uB09C\uCC98 \uBB3C\uC0C9!
+      \uADF8\uB9AC\uACE0 \uC138\uC0C1 \uBC14\uB85C\uC7A1\uAE30! "
+  - id: 22
+    messeges: "\uAF2D \uC5BB\uACE0 \uC2F6\uC740 \uCE90\uB9AD\uD130\uC758 \uD53D\uC5C5
+      \uAC00\uCC60\uAC00 \uB5A0\uC11C \uB9C8\uBC95\uC73C\uB85C \uBF51\uC544 \uBD24\uB294\uB370
+      \uACB0\uAD6D \uC548 \uB5B4\uC5B4\u2026. \uB0B4 \uB9C8\uC74C\uC744 \uB2EC\uB798
+      \uC904 \uB9CC\uB4DC\uB77C\uACE0\uB77C \uCE5C\uAD6C\uB4E4\uC744 \uBD80\uD0C1\uD574\u2026. "
+  - id: 23
+    messeges: "\uD53D\uC5C5 \uAC00\uCC60\uAC00 \uB5B4\uAE38\uB798 \uADF8\uB0E5 \uBF51\uC544
+      \uBD24\uB294\uB370 10\uC5F0\uCC28 \uB9CC\uC5D0 \uBF51\uC544 \uBC84\uB838\uC5B4.
+      \uC774\uB7F0 \uAE30\uBD84\uC774 \uB290\uAEF4\uC9C0\uAC8C \uD3C9\uBC94\uD558\uC9C0\uB9CC
+      \uD558\uB098 \uC815\uB3C8 \uB300\uBC94\uD55C \uD584\uBC84\uAC70 \uD558\uB098
+      \uC918. "
+  - id: 24
+    messeges: "\uC0AC\uC2E4\uC740 \uC624\uB798 \uC804\uBD80\uD130 \uB2F9\uC2E0 \uAC19\uC740
+      \uD584\uBC84\uAC70\uB97C \uAE30\uB2E4\uB824 \uC654\uB2E4\uC6B0\u2026 \uB108\uAC19\uC740
+      \uACE0\uAE30 \uC794\uB729 \uB4E4\uC5B4\uAC04 \uD584\uBC84\uAC70\uB97C \uB9D0\uC774\uC57C\u2026.  "
+  - id: 25
+    messeges: "\uC640! \uD584\uBC84\uAC70 \uC544\uC2DC\uB294\uAD6C\uB098! \uC815.\uB9D0.\uB9DB.\uC788.\uC2B5.\uB2C8.\uB2E4
+      \uD3C9\uBC94\uD55C \uB4F0 \uAC15\uB82C\uD55C \uD53C\uD074\uACFC \uC774\uAD6D\uC801\uC778
+      \uC6B0.\uC8FC. \uC624\uC9D5\uC5B4\uAD6C\uC774\uC758 \uB9CC\uB0A8 \uC774\uAC70
+      \uD55C \uBC88 \uBA39\uC73C\uBA74 \uBABB \uCC38\uC2B5\uB2C8\uB2E4.. "
+  - id: 26
+    messeges: "\uAECD\uC9C8 \uBBF8\uB9AC \uAE50 \uB2EC\uAC40! \uC990\uAC81\uB2E4!
+      \uC190\uB3C4 \uAE54\uB054! \uD584\uBC84\uAC70\uB85C \uC368\uB3C4 \uACE0\uC18C! "
+  - id: 27
+    messeges: "\uB098\uC758 \uC5B4\uAE68\uC758 \uC874\uACFC \uC81C\uC784\uC2A4\uAC00
+      \uC9C0\uAE08 \uB2E8\uBC31\uC9C8\uC744 \uBD80\uB974\uC9D6\uACE0 \uC788\uB2E4.
+      \uB098\uB97C \uB9CC\uC871\uC2DC\uD0AC \uB9CC\uD55C \uB2E8\uBC31\uC9C8\uC744
+      \uC9C0\uAE08 \uB2F9\uC7A5 \uB0B4\uB194. \uD761...! \uC874! \uD314 \uC704\uB85C
+      \uC62C\uB9AC\uC9C0 \uB9C8! \uC9C4\uC815\uD574\u2026!! "
+  - id: 28
+    messeges: "\uB9CC\uB4DC\uB77C\uACE0\uB77C\uB97C \uBA39\uACE0 \uC2F6\uC5B4 \uD55C\uB2E4\uB294
+      \uC800\uC758 \uC0DD\uAC01\uC774 \uB108\uBB34 \uB9CC\uB4DC\uB77C\uACE0\uB77C
+      \uAC19\uC544\uC11C \uD56D\uC0C1 \uB9CC\uB4DC\uB77C\uACE0\uB77C\uAC19\uC774
+      \uB9CC\uB4DC\uB77C\uACE0\uB77C\uCC98\uB7FC \uB9CC\uB4DC\uB77C\uACE0\uB77C \uD55C\uB2E4\uACE0
+      \uC0DD\uAC01\uD569\uB2C8\uB2E4. "
+  - id: 29
+    messeges: "\"for (int i = 0; i < 4; i++)                 {\uACE0\uAE30\uD328\uD2F0\uC758
+      \uC218+=1; }\" "
+  - id: 30
+    messeges: "\uC820\uC7A5, \uB610 \uD584\uBC84\uAC70\uC57C.... \uD584\uBC84\uAC70\uC9D1\uC744
+      \uBD10 \uBC84\uB838\uC5B4 \uB09C \uD584\uBC84\uAC70\uB97C \uBA39\uC5B4\uC57C
+      \uB9CC\uD574\u2026. \uADF8\uBD84\uACFC \uAC19\uC740 \uC601\uB8E1\uD55C \uAE08\uAD34\uB97C
+      \uB4EC~\uBFCD \uC790~\uC548~\uB729! \uB123\uC5B4 \uC8FC\uAE38 \uBC14\uB77C! "
+  - id: 31
+    messeges: "\uC774\uAC78 \uBCF4\uB2C8 \uBB38\uB4DD \uD584\uBC84\uAC70 \uCD08\uCC3D\uAE30\uBD80\uD130
+      \uC9C0\uAE08\uAE4C\uC9C0 \uD604\uC5ED\uC73C\uB85C \uB2EC\uB824\uC628 \uC591\uC0C1\uCD94\uC640
+      \uACE0\uAE30\uD328\uD2F0, \uD53C\uD074\uC774 \uC0C8\uC0BC \uB300\uB2E8\uD558\uB2E4\uACE0
+      \uB290\uAEF4\uC9C0\uB124\u2026. "
+  - id: 32
+    messeges: "\uC598\uC57C, \uD584\uBC84\uAC70\uB780 \uC6D0\uB798 \uC790\uAE30 \uC0DD\uAC01\uB300\uB85C
+      \uB418\uC9C0 \uC54A\uB294 \uBC95\uC774\uB780\uB2E4. \uADF8\uB798\uC11C \uD584\uBC84\uAC70\uAC00
+      \uB9DB\uC788\uB294 \uAC70 \uC544\uB2C8\uACA0\uC5B4? \uC798\uC0DD\uAE34 \uACE0\uAE30
+      \uD328\uD2F0\uAC00 \uB098\uD0C0\uB098\uC11C, \uC544\uB984\uB2E4\uC6B4 \uCE58\uC988
+      \uACF5\uC8FC\uB2D8\uC744 \uAC10\uC2F8 \uC900\uB2E4\uB294 \uC61B\uB0A0 \uC774\uC57C\uAE30\uB294...
+      \uC774\uC820, \uC9C8\uB9B4 \uB54C\uB3C4 \uB410\uC9C0. \uC73C\uD765~\u2665?
+      \uC6B0\uB9AC\uC758 \uC778\uC0DD\uC744 \uC880 \uB354 \uB450\uADFC\uB450\uADFC\uD558\uAC8C
+      \uB9CC\uB4E4\uC5B4 \uC904 \uD2B9\uBCC4\uD55C \uC2DD\uC7AC\uB8CC\uB4E4\uC744
+      \uB123\uC5B4\uC11C \uB9CC\uB4E4\uC5B4 \uC8FC\uB834\u2665 "
+  - id: 33
+    messeges: "\uC5B4.. \uC5B4\u3147\uC81C \uC9C0\uB098\uAC00\uBA74\uC11C \uC5EC\u3147\uC606\uC0AC\uB78C\uC774
+      \uCE58\uC988 \uD574\u314E\uD584\uBC84\uAC70\uB97C \uBA39\uB294\uAC78 \uBD24\uB2E4\uB2A5..
+      \u3147\uC6B0\uB9AC [\uC544\uC57C\uB098\uBBF8 \uB808\uC774\uC9F1]\uB3C4 \u3131,\uADF8\uADF8\uAC78
+      \uBA39\uACE0 \uC2F6\uC5B4 \u314E\uD55C\uB2E4\uB2A5\u2026 "
+  - id: 34
+    messeges: "\uD788\uC0AC\uC2DC\uBD80\uB9AC\uB370\uC2A4\uC640~ \uC640\uD0C0\uCFE0\uC2DC
+      \uC9C0\uAE08 \uBC30\uAC00 \uACE0\uD508\uB370\uC2A4\uC640~ \uC640\uD0C0\uCFE0\uC2DC\uAC19\uC740
+      [\uC5EC\uC655]\uB2D8\uC744 \uC704\uD574 \uC774\uCE58\uBC29 [\uB178\uBA40]\uD55C
+      \uD584\uBC84\uAC70\uB97C \uB0B4\uC640\uC8FC\uAE38 \uBC14\uB77C\uB294 \uB370\uC2A4\uC640~ "
+  - id: 35
+    messeges: "\uCE90\uBDD4\uC950 \uB450 \uC78E \uBBF8\uD2B8 \uD328\uD2F0 \uC640
+      \uD1B0\uBA54\uC774\uD130 \uD50C\uB9AC\uC988 \uAE41\uBBF8 \uC5D0\uC694. "
+  - id: 36
+    messeges: "\uC591\uC0C1\uCD94 2\uC7A5\uC5D0\uC11C \uD55C \uC7A5\uC744 \uBE7C\uACE0
+      \uACE0\uAE30\uAC00 \uC788\uC744 \uAC83 \uAC19\uC73C\uBA74\uC11C \uC5C6\uB294
+      \uCE58\uC988 \uAC00\uB4DD\uD55C \uBC84\uAC70 \uC8FC\uC138\uC694. "
+  - id: 37
+    messeges: "\uB545\uB545\uB545 \uBE75! "
+  - id: 38
+    messeges: "\uC0C1\uCD94\uB294 \uD3C9\uBC94\uD55C \uC0C1\uCD94\uC640 \uC6B0\uC8FC\uC758
+      \uAE30\uC6B4\uC774 \uB2F4\uAE34 \uC0C1\uCD94\uAC00 \uC788\uB2E4\uB294\uB370
+      \uADF8\uB7F0 \uC0C1\uCD94\uB4E4\uC744 \uC0AC\uC6A9\uD574 \uC8FC\uC138\uC694. "
+  - id: 39
+    messeges: "\uC7A5\uB85C\uB4DC\uB798\uACE4\uC744 \uBD80\uB974\uAE30 \uC704\uD55C
+      4\uAC1C\uC758 \uC900\uBE44\uBB3C\uC774 \uD544\uC694\uD558\uB124\u2026. \uADF8\uB7F0
+      \uD584\uBC84\uAC70\uB85C \uBD80\uD0C1\uD558\uB124. "
+  - id: 40
+    messeges: "\uC6B0\uC8FC\uC758 \uAE30\uC6B4\uC744 \uBC18\uC73C\uB85C \uB098\uB220
+      \uC8FC\uC2DC\uAC8C. "
+  - id: 41
+    messeges: "\uB7ED\uC154\uB9AC\uD558\uACE0 \uBE5B\uB098\uB294 \uCE58\uC988 \uBC84\uAC70\uB85C
+      \uBD80\uD0C1\uD558\uB124. "
+  - id: 42
+    messeges: "\uC5BC\uAD74\uC774 \uC788\uB294 \uC57C\uCC44\uB97C \uC54C\uACE0 \uC788\uB098\uC694?
+      \uADF8\uB7F0 \uC7AC\uB8CC\uB97C \uC4F0\uB294 \uD584\uBC84\uAC70\uC758 \uB9DB\uC774
+      \uAD81\uAE08\uD558\uB124\uC694! "
+  - id: 43
+    messeges: "\uC74C~~~\uBA38~~~~~ "
+  - id: 44
+    messeges: "\uC774\uAC8C \uD584\uBC84\uAC70\uB2E4. \uCE7C\uB85C\uB9AC 4700\uC5D0
+      \uBE44\uD0C0\uBBFC 329 \uB192\uC774 20.1\uC778 \uC74C\uC2DD\uC774 \uD0C4\uC218\uD654\uBB3C
+      , \uB2E8\uBC31\uC9C8 , \uC9C0\uBC29 \uC788\uACE0\uC694. \uBE75 \uC788\uACE0
+      , \uC2EC\uC9C0\uC5B4 \uC591\uC0C1\uCD94\uB294 1\uAC1C\uBC16\uC5D0 \uC548 \uB418\uACE0
+      , \uACE0\uAE30\uB294 1\uC7A5 \uB4E4\uC5B4 \uC788\uB294\uB370 \uC2EC\uC9C0\uC5B4
+      1\uAC1C \uB354 \uB4E4\uC5B4 \uC788\uACE0 , \uC6B0\uC8FC \uC624\uC9D5\uC5B4\uB294
+      2\uAC1C \uACE0\uC815\uC73C\uB85C \uB4E4\uC5B4\uAC00\uC11C \uC62C\uB9AC\uACE0
+      \uB098\uBA74 \uBE75\uC740 \uB9E8 \uC704\uC5D0\uB9CC \uC788\uACE0! \uBE75\uC740
+      \uC544\uB798\uCABD\uC5D0 \uC5C6\uACE0 \uADF8 \uB2E4\uC74C\uC5D0 \uB9DB\uAE4C\uC9C0
+      \uC788\uC5B4 \uAC00\uC9C0\uACE0 \uB3C8\uC774 \uADF8\uB7F0 \uD584\uBC84\uAC70\uC5B4\uC5B4! "
+  - id: 45
+    messeges: "\uD0DC\uC5B4\uB098\uC9C0 \uBABB\uD55C \uBCD1\uC544\uB9AC\uB97C \uB3C5\uC218\uB9AC\uAC00
+      \uC7A1\uC544\uBA39\uACE0 \uADF8\uB7F0 \uB3C5\uC218\uB9AC\uB97C \uC6A9\uC774
+      \uB0A0\uC544\uC62C\uB77C \uC7A1\uC544\uBA39\uC5C8\uB2E4\uB124. "
+  - id: 46
+    messeges: "\uC88B\uC740 \uC544\uCE68\uC785\uB2C8\uB2E4, [Shopkeeper]. [Me]\uB97C
+      \uC704\uD574 [Nomalest]\uD55C [Hambuger]\uB97C \uC8FC\uC2DC\uAE38 [Hope]\uD569\uB2C8\uB2E4.
+      \uD558\uC9C0\uB9CC \uC6B4\uB3D9\uC744 \uD558\uACE0 \uC654\uC73C\uB2C8 [Protein]\uC744
+      \uC704\uD574 [Fried Egg]\uB97C 2\uAC1C \uC774\uC0C1 \uBD80\uD0C1\uD569\uB2C8\uB2E4. "
+  - id: 47
+    messeges: "\uC9C0\uAE08 \uB0B4 \uC548\uC5D0\u2026 \uD751\uC5FC\uB8E1\uC774 \uB0A0\uB6F0\uACE0
+      \uC788\uC5B4.\u2026 \uC774\uB97C \uC7A0\uC7AC\uC6B0\uB824\uBA74 \uB9D0\uB9B0
+      \uC6A9\uC758 \uB0A0\uAC1C\uAC00 \uD544\uC694\uD560 \uAC83 \uAC19\uC544\u2026
+      \uADF8\uAC78 \uD558\uB098 \uC774\uC0C1\uC740 \uB123\uC5B4 \uC918. "
+  - id: 48
+    messeges: "\uC694\uC998 \uB098\uC758 \uB9C8\uBC95 \uC2E4\uB825\uC774 \uB5A8\uC5B4\uC9C4
+      \uAC8C \uB290\uAEF4\uC838.\u2026 \uB9C8\uBC95\uC815 \uC601\uAC10\uC744 \uC704\uD574
+      \uB9CC\uB4DC\uB77C\uACE0\uB77C \uCC1C\uC744 2\uAC1C \uC774\uC0C1 \uB123\uC740
+      \uD584\uBC84\uAC70 \uD558\uB098 \uBD80\uD0C1\uD574. "
+  - id: 49
+    messeges: "\uC804 \uB3C5\uC218\uB9AC\uAC00 \uC88B\uC544\uC694! "
+  - id: 50
+    messeges: "\uB9CE\uACE0 \uB9CE\uC740 \uB9C8\uBC95\uC0AC\uB4E4\uC911 \uB0B4\uAC00
+      \uC81C\uC77C \uC798\uB0AC\uC9C0, \uBE44\uACB0\uC740 \uBBFC\uD2B8\uCD08\uCF54\uB97C
+      \uB123\uC740 \uD584\uBC84\uAC70\uB77C\uACE0~ "
+  - id: 51
+    messeges: "\uB775\uAE4C\uB77C \uD638\uC787! \uB10C \uC9C0\uAE08 \uB0B4\uAC8C
+      \uC0AC\uB791\uC5D0 \uBE60\uC84C\uC5B4\u2026. \uADF8\uB7F0 \uC18C\uC911\uD55C
+      \uB098\uC5D0\uAC8C \uACE0\uAE30 \uD328\uD2F0\uB791 \uC591\uC0C1\uCD94, \uCE58\uC988\uB97C
+      1\uAC1C \uC774\uC0C1\uC529 \uB123\uC740 \uC774\uC0C1\uC801\uC778 \uD584\uBC84\uAC70\uB97C
+      \uB9CC\uB4E4\uC5B4 \uC8FC\uC9C0 \uC54A\uACA0\uC5B4? "
+  - id: 52
+    messeges: "\uB09C \uB3C8\uC774 \uC88B\uC544. "
+  - id: 53
+    messeges: "\uC554\uD751\uBCF4\uB2E4 \uAC80\uACE0, \uC5B4\uB460\uBCF4\uB2E4 \uC5B4\uB450\uC6B4
+      \uCE60\uD751\uC5D0, \uB098\uC758 \uC790\uC8FC\uBE5B\uC774 \uC11E\uC774\uAE30\uB97C
+      \uBC14\uB77C\uB178\uB77C. \uAC01\uC131\uC758 \uB54C\uAC00 \uC654\uC73C\uB2C8
+      \uBB34\uB958\uC758 \uACBD\uACC4\uC5D0 \uB5A8\uC5B4\uC9C4 \uC774\uCE58\uC5EC,
+      \uBB34\uC5C5\uC758 \uC77C\uADF8\uB7EC\uC9D0\uC774 \uB418\uC5B4 \uB098\uD0C0\uB098\uB77C!!!! "
+  - id: 54
+    messeges: "\uB9B4\uB77C\uC2DC\uC624! \uBD88\uAF43\uC740 \uC900\uBE44\uB418\uC5C8\uB2E4!
+      \uB0B4\uAC8C \uBD88\uB9DB\uC774 \uAC00\uB4DD \uB2F4\uAE34 \uB9DB\uC788\uB294
+      \uACE0\uAE30 \uD328\uD2F0\uB97C \uB4EC\uBFCD \uB2F4\uC740 \uD584\uBC84\uAC70\uB97C
+      \uC8FC\uAC8C! "
+  - id: 55
+    messeges: "\uD0DC\uC591 \uAC19\uC740 \uACC4\uB780 \uD6C4\uB77C\uC774 \uBC84\uAC70
+      \uC8FC\uC138\uC694. "
+  - id: 56
+    messeges: "\uB9C8\uC220\uD559\uC6D0 \uB808\uC544 \uB8E8\uCE74\uB9AC\uC544\uC5D0\uC11C
+      \uC218\uB828\uC744 \uC313\uC740 \uC9C0 \uC5B4\uC5B8 20\uB144\u2026 \uB098\uC758
+      \uB9C8\uC220\uC801 \uC9C0\uC2DD\uC744 \uB354\uC6B1 \uC99D\uC9C4\uC2DC\uCF1C
+      \uC904 \uC74C\uC2DD\uC744 \uCC3E\uACE0 \uC788\uB124. \uAC00\uB2A5\uD558\uACA0\uB098? "
+  - id: 57
+    messeges: "\uACE0\uAE30 \uD328\uD2F0\uC758 \uC81C\uC870 \uC2E4\uB825\uC740 \uB3C5\uC77C\uC774
+      \uC138\uACC4 \uC81C\uC77C!!!!!!!!!!!!!!!!!! \uC5B4\uB514 \uB124\uB188\uC758
+      \uD558\uB4F1\uD55C \uACE0\uAE30 \uD328\uD2F0\uC758 \uB9DB\uC744 \uBCF4\uC5EC
+      \uBD10\uB77C!!!!!!! "
+  - id: 58
+    messeges: "\uC608\uB85C\uBD80\uD130 \uB9C8\uBC95\uC0AC\uC758 \uC120\uC870\uB4E4\uC774
+      \uADF8\uD1A0\uB85D \uB9CC\uB4E4\uACE0\uC790 \uD588\uB358 \uADF8\uAC83\uC758
+      \uAE30\uC6B4\uC774 \uC774\uACF3\uC5D0\uC11C \uB290\uAEF4\uC84C\uB2E4\uB124.
+      \uBD80\uB514 \uADF8\uAC78 \uC0AC\uC6A9\uD574 \uD584\uBC84\uAC70\uB97C \uB9CC\uB4E4\uC5B4
+      \uC8FC\uC9C0 \uC54A\uACA0\uB294\uAC00? "
+  - id: 59
+    messeges: "\u2013 \xB7 \u2013 \xB7 \u3000\xB7 \xB7 \u2013 \u3000\xB7 \u2013 \u2013
+      \xB7 \u3000\u2013 \xB7 \xB7 \u3000\xB7 \u2013 \u2013 \u3000\u2013 \u3000\xB7
+      \u2013 \xB7 \xB7 \u3000\u2013 "
+  - id: 60
+    messeges: "\uB098\uB294 \uBCF8\uB514 \uC18C\uC758 \uD2B9\uC815 \uBD80\uC704\uC758
+      \uACE0\uAE30\uB97C \uBD84\uD574 \uBC0F \uC555\uCD95\uD55C \uC74C\uC2DD\uC744
+      \uC6B0\uB9AC\uAC00 \uC0DD\uAC01\uD558\uB294 \uAC83\uBCF4\uB2E4 \uD6E8\uC52C
+      \uC815\uAD50\uD55C \uAE30\uACC4\uC758 \uC18D\uC5D0\uC11C \uC81C\uC791\uB41C
+      \uACE0\uB3C4\uB85C \uBC1C\uB2EC\uB41C \uC778\uB958\uC758 \uC601\uC591 \uBCF4\uCDA9
+      \uC2DD\uC7AC\uB8CC\uB97C \uB124\uAC00 \uC0DD\uAC01\uD558\uB294 \uC591\uBCF4\uB2E4
+      \uB9CE\uC774 \uC6D0\uD55C\uB2E4. "
+  - id: 61
+    messeges: "\uC591\uC0C1\uCD94\uC640 \uACE0\uAE30 \uD328\uD2F0\uB97C 1\uAC1C \uC774\uC0C1\uC529
+      \uB123\uC740 \uD584\uBC84\uAC70 \uBD80\uD0C1\uD574 "
+  - id: 62
+    messeges: "\uCE58\uC988 2\uC870\uAC01 \uC774\uC0C1\uC5D0 \uACE0\uAE30 \uD328\uD2F0
+      1\uAC1C \uC774\uC0C1 \uB123\uC740 \uD584\uBC84\uAC70 \uBD80\uD0C1\uD574! "
+  - id: 63
+    messeges: "\uC591\uC0C1\uCD94 2\uAC1C \uC774\uC0C1\uC5D0 \uCE58\uC988 2\uAC1C
+      \uC774\uC0C1 \uB123\uC740 \uAC74\uAC15\uD55C \uD584\uBC84\uAC70 \uBD80\uD0C1\uD574. "
+  - id: 64
+    messeges: "\uBE75\uC744 2\uAC1C \uC774\uC0C1 \uB123\uC740 \uD2B9\uBCC4\uD55C
+      \uD584\uBC84\uAC70 \uBD80\uD0C1\uD574. "
+  - id: 65
+    messeges: "\uC591\uC0C1\uCD94 1\uAC1C\uC640 \uD53C\uD074 1\uAC1C\uC640 \uD1A0\uB9C8\uD1A0
+      1\uAC1C \uC774\uC0C1 \uB123\uC740 \uAC74\uAC15\uD55C \uD584\uBC84\uAC70 \uBD80\uD0C1\uD574! "
+  - id: 66
+    messeges: "\uD53C\uD074\uACFC \uBBFC\uD2B8\uCD08\uCF54\uB97C \uC11E\uC740 \uAC15\uB82C\uD55C
+      \uB9DB\uC758 \uC74C\uC2DD\uC744 \uBD80\uD0C1\uD574. \uC870\uAE08\uB9CC \uB123\uC5B4\uB3C4
+      \uC0C1\uAD00 \uC5C6\uC744 \uAC83 \uAC19\uC544. "
+  - id: 67
+    messeges: "\uB09C \uAC15\uB82C\uD558\uACE0 \uC2DC\uC6D0\uD55C \uB9DB\uC744 \uC6D0\uD574,
+      \uBBFC\uD2B8\uCD08\uCF54\uB97C 3\uAC1C \uC774\uC0C1 \uB123\uC5B4\uC8FC\uAE38
+      \uBC14\uB77C. "
+  - id: 68
+    messeges: "\uCE58\uC988\uC5D0 \uACE0\uAE30 \uD328\uD2F0\uC5D0 \uD1A0\uB9C8\uD1A0\uB97C
+      \uB123\uC740 \uD3C9\uBC94\uD55C \uD584\uBC84\uAC70\uB97C \uB9CC\uB4E4\uC5B4
+      \uC8FC\uAE38 \uBC14\uB77C. "
+  - id: 69
+    messeges: "\uB09C \uCE58\uC988\uAC00 \uB108\uBB34 \uC88B\uC544. \uCE58\uC988\uB97C
+      4\uAC1C \uC774\uC0C1 \uC368\uC11C \uD584\uBC84\uAC70\uB97C \uB9CC\uB4E4\uC5B4
+      \uC8FC\uAE38 \uBC14\uB77C. "
+  - id: 70
+    messeges: "\uB09C \uACE0\uAE30\uAC00 \uB108\uBB34 \uC88B\uC544 \uACE0\uAE30 \uD328\uD2F0\uB97C
+      4\uAC1C \uC774\uC0C1 \uC368\uC11C \uD584\uBC84\uAC70\uB97C \uB9CC\uB4E4\uC5B4
+      \uC8FC\uAE38 \uBC14\uB77C. "
+  - id: 71
+    messeges: "\uD53C\uD074 \uD584\uBC84\uAC70 \uD558\uB098\uC694! "
+  - id: 72
+    messeges: "\uD1A0\uB9C8\uD1A0 2\uAC1C \uB4E4\uC5B4\uAC04 \uD584\uBC84\uAC70\uB85C
+      \uBD80\uD0C1\uD558\uB124. "
+  - id: 73
+    messeges: "\uCE58\uC988\uC640 \uD1A0\uB9C8\uD1A0\uAC00 \uB4E4\uC5B4\uAC04 \uD584\uBC84\uAC70
+      \uC8FC\uC138\uC694! "
+  - id: 74
+    messeges: "\uC591\uC0C1\uCD94\uC640 \uD53C\uD074\uC774 \uAC19\uC774 \uC788\uB294
+      \uD584\uBC84\uAC70\uB85C \uC8FC\uC138\uC694. "
+  - id: 75
+    messeges: "\uACE0\uAE30 2\uACB9\uC73C\uB85C \uC8FC\uC2DC\uAC8C. "
+  - id: 76
+    messeges: "\uD1A0\uB9C8\uD1A0 1\uAC1C , \uD53C\uD074 1\uAC1C \uB123\uC5B4\uC8FC\uC138\uC694. "
+  - id: 77
+    messeges: "\uC6B8\uD241\uBD88\uD241 \uBA4B\uC9C4\uBAB8\uB9E4\uC5D0 \uBE68\uAC04
+      \uC637\uC744 \uC785\uACE0 \uC0C8\uCF64\uB2EC\uCF64 \uD5A5\uAE30\uD48D\uAE30\uB294
+      \uBA4B\uC7C1\uC774 \uD1A0\uB9C8\uD1A0 3\uAC1C \uB123\uC5B4\uC8FC\uC138\uC694! "
+  - id: 78
+    messeges: "\uCE58\uC988\uC640 \uD53C\uD074\uC744 \uAC19\uC774 \uB123\uC5B4\uC8FC\uC138\uC694. "
+  - id: 79
+    messeges: "\uD53C\uD074 3\uAC1C \uB123\uC5B4\uC8FC\uC138\uC694! "
+  - id: 80
+    messeges: "\uD1A0\uB9C8\uD1A0\uC640 \uD53C\uD074\uACFC \uC591\uC0C1\uCD94\uB97C
+      \uAC19\uC774 \uB123\uC5B4 \uC8FC\uC138\uC694 "
+  - id: 81
+    messeges: "\uCCAD\uB7C9\uD558\uACE0 \uC0C1\uCF8C\uD55C \uBBFC\uD2B8 \uCD08\uCF54
+      \uB123\uC5B4\uC8FC\uC138\uC694! "
+  - id: 82
+    messeges: "\uBBFC\uD2B8 \uCD08\uCF54 2\uAC1C\uB9CC \uC788\uB2E4\uBA74 \uBB34\uC2A8
+      \uC74C\uC2DD\uC774\uB4E0 \uB9DB\uC788\uC744 \uAC70\uC608\uC694 "
+  - id: 83
+    messeges: "\uBBFC\uD2B8 \uCD08\uCF54 \uC544\uC774\uC2A4 , \uBBFC\uD2B8 \uCD08\uCF54
+      \uD53C\uC790 , \uBBFC\uD2B8 \uCD08\uCF54 \uBC25\uC5D0 \uC774\uC5B4 \uBBFC\uD2B8
+      \uCD08\uCF54 \uD584\uBC84\uAC70\uB97C \uBA39\uC5B4 \uBD10\uC57C\uACA0\uC5B4\uC694 "
+  - id: 84
+    messeges: "NK.Studio\uB3C4 \uC990\uACA8 \uB4DC\uC2DC\uB294 \uBBFC\uD2B8\uCD08\uCF54
+      \uBC84\uAC70 \uC8FC\uC138\uC694! "
 --- !u!4 &1552801613
 Transform:
   m_ObjectHideFlags: 0
@@ -7073,11 +7913,11 @@ MonoBehaviour:
   cooking_Panel: {fileID: 165863050}
   ingredients_Panel: {fileID: 150334661839335224}
   ingredient_Money: 10270000204e000030750000409c000050c30000
-  time_Speed: 20
-  current_Time_Hour: 7
+  time_Speed: 2.5
+  current_Time_Hour: 10
   current_Time_Minute: 0
-  opening_Time: 7
-  closing_Time: 20
+  opening_Time: 10
+  closing_Time: 23
   current_Date: 0
   is_Closed: 0
   is_Paused: 0
@@ -8164,7 +9004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329e631d5f60eb2458b77afbfbffbb38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Char_Per_Seconds: 10
+  Char_Per_Seconds: 30
 --- !u!1 &1881758326
 GameObject:
   m_ObjectHideFlags: 0
