@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Security.Cryptography;
 using System;
+using System.Drawing;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,12 +16,12 @@ public class GameManager : MonoBehaviour
 
     //현재 시간 텍스트
     [SerializeField]
-    private TMP_Text current_Time_Text;
-    private string current_Time_Hour_Text;
-    private string current_Time_Minute_Text;
+    public TMP_Text current_Time_Text;
+    public string current_Time_Hour_Text;
+    public string current_Time_Minute_Text;
     //현재 날짜 텍스트
     [SerializeField]
-    private TMP_Text current_Date_Number_Text;
+    public TMP_Text current_Date_Number_Text;
 
     //결과 화면
     public GameObject result_Panel;
@@ -30,9 +31,13 @@ public class GameManager : MonoBehaviour
     public GameObject gameover_Panel;
     //게임 클리어 화면
     public GameObject ending_Panel;
+    // 요리 창 오브젝트
+    public GameObject cooking_Panel;
+    // 재료 창 오브젝트
+    public GameObject ingredients_Panel;
 
     [SerializeField]
-    private int ingredient_Money;
+    public int[] ingredient_Money;
 
 
     //시간이 흐르는 속도
@@ -63,6 +68,8 @@ public class GameManager : MonoBehaviour
     public bool is_Paused=false;
     //게임 오버 여부
     public bool is_Gameover=false;
+    // 게임 시작 여부
+    public bool is_Game_Start;
 
 
     // 가게 레벨 (재료 업그레이드 레벨)
@@ -75,7 +82,7 @@ public class GameManager : MonoBehaviour
     public float money;
     // 가게 업그레이드 비용 텍스트
     [SerializeField]
-    private TMP_Text shop_Upgrade_Cost_Text;
+    public TMP_Text shop_Upgrade_Cost_Text;
     // 업그레이드 창
     public GameObject upgrade_Panel;
     // 돈 텍스트
@@ -152,6 +159,40 @@ public class GameManager : MonoBehaviour
     // 현재 받고있는 주문
     private Order current_Order;
 
+    // 인내심 5칸 이후 한 칸 당 돈 환불 패널티 퍼센테이지 값
+    [Header("인내심 5칸 이후 한 칸 당 돈 환불 패널티 퍼센테이지 값")]
+    [SerializeField]
+    public float return_Money_Per_Patience_Value;
+    // 햄버거 잘못 만들었을 때 패널티 퍼센테이지 값
+    [Header("햄버거 잘못 만들었을 때 패널티 퍼센테이지 값")]
+    [SerializeField]
+    public float burgur_Penalty_Percentage;
+    // 요리완료 버튼 이후 완성된 버거 보여주는 시간
+    [Header("요리완료 버튼 이후 완성된 버거 보여주는 시간")]
+    [SerializeField]
+    public float burgur_Compete_Time;
+    // 손님 와있는지 체크
+    public bool is_Come_Guest;
+    // 오늘 매출
+    public float today_Sales;
+
+    // 인내심 게이지 옆 표정 오브젝트
+    public GameObject happy_Face_Image;
+    public GameObject hungry_Face_Image;
+    public GameObject angry_Face_Image;
+
+    // 하루 종료 결과 및 정산 창 돈 표시 텍스트 변수들
+    public TMP_Text today_Date_Result_Text;
+
+    public TMP_Text today_Sales_Money_Text;
+    public TMP_Text today_Ingredients_Price_Result_Money_Text;
+    public TMP_Text shop_Money_Result_Money_Text;
+    public TMP_Text next_Day_Ingredients_Price_Result_Money_Text;
+
+    // 이전 영업일까지 번 돈
+    public float last_Money;
+
+
     //싱글톤 패턴
     private static GameManager S_instance = null;
     public static GameManager Instance
@@ -174,8 +215,9 @@ public class GameManager : MonoBehaviour
    
     void Start()
     {
-        // 손님 오는 함수 ---------------------------------------------------- (게임 스타트, 위치 바꿀 가능성 큼.)
-        Guest_Come();
+        //현재 시간과 날짜를 텍스트로 표시한다
+        current_Time_Text.text = $"0{opening_Time}:00";
+        current_Date_Number_Text.text = (current_Date + 1).ToString();
     }
 
    
@@ -201,34 +243,73 @@ public class GameManager : MonoBehaviour
     //가게의 문을 닫았는지의 여부를 확인하는 함수
     public void Check_Is_Closed()
     {
-        
-        //현재 시간이 종료 시간과 같으면 bool 타입의 변수를 true로 바꿈
-        if (current_Time_Hour == closing_Time)
+        //현재 시간이 종료 시간과 같으면 가게 영업 종료
+        if ((current_Time_Hour == closing_Time) && !is_Closed)
         {
             is_Closed = true;
-        }
-        if (is_Closed==true)
-        {
+
+
+            // 요리 창이었다면 요리창 닫기
+
+            // 재료 선택 해제(강조 해제)
+            Sorting_Ingredient_Objects();
+
+            // 손님 기다리기 종료
+            is_Guest_Waiting = false;
+
+            // 요리 창 닫기
+            ingredients_Panel.SetActive(false);
+            cooking_Panel.SetActive(false);
+            is_On_Cooking_Panel = false;
+            is_End_Current_Order = false;
+
+            // 현재 선택된 햄버거 높이 초기화
+            current_Burgur_Height = 0;
+
+            // 손님 와있었다면 (먹튀방지)
+            if (is_Come_Guest)
+            {
+                money -= burgur_Price;
+
+                // 손님 없음 체크
+                is_Come_Guest = false;
+            }
+
+            // 손님 그림자 초기화
+            StopCoroutine(Fade_In());
+            StopCoroutine(Fade_Out());
+            guest_Silhoutte_Image.color = new UnityEngine.Color(0f, 0f, 0f, 0f);
+
+            talk.SetMsg($"{current_Date + 1}일차 영업 종료...", false); // 영업 종료 대화 창에 출력
+
+
+            // 결과 창 정산 텍스트 변경
+
+            // 글자 부분
+
+            // 돈 부분
+            today_Date_Result_Text.text = $"Day {current_Date + 1}"; // 해당 날짜 표시
+            today_Sales_Money_Text.text = $"{money - last_Money}원"; // 일일 매출 표시
+            today_Ingredients_Price_Result_Money_Text.text = $"{ingredient_Money[current_Date]}원"; // 해당일 재료비 표시
+            shop_Money_Result_Money_Text.text = $"{money}원"; // 총 자산 표시
+            if (current_Date == 4) // 5번째 날은 다음날 재료비 표시 X
+            {
+                next_Day_Ingredients_Price_Result_Money_Text.text = $"X원"; // 다음날 재료비 표시
+            }
+            else
+            {
+                next_Day_Ingredients_Price_Result_Money_Text.text = $"{ingredient_Money[current_Date + 1]}원"; // 다음날 재료비 표시
+            }
+
+
             //결과창을 띄운다
             result_Panel.SetActive(true);
 
             // 가게 레벨에 따른 업그레이드 창을 띄우는 함수 실행
             Upgrade_Panel_Open();
 
-            //재료비 차감
-            money -= ingredient_Money;
-
-            //게임 오버여부
-            if (money < 0)
-            {
-                gameover_Panel.SetActive(true);
-                is_Gameover = true;
-            }
-        }
-        //문을 닫았을 때 시간을 멈추기
-        if (is_Closed==true)
-        {
-            Time.timeScale=0;
+            //문을 닫았을 때 시간을 멈추기
+            //Time.timeScale = 0;
         }
     }
 
@@ -271,8 +352,14 @@ public class GameManager : MonoBehaviour
     //게임에서 현재 시간을 표시하게하는 함수
     public void Display_Current_Time()
     {
+        if (is_Closed || !is_Game_Start || is_Gameover)
+        {
+            return;
+        }
+
         //현재 시간의 분을 정한다
         current_Time_Minute += Time.deltaTime * time_Speed;
+
 
         //60분이 되면 1시간으로 바뀌게 만들기
         if (((int)current_Time_Minute) >= 60)
@@ -297,7 +384,7 @@ public class GameManager : MonoBehaviour
 
         //현재 시간과 날짜를 텍스트로 표시한다
         current_Time_Text.text = $"{current_Time_Hour_Text}:{current_Time_Minute_Text}";
-        current_Date_Number_Text.text = current_Date.ToString();
+        current_Date_Number_Text.text = (current_Date + 1).ToString();
     }
 
     //일시 정지 체크
@@ -419,6 +506,21 @@ public class GameManager : MonoBehaviour
                     if (patience_Gauge_Objects[i].activeSelf)
                     {
                         patience_Gauge_Objects[i].SetActive(false);
+
+                        // 추가로 표정 관리
+                        if (i > 8)
+                        {
+                            angry_Face_Image.SetActive(false);
+                        }
+                        else if (i > 4)
+                        {
+                            hungry_Face_Image.SetActive(false);
+                        }
+                        else if (i > 0)
+                        {
+                            happy_Face_Image.SetActive(false);
+                        }
+
                         break;
                     }
                 }
@@ -433,6 +535,9 @@ public class GameManager : MonoBehaviour
     // 손님 오는 함수
     public void Guest_Come()
     {
+        // 손님 있음 체크
+        is_Come_Guest = true;
+
         // 손님 실루엣 페이드인
         StartCoroutine(Fade_In());
 
@@ -459,6 +564,9 @@ public class GameManager : MonoBehaviour
     // 손님 가는 함수
     public void Guest_Leave()
     {
+        // 손님 없음 체크
+        is_Come_Guest = false;
+
         // 손님 실루엣 페이드 아웃
         StartCoroutine(Fade_Out());
 
@@ -469,7 +577,17 @@ public class GameManager : MonoBehaviour
             // 손님이 만족한 코드
             Debug.Log("만족스러운 햄버거에요!");
 
-            // if 인내심이 5칸 아래면 1칸 당 5퍼였나 돈 깎기. (대화창에 "맛있긴 하지만 너무 오래걸렸어요 같은 메시지 출력하면 좋을듯)
+            // 인내심이 5칸 아래라면
+            if (current_Patience_Value < 5)
+            {
+                // 돈 차감 식 계산
+                float return_Percentage = (5 - current_Patience_Value) * return_Money_Per_Patience_Value;
+                float return_Money = burgur_Price * (return_Percentage / 100f);
+
+                money -= return_Money; // 돈 차감
+
+                // 대화창에 "맛있긴 하지만 너무 오래걸렸어요" 같은 메시지 출력하면 좋을듯)
+            }
         }
         else
         {
@@ -477,6 +595,21 @@ public class GameManager : MonoBehaviour
             Debug.Log("주문한 햄버거가 아니에요..");
 
             // 만족도 패널티 받고 인내심에 따른 처리.
+            float burgur_Panalty = burgur_Price * (burgur_Penalty_Percentage / 100f);
+
+            money -= burgur_Panalty; // 돈 차감
+
+            // 인내심이 5칸 아래라면
+            if (current_Patience_Value < 5)
+            {
+                // 돈 차감 식 계산
+                float return_Percentage = (5 - current_Patience_Value) * return_Money_Per_Patience_Value;
+                float return_Money = (burgur_Price - burgur_Panalty) * (return_Percentage / 100f);
+
+                money -= return_Money; // 돈 차감
+
+                // 대화창에 "늦었는데 내가 주문한 음식도 아니야 최악이군" 같은 메시지 출력하면 좋을듯)
+            }
         }
 
         // 딜레이 시간 만큼 후 손님 다시 오게하기.
@@ -488,7 +621,7 @@ public class GameManager : MonoBehaviour
     {
         string talk_Data = talk_Manager.Get_Talk(id);
 
-        talk.SetMsg(talk_Data); // 실제 대화 창에 출력 + 타이핑 이펙트
+        talk.SetMsg(talk_Data, true); // 실제 대화 창에 출력 + 타이핑 이펙트
     }
 
     // 재료 판정 함수
@@ -528,7 +661,7 @@ public class GameManager : MonoBehaviour
     // 손님 실루엣 페이드 인
     IEnumerator Fade_In()
     {
-        Color color = new Color(0f, 0f, 0f, 0f);
+        UnityEngine.Color color = new UnityEngine.Color(0f, 0f, 0f, 0f);
         while (guest_Silhoutte_Image.color.a < 0.96)
         {
             color.a += Time.deltaTime * fade_Speed;
@@ -541,7 +674,7 @@ public class GameManager : MonoBehaviour
     // 손님 실루엣 페이드 아웃
     IEnumerator Fade_Out()
     {
-        Color color = new Color(0f, 0f, 0f, 0.96f);
+        UnityEngine.Color color = new UnityEngine.Color(0f, 0f, 0f, 0.96f);
         while (guest_Silhoutte_Image.color.a > 0)
         {
             color.a -= Time.deltaTime * fade_Speed;

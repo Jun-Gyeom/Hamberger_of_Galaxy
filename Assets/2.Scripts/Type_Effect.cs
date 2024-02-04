@@ -11,14 +11,24 @@ public class Type_Effect : MonoBehaviour
     string targetMsg;
     TMP_Text msg_Text;
     int index;
+    bool current_Is_Order;
 
     private void Awake()
     {
         msg_Text = GetComponent<TMP_Text>();
     }
 
-    public void SetMsg(string msg)
+    public void SetMsg(string msg, bool is_Order)
     {
+        if (is_Order)
+        {
+            current_Is_Order = true;
+        }
+        else
+        {
+            current_Is_Order = false;
+        }
+
         targetMsg = msg;
         Effect_Start();
     }
@@ -49,6 +59,9 @@ public class Type_Effect : MonoBehaviour
 
     void Effect_End()
     {
-        GameManager.Instance.is_End_Current_Order = true;
+        if (current_Is_Order)
+        {
+            GameManager.Instance.is_End_Current_Order = true;
+        }
     }
 }
