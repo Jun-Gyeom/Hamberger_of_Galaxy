@@ -5101,9 +5101,7 @@ MonoBehaviour:
     difficulty: 0
     condition_Number:
     - ingredients_Type: 2
-      ingredients_Input_Number: 1
-    - ingredients_Type: 9
-      ingredients_Input_Number: 1
+      ingredients_Input_Number: 4
   - id: 39
     difficulty: 0
     condition_Number:
@@ -8373,14 +8371,14 @@ MonoBehaviour:
   - id: 37
     messeges: "\uB545\uB545\uB545 \uBE75! "
   - id: 38
-    messeges: "\uC0C1\uCD94\uB294 \uD3C9\uBC94\uD55C \uC0C1\uCD94\uC640 \uC6B0\uC8FC\uC758
-      \uAE30\uC6B4\uC774 \uB2F4\uAE34 \uC0C1\uCD94\uAC00 \uC788\uB2E4\uB294\uB370
-      \uADF8\uB7F0 \uC0C1\uCD94\uB4E4\uC744 \uC0AC\uC6A9\uD574 \uC8FC\uC138\uC694. "
-  - id: 39
     messeges: "\uB2E4\uC774\uC5B4\uD2B8 \uC911\uC774\uC9C0\uB9CC\u2026 \uC591\uC0C1\uCD94\uB97C
       \uC794\uB729 \uB123\uC5B4 \uBA39\uB294\uB2E4\uBA74 \uAD1C\uCC2E\uC9C0 \uC54A\uC744\uAE4C\uC694?
       \uC591\uC0C1\uCD94\uB97C 4\uAC1C \uC774\uC0C1 \uB123\uC740 \uD584\uBC84\uAC70
       \uBD80\uD0C1\uB4DC\uB824\uC694! "
+  - id: 39
+    messeges: "\uBC14\uB860\uC744 \uBD88\uB7EC\uB0B4\uAE30 \uC704\uD574\uC120 \uACE0\uAE30\uAC00
+      \uC790\uC544\uC548\uB729 \uD544\uC694\uD574. \uACE0\uAE30 \uD328\uD2F0\uB97C
+      \uCD5C\uB300\uD55C\uC73C\uB85C \uB123\uC740 \uD584\uBC84\uAC70 \uBD80\uD0C1\uD574"
   - id: 40
     messeges: "\uC6B0\uC8FC\uC758 \uAE30\uC6B4\uC744 \uBC18\uC73C\uB85C \uB098\uB220
       \uC8FC\uC2DC\uAC8C. "
@@ -9075,7 +9073,7 @@ MonoBehaviour:
   failed_Panel: {fileID: 1549272708}
   complete_Emote: {fileID: 435178455}
   failed_Emote: {fileID: 1953539021}
-  ingredient_Money: d0070000b80b0000a00f000088130000581b0000
+  ingredient_Money: b80b0000a00f000070170000401f000028230000
   time_Speed: 6.5
   current_Time_Hour: 10
   current_Time_Minute: 0
@@ -9088,10 +9086,10 @@ MonoBehaviour:
   is_Game_Start: 0
   shop_Level: 0
   shop_Upgrade_Cost:
+  - 500
   - 1000
+  - 1500
   - 2000
-  - 3000
-  - 4000
   money: 0
   shop_Upgrade_Cost_Text: {fileID: 1881758328}
   upgrade_Panel: {fileID: 1660790661}
