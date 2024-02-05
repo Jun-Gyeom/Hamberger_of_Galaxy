@@ -28,7 +28,7 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
 
         // 저장된 돈 초기화
-        GameManager.Instance.last_Money = 0f;
+        GameManager.Instance.money = GameManager.Instance.last_Money;
 
         //게임 첫 날이면 튜토리얼 띄우기
         if (GameManager.Instance.current_Date==0)
@@ -46,6 +46,7 @@ public class ButtonManager : MonoBehaviour
             GameManager.Instance.is_Paused = false;
             Time.timeScale = 1;
             GameManager.Instance.money = GameManager.Instance.last_Money;
+            Push_Button_Open_Cooking_Panel();
         }
     }
 
@@ -90,7 +91,12 @@ public class ButtonManager : MonoBehaviour
         // 게임 시작 상태 체크 해제
         GameManager.Instance.is_Game_Start = false;
 
-        Time.timeScale = 1f; // 일시정지 해제
+        Time.timeScale = 0f; // 일시정지
+        for (int i = 0; i < 10; i++)
+        {
+            GameManager.Instance.patience_Gauge_Objects[i].SetActive(true);
+
+        }
 
         GameManager.Instance.pause_Panel.SetActive(false);
 
@@ -148,6 +154,8 @@ public class ButtonManager : MonoBehaviour
             is_Ending = true;
             GameManager.Instance.ending_Panel.SetActive(true);
             StartCoroutine("WaitForToTitle");
+            GameManager.Instance.last_Money = 0;
+            GameManager.Instance.money = 0;
         }
 
         // 손님 부르기
@@ -183,6 +191,7 @@ public class ButtonManager : MonoBehaviour
         // 요리 창 열려있을 때 (요리 완료 버튼)
         else if ((GameManager.Instance.is_On_Cooking_Panel == true) && !GameManager.Instance.is_Cooking_Panel_Closing_Coroutine)
         {
+            Time.timeScale = 1;
             // 햄버거 윗부분 덮기
             GameManager.Instance.Cook_Hamburger(ingredients_Top_Bun);
 
@@ -197,8 +206,9 @@ public class ButtonManager : MonoBehaviour
         }    
     }
 
-    // 가게 업그레이드 함수
-    public void Shop_Upgrade()
+
+        // 가게 업그레이드 함수
+        public void Shop_Upgrade()
     {
         // 업그레이드 실패 (돈 부족)
         if (GameManager.Instance.shop_Upgrade_Cost[GameManager.Instance.shop_Level] > GameManager.Instance.money)

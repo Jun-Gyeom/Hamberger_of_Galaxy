@@ -1130,7 +1130,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 34708782c89eb7f44b150eee798b117e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 40d2e20bcb8bdb2469433dc702ca06ce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1778,7 +1778,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fbd123ffb11182a42bc63044d7da411f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2a7ee5f0dc24ed446833cb9a2446c0d9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3217,11 +3217,11 @@ RectTransform:
   - {fileID: 842422985}
   - {fileID: 165863051}
   - {fileID: 1660790662}
-  - {fileID: 5963683940184391434}
   - {fileID: 1263672426}
-  - {fileID: 1995989570270823452}
+  - {fileID: 5963683940184391434}
   - {fileID: 1444590880}
   - {fileID: 1815631374}
+  - {fileID: 1995989570270823452}
   - {fileID: 1576540202}
   - {fileID: 1953539022}
   - {fileID: 435178456}
@@ -4747,7 +4747,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6d761479e0e7b00478f0f91ee8d94a4c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a1307c1b1737bc4bb19ee0adb71432e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4946,7 +4946,7 @@ MonoBehaviour:
   - id: 14
     difficulty: 2
     condition_Number:
-    - ingredients_Type: 1
+    - ingredients_Type: 2
       ingredients_Input_Number: 1
     - ingredients_Type: 3
       ingredients_Input_Number: 1
@@ -5084,6 +5084,8 @@ MonoBehaviour:
     - ingredients_Type: 2
       ingredients_Input_Number: 2
     - ingredients_Type: 4
+      ingredients_Input_Number: 1
+    - ingredients_Type: 6
       ingredients_Input_Number: 1
   - id: 36
     difficulty: 0
@@ -5257,7 +5259,7 @@ MonoBehaviour:
   - id: 65
     difficulty: 0
     condition_Number:
-    - ingredients_Type: 3
+    - ingredients_Type: 2
       ingredients_Input_Number: 1
     - ingredients_Type: 5
       ingredients_Input_Number: 1
@@ -8425,9 +8427,9 @@ MonoBehaviour:
       \uADF8\uAC78 \uD558\uB098 \uC774\uC0C1\uC740 \uB123\uC5B4 \uC918. "
   - id: 48
     messeges: "\uC694\uC998 \uB098\uC758 \uB9C8\uBC95 \uC2E4\uB825\uC774 \uB5A8\uC5B4\uC9C4
-      \uAC8C \uB290\uAEF4\uC838.\u2026 \uB9C8\uBC95\uC815 \uC601\uAC10\uC744 \uC704\uD574
-      \uB9CC\uB4DC\uB77C\uACE0\uB77C \uCC1C\uC744 2\uAC1C \uC774\uC0C1 \uB123\uC740
-      \uD584\uBC84\uAC70 \uD558\uB098 \uBD80\uD0C1\uD574. "
+      \uAC8C \uB290\uAEF4\uC838.\u2026 \uB9C8\uBC95\uC801\uC778 \uC601\uAC10\uC744
+      \uC704\uD574 \uB9CC\uB4DC\uB77C\uACE0\uB77C \uCC1C\uC744 2\uAC1C \uC774\uC0C1
+      \uB123\uC740 \uD584\uBC84\uAC70 \uD558\uB098 \uBD80\uD0C1\uD574. "
   - id: 49
     messeges: "\uC804 \uB3C5\uC218\uB9AC\uAC00 \uC88B\uC544\uC694! "
   - id: 50
@@ -11709,7 +11711,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &123304428684585959
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11910,7 +11912,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 8b321e37f2cbe4e4db77175b05ef2668, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 7b61eced69c17d94a8aa96bfd2cc4065, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0da5a9e690af8dc4e8f97e9432af8695, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -12311,7 +12313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a61b512fbd6dad1459867f7a491bef98, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eebc25714ff806648904592803e76bf4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
