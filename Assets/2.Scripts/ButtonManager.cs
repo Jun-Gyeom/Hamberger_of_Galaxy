@@ -24,6 +24,9 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.current_Time_Minute = 0;
         GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
 
+        // 저장된 돈 초기화
+        GameManager.Instance.last_Money = 0f;
+
         //게임 첫 날이면 튜토리얼 띄우기
         if (GameManager.Instance.current_Date==0)
         {
@@ -70,6 +73,10 @@ public class ButtonManager : MonoBehaviour
         // 게임 시작 상태 체크 해제
         GameManager.Instance.is_Game_Start = false;
 
+        Time.timeScale = 1f; // 일시정지 해제
+
+        GameManager.Instance.pause_Panel.SetActive(false);
+
         //현재 시간과 날짜를 텍스트로 표시한다
         GameManager.Instance.current_Time_Text.text = $"{GameManager.Instance.opening_Time}:00";
         GameManager.Instance.current_Date_Number_Text.text = (GameManager.Instance.current_Date + 1).ToString();
@@ -109,15 +116,15 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.is_Closed = false;
         GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
 
-        //Time.timeScale = 1;
+        //돈을 저장한다
+        GameManager.Instance.last_Money = GameManager.Instance.money;
         //날짜 +1
         GameManager.Instance.current_Date += 1;
         //결과창을 가린다
         GameManager.Instance.result_Panel.SetActive(false);
         // 업그레이드 창 닫기
         GameManager.Instance.upgrade_Panel.SetActive(false);
-        //돈을 저장한다
-        GameManager.Instance.last_Money = GameManager.Instance.money;
+
         //엔딩 여부 확인
         if (GameManager.Instance.current_Date>=5 && GameManager.Instance.is_Gameover==false)
         {

@@ -288,6 +288,9 @@ public class GameManager : MonoBehaviour
 
             talk.SetMsg($"{current_Date + 1}일차 영업 종료...", false); // 영업 종료 대화 창에 출력
 
+            // 손님 못 오게하기.
+            StopCoroutine(Come_Guest_Delay());
+
 
             // 결과 창 정산 텍스트 변경
 
@@ -295,10 +298,10 @@ public class GameManager : MonoBehaviour
 
             // 돈 부분
             today_Date_Result_Text.text = $"{current_Date + 1}일째"; // 해당 날짜 표시
-            today_Sales_Money_Text.text = $"{money - last_Money}원"; // 일일 매출 표시
-            today_Ingredients_Price_Result_Money_Text.text = $"-{ingredient_Money[current_Date]}원"; // 해당일 재료비 표시
             shop_Money_Result_Money_Text.text = $"{money + ingredient_Money[current_Date]}원"; // 보유 자산 표시
-            shop_Money_Calcu_Result_Money_Text.text = $"{money}원"; // 총 자산 표시
+            today_Sales_Money_Text.text = $"{money + ingredient_Money[current_Date] - last_Money}원"; // 일일 매출 표시
+            today_Ingredients_Price_Result_Money_Text.text = $"-{ingredient_Money[current_Date]}원"; // 해당일 재료비 표시
+            shop_Money_Calcu_Result_Money_Text.text = $"{money}원"; // 계산된 총 자산 표시
             if (current_Date == 4) // 5번째 날은 다음날 재료비 표시 X
             {
                 next_Day_Ingredients_Price_Result_Money_Text.text = $"X원"; // 다음날 재료비 표시

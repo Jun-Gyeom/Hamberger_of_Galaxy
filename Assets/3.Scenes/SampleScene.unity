@@ -7450,9 +7450,9 @@ MonoBehaviour:
       \uBD80\uB514 \uADF8\uAC78 \uC0AC\uC6A9\uD574 \uD584\uBC84\uAC70\uB97C \uB9CC\uB4E4\uC5B4
       \uC8FC\uC9C0 \uC54A\uACA0\uB294\uAC00? "
   - id: 59
-    messeges: "\u2013 \xB7 \u2013 \xB7 \u3000\xB7 \xB7 \u2013 \u3000\xB7 \u2013 \u2013
-      \xB7 \u3000\u2013 \xB7 \xB7 \u3000\xB7 \u2013 \u2013 \u3000\u2013 \u3000\xB7
-      \u2013 \xB7 \xB7 \u3000\u2013 "
+    messeges: "\u2013 \xB7 \u2013 \xB7      \xB7 \xB7 \u2013      \xB7 \u2013 \u2013
+      \xB7      \u2013 \xB7 \xB7      \xB7 \u2013 \u2013 \u3000\u2013      \xB7 \u2013
+      \xB7 \xB7      \u2013 "
   - id: 60
     messeges: "\uB098\uB294 \uBCF8\uB514 \uC18C\uC758 \uD2B9\uC815 \uBD80\uC704\uC758
       \uACE0\uAE30\uB97C \uBD84\uD574 \uBC0F \uC555\uCD95\uD55C \uC74C\uC2DD\uC744
@@ -11132,7 +11132,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 305883074bbfcbf4ebdadf47a3866dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audiomixer: {fileID: 24100000, guid: 8b321e37f2cbe4e4db77175b05ef2668, type: 2}
+  complete_Clip: {fileID: 0}
+  failed_Clip: {fileID: 0}
+  middle_Clip: {fileID: 0}
+  main_Audiomixer: {fileID: 0}
+  effect_Audiomixer: {fileID: 0}
+  effect_AudioSource: {fileID: 0}
 --- !u!114 &1296633180451817948
 MonoBehaviour:
   m_ObjectHideFlags: 0
