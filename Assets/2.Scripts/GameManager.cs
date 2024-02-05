@@ -205,6 +205,11 @@ public class GameManager : MonoBehaviour
     // 이전 영업일까지 번 돈
     public float last_Money;
 
+    // 현재 주문 텍스트 (스킵 기능에 필요)
+    public string current_Order_Message;
+
+    // 손님 다시 오는 딜레이 코루틴 변수
+    public IEnumerator Come_Guest_Delay_Coroutine;
 
     //싱글톤 패턴
     private static GameManager S_instance = null;
@@ -221,8 +226,12 @@ public class GameManager : MonoBehaviour
     }
     private void Awake()
     {
-        //해상도 초기 설정 FHD로 고정
+        // 해상도 초기 설정 FHD로 고정
         Screen.SetResolution(1920, 1080, true);
+
+        // 메인 BGM 재생
+        audioManager.bgm_AudioSource.clip = audioManager.bgm_main;
+        audioManager.bgm_AudioSource.Play();
     }
 
    
@@ -231,6 +240,9 @@ public class GameManager : MonoBehaviour
         //현재 시간과 날짜를 텍스트로 표시한다
         current_Time_Text.text = $"{opening_Time}:00";
         current_Date_Number_Text.text = (current_Date + 1).ToString();
+
+        // 코루틴 변수 입력
+        Come_Guest_Delay_Coroutine = Come_Guest_Delay();
     }
 
    
@@ -247,9 +259,10 @@ public class GameManager : MonoBehaviour
         // 손님 인내심 게이지
         Patience_Gauge_Decrease();
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.Space) && !is_End_Current_Order && talk.is_Type_Effecting)
         {
-            StartCoroutine(Fade_Out());
+            talk.SetMsg($"{current_Order_Message}", true); // 대화창 스킵
+
         }
     }
 
@@ -261,6 +274,8 @@ public class GameManager : MonoBehaviour
         {
             is_Closed = true;
 
+            // 업그레이드창 도중에 손님 못 오게하기. --------------------------------------------------------------------------
+            StopCoroutine(Come_Guest_Delay());
 
             // 요리 창이었다면 요리창 닫기
 
@@ -292,14 +307,24 @@ public class GameManager : MonoBehaviour
             money -= ingredient_Money[current_Date];
 
             // 손님 그림자 초기화
-            StopCoroutine(Fade_In());
-            StopCoroutine(Fade_Out());
+            StopCoroutine("Fade_In");
+            StopCoroutine("Fade_Out");
             guest_Silhoutte_Image.color = new UnityEngine.Color(0f, 0f, 0f, 0f);
 
             talk.SetMsg($"{current_Date + 1}일차 영업 종료...", false); // 영업 종료 대화 창에 출력
 
-            // 손님 못 오게하기.
-            StopCoroutine(Come_Guest_Delay());
+            // 손님 인내심 수치 초기화
+            current_Patience_Value = 10f;
+            for (int i = 0; i < patience_Gauge_Objects.Length; i++)
+            {
+                patience_Gauge_Objects[i].SetActive(true);
+            }
+            happy_Face_Image.SetActive(true);
+            hungry_Face_Image.SetActive(true);
+            angry_Face_Image.SetActive(true);
+
+            complete_Emote.SetActive(false);
+            failed_Emote.SetActive(false);
 
 
             // 결과 창 정산 텍스트 변경
@@ -340,7 +365,7 @@ public class GameManager : MonoBehaviour
                 GameManager.Instance.current_Time_Text.text = $"{GameManager.Instance.opening_Time}:00";
                 GameManager.Instance.current_Date_Number_Text.text = (GameManager.Instance.current_Date + 1).ToString();
 
-                StartCoroutine(button_Manager.Game_Over_To_Title()); // 3초 후 타이틀로
+                button_Manager.StartCoroutine("Game_Over_To_Title"); // 3초 후 타이틀로
             }
         }
     }
@@ -567,11 +592,17 @@ public class GameManager : MonoBehaviour
     // 손님 오는 함수
     public void Guest_Come()
     {
+        // 게임 시작 안했으면 리턴.
+        if (!is_Game_Start)
+        {
+            return;
+        }
+
         // 손님 있음 체크
         is_Come_Guest = true;
 
         // 손님 실루엣 페이드인
-        StartCoroutine(Fade_In());
+        StartCoroutine("Fade_In");
 
         // 손님 얼굴 랜덤 뽑기
         guest_Face_Image.sprite = guest_Faces[UnityEngine.Random.Range(0, guest_Faces.Length)];
@@ -594,6 +625,7 @@ public class GameManager : MonoBehaviour
 
         // 주문에 맞는 대화 출력하기
         Talk(current_Order.id);
+        current_Order_Message = talk_Manager.talkData_Dictionary[current_Order.id];
     }
 
     // 손님 가는 함수
@@ -604,7 +636,7 @@ public class GameManager : MonoBehaviour
 
 
         // 손님 실루엣 페이드 아웃
-        StartCoroutine(Fade_Out());
+        StartCoroutine("Fade_Out");
 
         // 재료 맞는지 판정 후 불만족 했다면 돈 차감 ------- (판정 시스템)
         bool ingredients_Check = Ingredients_Check(current_Order, current_Make_Burger_Info);
@@ -618,7 +650,7 @@ public class GameManager : MonoBehaviour
             complete_Emote.SetActive(true);
             complete_Panel.SetActive(true);
 
-            StartCoroutine(SetCompleteFalse());
+            StartCoroutine("SetCompleteFalse");
 
             if (current_Patience_Value > 5)
             {
@@ -652,7 +684,7 @@ public class GameManager : MonoBehaviour
             failed_Emote.SetActive(true);
             failed_Panel.SetActive(true);
 
-            StartCoroutine(SetFailedFalse());
+            StartCoroutine("SetFailedFalse");
 
             // 만족도 패널티 받고 인내심에 따른 처리.
             float burgur_Panalty = burgur_Price * (burgur_Penalty_Percentage / 100f);
@@ -723,7 +755,7 @@ public class GameManager : MonoBehaviour
     }
 
     // 손님 실루엣 페이드 인
-    IEnumerator Fade_In()
+    public IEnumerator Fade_In()
     {
         UnityEngine.Color color = new UnityEngine.Color(0f, 0f, 0f, 0f);
         while (guest_Silhoutte_Image.color.a < 0.96)
@@ -736,7 +768,7 @@ public class GameManager : MonoBehaviour
     }
 
     // 손님 실루엣 페이드 아웃
-    IEnumerator Fade_Out()
+    public IEnumerator Fade_Out()
     {
         UnityEngine.Color color = new UnityEngine.Color(0f, 0f, 0f, 0.96f);
         while (guest_Silhoutte_Image.color.a > 0)
@@ -749,11 +781,19 @@ public class GameManager : MonoBehaviour
     }
 
     // 손님 일정 시간 후 다시오게 하는 코루틴
-    IEnumerator Come_Guest_Delay()
+    public IEnumerator Come_Guest_Delay()
     {
         yield return new WaitForSeconds(come_Guest_Delay_Time);
 
-        Guest_Come();
+        // 마감 했으면 리턴, 타이틀 화면이면 리턴
+        if (is_Closed || !is_Game_Start)
+        {
+            yield return null;
+        }
+        else
+        {
+            Guest_Come();
+        }
     }
 
     IEnumerator SetCompleteFalse()

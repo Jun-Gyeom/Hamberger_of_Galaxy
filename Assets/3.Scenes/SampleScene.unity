@@ -238,7 +238,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fca933c311af72445967391b731c77da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c002ae17cfde0de478586a568c386243, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -917,7 +917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1778,7 +1778,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2a7ee5f0dc24ed446833cb9a2446c0d9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 39f4bee566a7d6343870140c0908a29a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1891,7 +1891,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 77ef1a8e59acbe1418392a1aa5acbc05, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d9845b5a50565464fb0fda188ce40d5c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1998,7 +1998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2743,7 +2743,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0e5f3802f210d534fa8696f7c80db836, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 36baa30465016cc4da5a53b0512a272b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3217,11 +3217,11 @@ RectTransform:
   - {fileID: 842422985}
   - {fileID: 165863051}
   - {fileID: 1660790662}
-  - {fileID: 1263672426}
   - {fileID: 5963683940184391434}
+  - {fileID: 1263672426}
+  - {fileID: 1995989570270823452}
   - {fileID: 1444590880}
   - {fileID: 1815631374}
-  - {fileID: 1995989570270823452}
   - {fileID: 1576540202}
   - {fileID: 1953539022}
   - {fileID: 435178456}
@@ -4832,15 +4832,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty_Limit_Of_Day:
-  - medium_Limit: 2
-    hard_Limit: 1
-  - medium_Limit: 2
+  - medium_Limit: 3
     hard_Limit: 2
-  - medium_Limit: 4
-    hard_Limit: 2
-  - medium_Limit: 4
+  - medium_Limit: 3
     hard_Limit: 3
-  - medium_Limit: 2
+  - medium_Limit: 4
+    hard_Limit: 4
+  - medium_Limit: 5
+    hard_Limit: 5
+  - medium_Limit: 7
     hard_Limit: 7
   - medium_Limit: 0
     hard_Limit: 0
@@ -4851,15 +4851,15 @@ MonoBehaviour:
   - easy_Percentage: 70
     medium_Percentage: 20
     hard_Percentage: 10
-  - easy_Percentage: 55
-    medium_Percentage: 30
-    hard_Percentage: 15
-  - easy_Percentage: 35
-    medium_Percentage: 40
+  - easy_Percentage: 40
+    medium_Percentage: 35
     hard_Percentage: 25
-  - easy_Percentage: 20
-    medium_Percentage: 30
-    hard_Percentage: 50
+  - easy_Percentage: 30
+    medium_Percentage: 35
+    hard_Percentage: 35
+  - easy_Percentage: 5
+    medium_Percentage: 35
+    hard_Percentage: 60
   - easy_Percentage: 0
     medium_Percentage: 0
     hard_Percentage: 0
@@ -4962,10 +4962,8 @@ MonoBehaviour:
   - id: 16
     difficulty: 1
     condition_Number:
-    - ingredients_Type: 11
-      ingredients_Input_Number: 1
-    - ingredients_Type: 12
-      ingredients_Input_Number: 1
+    - ingredients_Type: 13
+      ingredients_Input_Number: 4
   - id: 17
     difficulty: 0
     condition_Number:
@@ -5377,6 +5375,26 @@ MonoBehaviour:
     difficulty: 0
     condition_Number:
     - ingredients_Type: 8
+      ingredients_Input_Number: 1
+  - id: 85
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 13
+      ingredients_Input_Number: 2
+  - id: 86
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 13
+      ingredients_Input_Number: 1
+  - id: 87
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 13
+      ingredients_Input_Number: 4
+  - id: 88
+    difficulty: 1
+    condition_Number:
+    - ingredients_Type: 13
       ingredients_Input_Number: 1
   easy_Order_List: []
   medeum_Order_List: []
@@ -6024,7 +6042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -6262,13 +6280,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1180072546}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7167,7 +7185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -7416,7 +7434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -7772,7 +7790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -8017,7 +8035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -8268,14 +8286,16 @@ MonoBehaviour:
       \uACB0\uD569\uC774\u2026. "
   - id: 16
     messeges: "\uC138\uC0C1\uC740 \uB4F1\uAC00\uAD50\uD658\uC774\uC57C. \uB0B4\uAC00
-      \uB3C8\uC744 \uC904 \uD14C\uB2C8, \uB108\uB294 \uADF8\uB9CC\uD07C\uC758 \uD584\uBC84\uAC70\uB97C
-      \uB9CC\uB4E4\uC5B4 \uC8FC\uB294 \uAC70\uC9C0. \uB0B4 \uC5F0\uAE08\uC220\uC5D0
-      \uB3C4\uC6C0\uC774 \uB420 \uB9CC\uD55C \uC7AC\uB8CC\uB85C \uBD80\uD0C1\uD574. "
+      \uB3C8\uC744 \uC904\uD0DC\uB2C8 \uADF8\uB9CC\uD07C \uAE08\uC744 \uC794\uB729
+      \uB123\uC5B4\uC918."
   - id: 17
-    messeges: "\uC138\uC0C1\uC740 \uB4F1\uAC00\uAD50\uD658\uC774\uC57C. \uB0B4\uAC00
-      \uB3C8\uC744 \uC904 \uD14C\uB2C8, \uB108\uB294 \uADF8\uB9CC\uD07C\uC758 \uD584\uBC84\uAC70\uB97C
-      \uB9CC\uB4E4\uC5B4 \uC8FC\uB294 \uAC70\uC9C0. \uB0B4 \uC5F0\uAE08\uC220\uC5D0
-      \uB3C4\uC6C0\uC774 \uB420 \uB9CC\uD55C \uC7AC\uB8CC\uB85C \uBD80\uD0C1\uD574. "
+    messeges: "\uC774\uBD10 \uCE5C\uAD6C \uADF8\uAC70 \uC54C\uC544? \uD584\uBC84\uAC70
+      \uD55C \uAC1C\uC5D0\uB294 \uD584\uBC84\uAC70 \uD55C \uAC1C\uB9CC\uD07C\uC758
+      \uC601\uC591\uC18C\uAC00 \uB4E4\uC5B4\uC788\uB2E8 \uC0AC\uC2E4\uC744? \uD558\uC9C0\uB9CC
+      \uACE0\uAE30 \uD328\uD2F0\uB97C \uB354 \uB123\uC73C\uBA74 \uADF8\uBCF4\uB2E4
+      \uB354 \uB9CE\uC740 \uC591\uC758 \uC601\uC591\uC18C\uB97C \uC5BB\uC744 \uC218
+      \uC788\uC9C0. \uACE0\uAE30 \uD328\uD2F0 2\uAC1C \uC774\uC0C1 \uB123\uC740 \uD584\uBC84\uAC70
+      \uBD80\uD0C1\uD574."
   - id: 18
     messeges: "\uD0DC\uC591\uC758 \uC655 \uADF8\uC6EC\uC740 \uC6A9\uB4E4\uC744 \uBB3C\uB9AC\uCE58\uACE0
       \uC6B0\uB9AC\uC5D0\uAC8C \uBD88\uC744 \uC8FC\uC168\uC9C0, \uADF8\uB97C \uAE30\uB9AC\uAE30
@@ -8496,8 +8516,8 @@ MonoBehaviour:
     messeges: "\uC591\uC0C1\uCD94 2\uAC1C \uC774\uC0C1\uC5D0 \uCE58\uC988 2\uAC1C
       \uC774\uC0C1 \uB123\uC740 \uAC74\uAC15\uD55C \uD584\uBC84\uAC70 \uBD80\uD0C1\uD574. "
   - id: 64
-    messeges: "\uBE75\uC744 2\uAC1C \uC774\uC0C1 \uB123\uC740 \uD2B9\uBCC4\uD55C
-      \uD584\uBC84\uAC70 \uBD80\uD0C1\uD574. "
+    messeges: "\uBE75\uC744 \uD3C9\uC18C\uBCF4\uB2E4 2\uAC1C \uB354 \uB123\uC740
+      \uD2B9\uBCC4\uD55C \uD584\uBC84\uAC70 \uBD80\uD0C1\uD574"
   - id: 65
     messeges: "\uC591\uC0C1\uCD94 1\uAC1C\uC640 \uD53C\uD074 1\uAC1C\uC640 \uD1A0\uB9C8\uD1A0
       1\uAC1C \uC774\uC0C1 \uB123\uC740 \uAC74\uAC15\uD55C \uD584\uBC84\uAC70 \uBD80\uD0C1\uD574! "
@@ -8561,6 +8581,20 @@ MonoBehaviour:
   - id: 84
     messeges: "NK.Studio\uB3C4 \uC990\uACA8 \uB4DC\uC2DC\uB294 \uBBFC\uD2B8\uCD08\uCF54
       \uBC84\uAC70 \uC8FC\uC138\uC694! "
+  - id: 85
+    messeges: "\uC624\uB298\uC744 \uC704\uD574 \uAF2C\uBC15\uAF2C\uBC15 \uC6D4\uAE09\uC744
+      \uBAA8\uC558\uC5B4. \uADF8\uB7F0 \uB098\uC5D0\uAC8C \uC5B4\uC6B8\uB9AC\uB294
+      \uBC18\uC9DD\uBC18\uC9DD \uBE5B\uB098\uB294 \uD584\uBC84\uAC70\uB97C \uBD80\uD0C1\uD574."
+  - id: 86
+    messeges: "\uC624\uB298\uB3C4 \uC5F0\uAE08\uC220\uC744 \uC2E4\uD328\uD588\uC5B4\u2026
+      \uB108\uB294 \uADF8 \uC7AC\uB8CC\uB97C \uAC16\uACE0\uC788\uB2E4\uACE0 \uB4E4\uC5C8\uC5B4.
+      \uADF8\uAC78 \uC0AC\uC6A9\uD574\uC11C \uD584\uBC84\uAC70\uB97C \uB9CC\uB4E4\uC5B4\uC918."
+  - id: 87
+    messeges: "\uC5EC\uAE30\uC5D0\uC11C \uAC00\uC7A5 \uBE44\uC2FC \uD584\uBC84\uAC70
+      \uBD80\uD0C1\uD574."
+  - id: 88
+    messeges: "\uC21C\uC21C\uD788 \uAE08\uC744 \uB0B4\uAC8C \uC900\uB2E4\uBA74, \uC720\uD608\uC0AC\uD0DC\uB294
+      \uC77C\uC5B4\uB098\uC9C0 \uC54A\uC744\uAEBC\uC57C."
 --- !u!4 &1552801613
 Transform:
   m_ObjectHideFlags: 0
@@ -8702,7 +8736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -8872,7 +8906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -9075,7 +9109,7 @@ MonoBehaviour:
   failed_Panel: {fileID: 1549272708}
   complete_Emote: {fileID: 435178455}
   failed_Emote: {fileID: 1953539021}
-  ingredient_Money: b80b0000a00f000070170000401f000028230000
+  ingredient_Money: b80b000094110000701700004c1d0000282300000000000000000000
   time_Speed: 6.5
   current_Time_Hour: 10
   current_Time_Minute: 0
@@ -9088,10 +9122,10 @@ MonoBehaviour:
   is_Game_Start: 0
   shop_Level: 0
   shop_Upgrade_Cost:
-  - 500
-  - 1000
   - 1500
   - 2000
+  - 2000
+  - 1500
   money: 0
   shop_Upgrade_Cost_Text: {fileID: 1881758328}
   upgrade_Panel: {fileID: 1660790661}
@@ -9232,6 +9266,7 @@ MonoBehaviour:
   next_Day_Ingredients_Price_Result_Money_Text: {fileID: 1016463311}
   shop_Money_Calcu_Result_Money_Text: {fileID: 1261287237}
   last_Money: 0
+  current_Order_Message: 
 --- !u!4 &1670026175
 Transform:
   m_ObjectHideFlags: 0
@@ -9336,7 +9371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -10170,6 +10205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Char_Per_Seconds: 30
+  is_Type_Effecting: 0
 --- !u!1 &1881758326
 GameObject:
   m_ObjectHideFlags: 0
@@ -11466,7 +11502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -11643,7 +11679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -11711,7 +11747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &123304428684585959
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11779,7 +11815,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -15, y: -15, z: -15, w: -15}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -11913,7 +11949,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 8b321e37f2cbe4e4db77175b05ef2668, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0da5a9e690af8dc4e8f97e9432af8695, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -12013,7 +12049,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -15, y: -15, z: -15, w: -15}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -12313,7 +12349,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: eebc25714ff806648904592803e76bf4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 55bc063eba5243c4d962c49f04bece43, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12377,7 +12413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -12435,9 +12471,12 @@ MonoBehaviour:
   complete_Clip: {fileID: 8300000, guid: 66d8309498b3a20459f0c959cfd73586, type: 3}
   failed_Clip: {fileID: 8300000, guid: d374ec2186de7234bb3fe0828ee1d823, type: 3}
   middle_Clip: {fileID: 8300000, guid: 62598e38e8bf2704d8cfd40aa7777287, type: 3}
-  main_Audiomixer: {fileID: 24100000, guid: 8b321e37f2cbe4e4db77175b05ef2668, type: 2}
+  bgm_main: {fileID: 8300000, guid: a6e3a1b8387668d49b10c2149917a2e8, type: 3}
+  bgm_ending: {fileID: 8300000, guid: 3c9839ca21378644e8e3097b7e3679f4, type: 3}
+  bgm_Audiomixer: {fileID: 24100000, guid: 8b321e37f2cbe4e4db77175b05ef2668, type: 2}
   effect_Audiomixer: {fileID: 24100000, guid: a0620f0e432d50343b0907211189f6e9, type: 2}
   effect_AudioSource: {fileID: 6099513424837072436}
+  bgm_AudioSource: {fileID: 611972395657794680}
 --- !u!114 &1296633180451817948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12468,7 +12507,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -15, y: -15, z: -15, w: -15}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -12537,7 +12576,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -15, y: -15, z: -15, w: -15}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -12718,7 +12757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -12782,7 +12821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -12840,7 +12879,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -15, y: -15, z: -15, w: -15}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -12934,7 +12973,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -15, y: -15, z: -15, w: -15}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -13009,7 +13048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -13161,7 +13200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -13498,7 +13537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -13614,7 +13653,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -15, y: -15, z: -15, w: -15}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -13678,7 +13717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -13749,7 +13788,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fca933c311af72445967391b731c77da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c002ae17cfde0de478586a568c386243, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13840,7 +13879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -14200,7 +14239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -14480,7 +14519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -14538,7 +14577,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -15, y: -15, z: -15, w: -15}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -14568,7 +14607,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -15, y: -15, z: -15, w: -15}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -14758,7 +14797,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -15, y: -15, z: -15, w: -15}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -15076,7 +15115,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3f40c175398bbbd44b2b28bd6a148216, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d0ffa6d3c745b448940dd5b37278426, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15134,7 +15173,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -15, y: -15, z: -15, w: -15}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -15277,7 +15316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -15369,7 +15408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -15531,7 +15570,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -15, y: -15, z: -15, w: -15}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -15578,7 +15617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -15677,7 +15716,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: -15, y: -15, z: -15, w: -15}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -15705,7 +15744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}

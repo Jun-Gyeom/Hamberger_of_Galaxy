@@ -21,11 +21,18 @@ public class ButtonManager : MonoBehaviour
     //게임 시작 버튼
     public void Push_Button_Game_Start()
     {
+        // 게임 시작 상태 체크
+        GameManager.Instance.is_Game_Start = true;
+
         GameManager.Instance.current_Time_Minute = 0;
         GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
 
         // 저장된 돈 초기화
         GameManager.Instance.money = GameManager.Instance.last_Money;
+
+        // 손님 오는 함수
+        GameManager.Instance.Guest_Come();
+
 
         //게임 첫 날이면 튜토리얼 띄우기
         if (GameManager.Instance.current_Date==0)
@@ -64,11 +71,6 @@ public class ButtonManager : MonoBehaviour
     //튜토리얼 종료 버튼
     public void Push_Button_End_Tutorial()
     {
-        // 손님 오는 함수
-        GameManager.Instance.Guest_Come();
-        // 게임 시작 상태 체크
-        GameManager.Instance.is_Game_Start = true;
-
         tutorial_Panel2.SetActive(false);
 
         GameManager.Instance.is_Paused = false;
@@ -87,17 +89,64 @@ public class ButtonManager : MonoBehaviour
     {
         // 게임 시작 상태 체크 해제
         GameManager.Instance.is_Game_Start = false;
+        // 퍼즈 창 체크 해제
+        GameManager.Instance.is_Paused = false;
+
+        StopCoroutine(GameManager.Instance.Come_Guest_Delay());
+
+        // 손님 인내심 수치 초기화
+        GameManager.Instance.current_Patience_Value = 10f;
+        for (int i = 0; i < GameManager.Instance.patience_Gauge_Objects.Length; i++)
+        {
+            GameManager.Instance.patience_Gauge_Objects[i].SetActive(true);
+        }
+        GameManager.Instance.happy_Face_Image.SetActive(true);
+        GameManager.Instance.hungry_Face_Image.SetActive(true);
+        GameManager.Instance.angry_Face_Image.SetActive(true);
+
+        GameManager.Instance.complete_Emote.SetActive(false);
+        GameManager.Instance.failed_Emote.SetActive(false);
+
+
+        // 요리 창이었다면 요리창 닫기
+        {
+            // 재료 선택 해제(강조 해제)
+            GameManager.Instance.Sorting_Ingredient_Objects();
+
+            // 손님 기다리기 종료
+            GameManager.Instance.is_Guest_Waiting = false;
+
+            // 요리 창 닫기
+            GameManager.Instance.ingredients_Panel.SetActive(false);
+            GameManager.Instance.cooking_Panel.SetActive(false);
+            GameManager.Instance.is_On_Cooking_Panel = false;
+            GameManager.Instance.is_End_Current_Order = false;
+
+            // 현재 선택된 햄버거 높이 초기화
+            GameManager.Instance.current_Burgur_Height = 0;
+
+            // 손님 와있었다면 (먹튀방지)
+            if (GameManager.Instance.is_Come_Guest)
+            {
+                GameManager.Instance.money -= GameManager.Instance.burgur_Price;
+
+                // 손님 없음 체크
+                GameManager.Instance.is_Come_Guest = false;
+            }
+
+            // 손님 그림자 초기화
+            StopCoroutine(GameManager.Instance.Fade_In());
+            StopCoroutine(GameManager.Instance.Fade_Out());
+            GameManager.Instance.guest_Silhoutte_Image.color = new UnityEngine.Color(0f, 0f, 0f, 0f);
+
+            // 손님 못 오게하기.
+            StopCoroutine(GameManager.Instance.Come_Guest_Delay());
+        }
 
         /*if (GameManager.Instance.is_On_Cooking_Panel == true)
         {
             Push_Button_Open_Cooking_Panel();
         }*/
-        Time.timeScale = 0f; // 일시정지
-        for (int i = 0; i < 10; i++)
-        {
-            GameManager.Instance.patience_Gauge_Objects[i].SetActive(true);
-
-        }
 
         GameManager.Instance.pause_Panel.SetActive(false);
 
@@ -105,14 +154,14 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.current_Time_Text.text = $"{GameManager.Instance.opening_Time}:00";
         GameManager.Instance.current_Date_Number_Text.text = (GameManager.Instance.current_Date + 1).ToString();
 
-        GameManager.Instance.talk.SetMsg($"", false); // 대화창 지우기
-
         GameManager.Instance.upgrade_Panel.SetActive(false);
         GameManager.Instance.is_Closed=false;
         GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
         GameManager.Instance.current_Time_Minute = 0;
         title_Panel.SetActive(true);
         GameManager.Instance.result_Panel.SetActive(false);
+
+        // 게임오버, 엔딩 이후에 타이틀로 갈때 
         if (GameManager.Instance.is_Gameover==true || is_Ending == true)
         {
             GameManager.Instance.is_Gameover = false;
@@ -122,6 +171,7 @@ public class ButtonManager : MonoBehaviour
             GameManager.Instance.current_Date = 0;
             GameManager.Instance.current_Time_Hour = GameManager.Instance.opening_Time;
             GameManager.Instance.gameover_Panel.SetActive(false);
+            Time.timeScale = 1f; // 일시정지 해제
         }
     }
 
@@ -152,16 +202,19 @@ public class ButtonManager : MonoBehaviour
         //엔딩 여부 확인
         if (GameManager.Instance.current_Date>=5 && GameManager.Instance.is_Gameover==false)
         {
+            // 엔딩 BGM 재생
+            GameManager.Instance.audioManager.bgm_AudioSource.clip = GameManager.Instance.audioManager.bgm_ending;
+            GameManager.Instance.audioManager.bgm_AudioSource.Play();
+
             is_Ending = true;
             GameManager.Instance.ending_Panel.SetActive(true);
-            StartCoroutine(WaitForToTitle());
+            StartCoroutine("WaitForToTitle");
             GameManager.Instance.last_Money = 0;
             GameManager.Instance.money = 0;
         }
 
         // 손님 부르기
         GameManager.Instance.Guest_Come();
-
     }
 
     
@@ -169,7 +222,7 @@ public class ButtonManager : MonoBehaviour
     //요리 창 열기, 요리 완료 버튼
     public void Push_Button_Open_Cooking_Panel()
     {
-        if (GameManager.Instance.is_Closed)
+        if (GameManager.Instance.is_Closed || !GameManager.Instance.is_Game_Start || GameManager.Instance.is_Paused)
         {
             return;
         }
@@ -254,6 +307,11 @@ public class ButtonManager : MonoBehaviour
     // 요리 창 닫기 (요리완료) 코루틴
     IEnumerator Cooking_Panel_Close()
     {
+        if (!GameManager.Instance.is_Game_Start)
+        {
+            yield return null;
+        }
+
         GameManager.Instance.is_Cooking_Panel_Closing_Coroutine = true;
 
         // 잠시 대기
@@ -269,6 +327,12 @@ public class ButtonManager : MonoBehaviour
         GameManager.Instance.current_Burgur_Height = 0;
 
         GameManager.Instance.is_Cooking_Panel_Closing_Coroutine = false;
+
+        // 요리 창이 닫히기 전 마감시간이 되면 실행하지 않음. 또는 타이틀 화면일 때
+        if (GameManager.Instance.is_Closed || !GameManager.Instance.is_Game_Start)
+        {
+            yield return null;
+        }
 
         GameManager.Instance.Guest_Leave(); // 손님 떠나기.
     }
@@ -290,5 +354,9 @@ public class ButtonManager : MonoBehaviour
         yield return new WaitForSeconds(12f);
         GameManager.Instance.current_Date = 0;
         Push_Button_To_Title();
+
+        // 메인 BGM 재생
+        GameManager.Instance.audioManager.bgm_AudioSource.clip = GameManager.Instance.audioManager.bgm_main;
+        GameManager.Instance.audioManager.bgm_AudioSource.Play();
     }
 }

@@ -13,6 +13,9 @@ public class Type_Effect : MonoBehaviour
     int index;
     bool current_Is_Order;
 
+    [SerializeField]
+    public bool is_Type_Effecting; // 타이핑 진행 중인지 여부
+
     private void Awake()
     {
         msg_Text = GetComponent<TMP_Text>();
@@ -29,14 +32,26 @@ public class Type_Effect : MonoBehaviour
             current_Is_Order = false;
         }
 
-        targetMsg = msg;
-        Effect_Start();
+        // 스킵 기능
+        if (is_Type_Effecting)
+        {
+            msg_Text.text = targetMsg;
+            CancelInvoke();
+            Effect_End();
+        }
+        else
+        {
+            targetMsg = msg;
+            Effect_Start();
+        }
     }
 
     void Effect_Start()
     {
         msg_Text.text = "";
         index = 0;
+
+        is_Type_Effecting = true;
 
         float gap_Timp = 1 / Char_Per_Seconds;
         Invoke("Effecting", gap_Timp);
@@ -59,6 +74,8 @@ public class Type_Effect : MonoBehaviour
 
     void Effect_End()
     {
+        is_Type_Effecting = false;
+
         if (current_Is_Order)
         {
             GameManager.Instance.is_End_Current_Order = true;
