@@ -46,7 +46,7 @@ public class ButtonManager : MonoBehaviour
             GameManager.Instance.is_Paused = false;
             Time.timeScale = 1;
             GameManager.Instance.money = GameManager.Instance.last_Money;
-            Push_Button_Open_Cooking_Panel();
+            
         }
     }
 
@@ -91,6 +91,10 @@ public class ButtonManager : MonoBehaviour
         // 게임 시작 상태 체크 해제
         GameManager.Instance.is_Game_Start = false;
 
+        if (GameManager.Instance.is_On_Cooking_Panel == true)
+        {
+            Push_Button_Open_Cooking_Panel();
+        }
         Time.timeScale = 0f; // 일시정지
         for (int i = 0; i < 10; i++)
         {
@@ -191,7 +195,6 @@ public class ButtonManager : MonoBehaviour
         // 요리 창 열려있을 때 (요리 완료 버튼)
         else if ((GameManager.Instance.is_On_Cooking_Panel == true) && !GameManager.Instance.is_Cooking_Panel_Closing_Coroutine)
         {
-            Time.timeScale = 1;
             // 햄버거 윗부분 덮기
             GameManager.Instance.Cook_Hamburger(ingredients_Top_Bun);
 
