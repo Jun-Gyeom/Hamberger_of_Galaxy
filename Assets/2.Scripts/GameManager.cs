@@ -37,6 +37,15 @@ public class GameManager : MonoBehaviour
     public GameObject cooking_Panel;
     // 재료 창 오브젝트
     public GameObject ingredients_Panel;
+    //성공화면
+    public GameObject complete_Panel;
+    //실패화면
+    public GameObject failed_Panel;
+    //성공이모지
+    public GameObject complete_Emote;
+    //실패이모지
+    public GameObject failed_Emote;
+
 
     [SerializeField]
     public int[] ingredient_Money;
@@ -124,6 +133,7 @@ public class GameManager : MonoBehaviour
     public bool is_Cooking_Panel_Closing_Coroutine;
     // 현재 선택 중인 재료 위치 (햄버거에서의 높이)
     private int current_Select_Ingredient_Height;
+    public AudioManager audioManager;
 
     [Header("손님 시스템 관련 변수")]
     // 손님 얼굴 이미지
@@ -592,6 +602,7 @@ public class GameManager : MonoBehaviour
         // 손님 없음 체크
         is_Come_Guest = false;
 
+
         // 손님 실루엣 페이드 아웃
         StartCoroutine(Fade_Out());
 
@@ -602,6 +613,19 @@ public class GameManager : MonoBehaviour
             // 손님이 만족한 코드
             Debug.Log("만족스러운 햄버거에요!");
 
+
+            //성공화면 및 이모지 실행
+            complete_Emote.SetActive(true);
+            complete_Panel.SetActive(true);
+
+            StartCoroutine(SetCompleteFalse());
+
+            if (current_Patience_Value > 5)
+            {
+                //만족한 오디오 재생
+                audioManager.effect_AudioSource.clip = audioManager.complete_Clip;
+                audioManager.effect_AudioSource.Play();
+            }
             // 인내심이 5칸 아래라면
             if (current_Patience_Value < 5)
             {
@@ -611,6 +635,10 @@ public class GameManager : MonoBehaviour
 
                 money -= return_Money; // 돈 차감
 
+                //애매하다는 오디오 재생
+                audioManager.effect_AudioSource.clip = audioManager.middle_Clip;
+                audioManager.effect_AudioSource.Play();
+
                 // 대화창에 "맛있긴 하지만 너무 오래걸렸어요" 같은 메시지 출력하면 좋을듯)
             }
         }
@@ -619,8 +647,19 @@ public class GameManager : MonoBehaviour
             // 손님이 만족하지 못한 코드
             Debug.Log("주문한 햄버거가 아니에요..");
 
+
+            //실패화면 및 이모지 실행
+            failed_Emote.SetActive(true);
+            failed_Panel.SetActive(true);
+
+            StartCoroutine(SetFailedFalse());
+
             // 만족도 패널티 받고 인내심에 따른 처리.
             float burgur_Panalty = burgur_Price * (burgur_Penalty_Percentage / 100f);
+
+            //불만족한 오디오 재생
+            audioManager.effect_AudioSource.clip = audioManager.failed_Clip;
+            audioManager.effect_AudioSource.Play();
 
             money -= burgur_Panalty; // 돈 차감
 
@@ -717,5 +756,19 @@ public class GameManager : MonoBehaviour
         Guest_Come();
     }
 
+    IEnumerator SetCompleteFalse()
+    {
+        yield return new WaitForSeconds(0.5f);
+        complete_Emote.SetActive(false);
+        complete_Panel.SetActive(false);
+    }
+
+
+    IEnumerator SetFailedFalse()
+    {
+        yield return new WaitForSeconds(0.5f);
+        failed_Emote.SetActive(false);
+        failed_Panel.SetActive(false);
+    }
 
 }

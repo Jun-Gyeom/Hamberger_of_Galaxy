@@ -130,12 +130,15 @@ public class ButtonManager : MonoBehaviour
         {
             is_Ending = true;
             GameManager.Instance.ending_Panel.SetActive(true);
+            StartCoroutine("WaitForToTitle");
         }
 
         // 손님 부르기
         GameManager.Instance.Guest_Come();
 
     }
+
+    
 
     //요리 창 열기, 요리 완료 버튼
     public void Push_Button_Open_Cooking_Panel()
@@ -253,5 +256,12 @@ public class ButtonManager : MonoBehaviour
         yield return new WaitForSeconds(4f);
 
         Push_Button_To_Title(); // 타이틀로
+    }
+
+    IEnumerator WaitForToTitle()
+    {
+        yield return new WaitForSeconds(15f);
+        GameManager.Instance.current_Date = 0;
+        Push_Button_To_Title();
     }
 }
