@@ -18,9 +18,6 @@ public class ButtonManager : MonoBehaviour
     // 햄버거 윗면 빵
     public Ingredients ingredients_Top_Bun;
 
-    //[SerializeField]
-    //private GameObject tutorial_Panel;
-
     //게임 시작 버튼
     public void Push_Button_Game_Start()
     {
@@ -91,10 +88,10 @@ public class ButtonManager : MonoBehaviour
         // 게임 시작 상태 체크 해제
         GameManager.Instance.is_Game_Start = false;
 
-        if (GameManager.Instance.is_On_Cooking_Panel == true)
+        /*if (GameManager.Instance.is_On_Cooking_Panel == true)
         {
             Push_Button_Open_Cooking_Panel();
-        }
+        }*/
         Time.timeScale = 0f; // 일시정지
         for (int i = 0; i < 10; i++)
         {
@@ -157,7 +154,7 @@ public class ButtonManager : MonoBehaviour
         {
             is_Ending = true;
             GameManager.Instance.ending_Panel.SetActive(true);
-            StartCoroutine("WaitForToTitle");
+            StartCoroutine(WaitForToTitle());
             GameManager.Instance.last_Money = 0;
             GameManager.Instance.money = 0;
         }
@@ -290,7 +287,7 @@ public class ButtonManager : MonoBehaviour
 
     IEnumerator WaitForToTitle()
     {
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(12f);
         GameManager.Instance.current_Date = 0;
         Push_Button_To_Title();
     }
