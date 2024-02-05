@@ -8,7 +8,10 @@ public class ButtonManager : MonoBehaviour
     [SerializeField]
     private GameObject title_Panel;
     [SerializeField]
-    private GameObject tutorial_Panel;
+    private GameObject tutorial_Panel1;
+    [SerializeField]
+    private GameObject tutorial_Panel2;
+
 
 
     private bool is_Ending=false;
@@ -30,7 +33,7 @@ public class ButtonManager : MonoBehaviour
         //게임 첫 날이면 튜토리얼 띄우기
         if (GameManager.Instance.current_Date==0)
         {
-            tutorial_Panel.SetActive(true);
+            tutorial_Panel1.SetActive(true);
             GameManager.Instance.pause_Panel.SetActive(false);
             Time.timeScale = 0;
             GameManager.Instance.is_Paused = true;
@@ -46,6 +49,20 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
+    //다음 튜토리얼로 가는 버튼
+    public void Push_Button_To_Next_Tutorial()
+    {
+        tutorial_Panel1.SetActive(false);
+        tutorial_Panel2.SetActive(true);
+    }
+
+    //이전 튜토리얼로 돌아가는 버튼
+    public void Push_Button_To_Previous_Tutorial()
+    {
+        tutorial_Panel1.SetActive(true);
+        tutorial_Panel2.SetActive(false);
+    }
+
     //튜토리얼 종료 버튼
     public void Push_Button_End_Tutorial()
     {
@@ -54,7 +71,7 @@ public class ButtonManager : MonoBehaviour
         // 게임 시작 상태 체크
         GameManager.Instance.is_Game_Start = true;
 
-        tutorial_Panel.SetActive(false);
+        tutorial_Panel2.SetActive(false);
 
         GameManager.Instance.is_Paused = false;
         Time.timeScale = 1;

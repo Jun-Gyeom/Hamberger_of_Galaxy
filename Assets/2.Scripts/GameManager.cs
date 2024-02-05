@@ -759,16 +759,18 @@ public class GameManager : MonoBehaviour
     IEnumerator SetCompleteFalse()
     {
         yield return new WaitForSeconds(0.5f);
-        complete_Emote.SetActive(false);
         complete_Panel.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        complete_Emote.SetActive(false);
     }
 
 
     IEnumerator SetFailedFalse()
     {
         yield return new WaitForSeconds(0.5f);
-        failed_Emote.SetActive(false);
         failed_Panel.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        failed_Emote.SetActive(false);
     }
 
 }
