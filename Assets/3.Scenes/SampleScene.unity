@@ -9109,7 +9109,7 @@ MonoBehaviour:
   failed_Panel: {fileID: 1549272708}
   complete_Emote: {fileID: 435178455}
   failed_Emote: {fileID: 1953539021}
-  ingredient_Money: b80b000094110000701700004c1d0000282300000000000000000000
+  ingredient_Money: b80b0000941100007c15000070170000401f00000000000000000000
   time_Speed: 6.5
   current_Time_Hour: 10
   current_Time_Minute: 0
