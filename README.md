@@ -1,2 +1,2 @@
-# MRT_Project
+# Hamberger of Galaxy
 청강문화산업대학교 2024 얼얼스 게임잼 팀 마라탕후루 프로젝트 
